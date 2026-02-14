@@ -1,4 +1,4 @@
-import "./App.css";
+import "./Login.css";
 import vector from "./assets/vector.svg";
 import lock from "./assets/lock.svg";
 
