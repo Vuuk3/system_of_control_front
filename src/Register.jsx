@@ -1,9 +1,9 @@
-import "./Login.css";
+import "./Register.css";
 import vector from "./assets/vector.svg";
 import lock from "./assets/lock.svg";
 import { useRef, useState } from "react";
 
-function Login() {
+function Register() {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const emailRef = useRef(null);
@@ -78,17 +78,11 @@ function Login() {
           disabled={emailError != "" || passwordError != ""}
           onClick={() => Validation(emailRef.current, passwordRef.current)}
         >
-          Login
+          Register
         </button>
-        <div className="register">
-          Don`t have an account?{" "}
-          <a href="/register" className="register-link">
-            Register
-          </a>
-        </div>
       </form>
     </>
   );
 }
 
-export default Login;
+export default Register;
