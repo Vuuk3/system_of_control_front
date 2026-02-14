@@ -35,20 +35,22 @@ body {
   margin: 0px;
 }
 
-.username,
-.password {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+.form__field {
   margin-top: calc(100vh * 73 / 1080);
   width: calc(100% * 701 / 800);
   min-width: 386px;
   max-width: 701px;
+}
+
+.email,
+.password {
+  display: flex;
+  align-items: center;
   height: calc(100vh * 86 / 800);
   max-height: 86px;
 }
 
-.username-input,
+.email-input,
 .password-input {
   box-sizing: border-box;
   width: 100%;
@@ -62,13 +64,13 @@ body {
   padding-left: 20px;
 }
 
-.username-icon,
+.email-icon,
 .password-icon {
   position: absolute;
   pointer-events: none;
 }
 
-.username-icon {
+.email-icon {
   width: 41px;
   height: 38px;
   right: 70px;
@@ -78,6 +80,15 @@ body {
   width: 47px;
   height: 47px;
   right: 65px;
+}
+
+.error {
+  color: #ff6f61;
+  font-size: 21px;
+}
+
+.incorrect {
+  border: 1px #ff6f61 solid;
 }
 
 .login-button {
@@ -95,6 +106,7 @@ body {
 .login-button:hover {
   background-color: #80808073;
   color: white;
+  cursor: pointer;
 }
 
 .login-button:active {
