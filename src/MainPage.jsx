@@ -1,7 +1,7 @@
-import styles from "./Main.module.css";
+import styles from "./MainPage.module.css";
 import logo from "./assets/main.svg";
 
-function Main() {
+function MainPage() {
   return (
     <>
       <img className="logo" src={logo} />
@@ -26,4 +26,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default MainPage;

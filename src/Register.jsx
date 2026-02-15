@@ -19,7 +19,7 @@ function Register() {
   return (
     <>
       <form noValidate method="post" className={styles.login}>
-        <h5 className={styles["header-login"]}>Login</h5>
+        <h5 className={styles["header-login"]}>Registration</h5>
         <div className={styles.form__field}>
           <div className={styles.email}>
             <input
