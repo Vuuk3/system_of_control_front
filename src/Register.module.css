@@ -16,7 +16,8 @@ body {
   flex-direction: column;
   width: calc(100vw * 800 / 1920);
   min-width: 280px;
-  height: calc(100vh * 600 / 1080);
+  height: calc(100vh * 700 / 1080);
+  min-height: 500px;
   background: #2b92bf10;
   opacity: 1;
   backdrop-filter: blur(125px);
@@ -60,7 +61,7 @@ body {
   opacity: 1;
   color: #2e4756;
   background-color: #d9d9d9;
-  font-size: 30px;
+  font-size: 25px;
   padding-left: 20px;
 }
 
@@ -71,14 +72,14 @@ body {
 }
 
 .email-icon {
-  width: 35px;
-  height: 30px;
+  width: 28px;
+  height: 25px;
   right: 9%;
 }
 
 .password-icon {
-  width: 35px;
-  height: 35px;
+  width: 25px;
+  height: 25px;
   right: 9%;
 }
 
@@ -93,7 +94,7 @@ body {
 
 .register-button {
   width: 221px;
-  height: calc(100vh * 55.19 / 1080);
+  height: calc(100vh * 60.19 / 1080);
   background-color: #d9d9d9;
   color: #2e4756;
   border: none;
@@ -116,7 +117,19 @@ body {
 
 @media (max-width: 700px) {
   .register-button {
-    font-size: 25px;
     width: 150px;
+    font-size: 25px;
+  }
+
+  .email-icon {
+    width: 20px;
+    height: 18px;
+    right: 12%;
+  }
+
+  .password-icon {
+    width: 18px;
+    height: 18px;
+    right: 12%;
   }
 }

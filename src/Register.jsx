@@ -4,23 +4,30 @@ import lock from "./assets/lock.svg";
 import { useRef, useState } from "react";
 
 function Register() {
-  const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const emailRef = useRef(null);
-  const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const passwordRef = useRef(null);
 
-  function Validation(emailInput, passwordInput) {
-    setEmailError(emailInput.validationMessage);
-    setPasswordError(passwordInput.validationMessage);
+  function Validation(inputElement, setError) {
+    if (
+      !inputElement.checkValidity() &&
+      inputElement.type == "email" &&
+      inputElement.value != ""
+    ) {
+      setError(`Адрес "${inputElement.value}" некорректен`);
+    } else if (inputElement.value == "") {
+      setError("Заполните поле");
+    } else {
+      setError("");
+    }
   }
 
   return (
     <>
       <form noValidate method="post" className={styles.login}>
         <h5 className={styles["header-login"]}>Registration</h5>
-        <div className={styles.form__field}>
+        <div className={styles["form__field"]}>
           <div className={styles.email}>
             <input
               type="email"
@@ -31,11 +38,7 @@ function Register() {
                   : `${styles["email-input"]} ${styles["incorrect"]}`
               }
               placeholder="Email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                setEmailError(e.target.validationMessage);
-              }}
+              onChange={() => Validation(emailRef.current, setEmailError)}
               required
             />
             <img src={vector} className={styles["email-icon"]} />
@@ -47,7 +50,7 @@ function Register() {
             {emailError}
           </span>
         </div>
-        <div className={styles.form__field}>
+        <div className={styles["form__field"]}>
           <div className={styles.password}>
             <input
               type="password"
@@ -58,11 +61,7 @@ function Register() {
                   : `${styles["password-input"]} ${styles["incorrect"]}`
               }
               placeholder="Password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                setPasswordError(e.target.validationMessage);
-              }}
+              onChange={() => Validation(passwordRef.current, setPasswordError)}
               required
             />
             <img src={lock} className={styles["password-icon"]} />
@@ -78,7 +77,10 @@ function Register() {
           type="submit"
           className={styles["register-button"]}
           disabled={emailError != "" || passwordError != ""}
-          onClick={() => Validation(emailRef.current, passwordRef.current)}
+          onClick={() => {
+            Validation(emailRef.current, setEmailError);
+            Validation(passwordRef.current, setPasswordError);
+          }}
         >
           Register
         </button>

@@ -4,16 +4,23 @@ import lock from "./assets/lock.svg";
 import { useRef, useState } from "react";
 
 function Login() {
-  const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const emailRef = useRef(null);
-  const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const passwordRef = useRef(null);
 
-  function Validation(emailInput, passwordInput) {
-    setEmailError(emailInput.validationMessage);
-    setPasswordError(passwordInput.validationMessage);
+  function Validation(inputElement, setError) {
+    if (
+      !inputElement.checkValidity() &&
+      inputElement.type == "email" &&
+      inputElement.value != ""
+    ) {
+      setError(`Адрес "${inputElement.value}" некорректен`);
+    } else if (inputElement.value == "") {
+      setError("Заполните поле");
+    } else {
+      setError("");
+    }
   }
 
   return (
@@ -31,11 +38,7 @@ function Login() {
                   : `${styles["email-input"]} ${styles["incorrect"]}`
               }
               placeholder="Email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                setEmailError(e.target.validationMessage);
-              }}
+              onChange={() => Validation(emailRef.current, setEmailError)}
               required
             />
             <img src={vector} className={styles["email-icon"]} />
@@ -58,11 +61,7 @@ function Login() {
                   : `${styles["password-input"]} ${styles["incorrect"]}`
               }
               placeholder="Password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                setPasswordError(e.target.validationMessage);
-              }}
+              onChange={() => Validation(passwordRef.current, setPasswordError)}
               required
             />
             <img src={lock} className={styles["password-icon"]} />
@@ -78,7 +77,10 @@ function Login() {
           type="submit"
           className={styles["login-button"]}
           disabled={emailError != "" || passwordError != ""}
-          onClick={() => Validation(emailRef.current, passwordRef.current)}
+          onClick={() => {
+            Validation(emailRef.current, setEmailError);
+            Validation(passwordRef.current, setPasswordError);
+          }}
         >
           Login
         </button>

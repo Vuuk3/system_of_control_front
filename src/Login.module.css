@@ -17,6 +17,7 @@ body {
   width: calc(100vw * 800 / 1920);
   min-width: 280px;
   height: calc(100vh * 700 / 1080);
+  min-height: 500px;
   background: #2b92bf10;
   opacity: 1;
   backdrop-filter: blur(125px);
@@ -60,7 +61,7 @@ body {
   opacity: 1;
   color: #2e4756;
   background-color: #d9d9d9;
-  font-size: 30px;
+  font-size: 25px;
   padding-left: 20px;
 }
 
@@ -71,14 +72,14 @@ body {
 }
 
 .email-icon {
-  width: 35px;
-  height: 30px;
+  width: 28px;
+  height: 25px;
   right: 9%;
 }
 
 .password-icon {
-  width: 35px;
-  height: 35px;
+  width: 25px;
+  height: 25px;
   right: 9%;
 }
 
@@ -145,5 +146,17 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 2px;
+  }
+
+  .email-icon {
+    width: 20px;
+    height: 18px;
+    right: 12%;
+  }
+
+  .password-icon {
+    width: 18px;
+    height: 18px;
+    right: 12%;
   }
 }
