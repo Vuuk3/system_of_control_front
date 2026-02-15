@@ -15,8 +15,8 @@ body {
   display: flex;
   flex-direction: column;
   width: calc(100vw * 800 / 1920);
-  min-width: 480px;
-  height: calc(100vh * 800 / 1080);
+  min-width: 280px;
+  height: calc(100vh * 600 / 1080);
   background: #2b92bf10;
   opacity: 1;
   backdrop-filter: blur(125px);
@@ -27,18 +27,18 @@ body {
 }
 
 .header-login {
-  font-size: max(calc(100vw * 75 / 1920), 50px);
+  font-size: max(calc(100vw * 75 / 1920), 40px);
   color: #bbc0db;
   font-style: normal;
   font-weight: 300;
-  line-height: 116px;
+  line-height: 70px;
   margin: 0px;
 }
 
 .form__field {
   margin-top: calc(100vh * 73 / 1080);
   width: calc(100% * 701 / 800);
-  min-width: 386px;
+  min-width: 186px;
   max-width: 701px;
 }
 
@@ -46,8 +46,8 @@ body {
 .password {
   display: flex;
   align-items: center;
-  height: calc(100vh * 86 / 800);
-  max-height: 86px;
+  height: calc(100vh * 43 / 800);
+  max-height: 43px;
 }
 
 .email-input,
@@ -71,15 +71,15 @@ body {
 }
 
 .email-icon {
-  width: 41px;
-  height: 38px;
-  right: 70px;
+  width: 35px;
+  height: 30px;
+  right: 9%;
 }
 
 .password-icon {
-  width: 47px;
-  height: 47px;
-  right: 65px;
+  width: 35px;
+  height: 35px;
+  right: 9%;
 }
 
 .error {
@@ -91,59 +91,32 @@ body {
   border: 1px #ff6f61 solid;
 }
 
-.login-button {
+.register-button {
   width: 221px;
-  height: calc(100vh * 84.19 / 1080);
+  height: calc(100vh * 55.19 / 1080);
   background-color: #d9d9d9;
   color: #2e4756;
   border: none;
   border-radius: 100px;
   margin-top: calc(100vh * 68 / 1080);
   margin-bottom: calc(100vh * 68 / 1080);
-  font-size: 32px;
+  font-size: 28px;
 }
 
-.login-button:hover {
+.register-button:hover {
   background-color: #80808073;
   color: white;
   cursor: pointer;
 }
 
-.login-button:active {
+.register-button:active {
   background-color: #2e4756;
   color: white;
 }
 
-.register {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  justify-content: center;
-  width: 671px;
-  min-width: 320px;
-  height: 47px;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 22px;
-  line-height: 34px;
-  color: #2e4756;
-}
-
-.register-link {
-  font-weight: 1000;
-  color: inherit;
-  text-decoration: underline;
-}
-
-@media (max-width: 608px) {
-  .login-button {
-    width: 239.42px;
-  }
-
-  .register {
-    width: 320px;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
+@media (max-width: 700px) {
+  .register-button {
+    font-size: 25px;
+    width: 150px;
   }
 }

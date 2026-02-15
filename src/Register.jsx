@@ -1,4 +1,4 @@
-import "./Register.css";
+import styles from "./Register.module.css";
 import vector from "./assets/vector.svg";
 import lock from "./assets/lock.svg";
 import { useRef, useState } from "react";
@@ -18,15 +18,17 @@ function Register() {
 
   return (
     <>
-      <form noValidate method="post" className="login">
-        <h5 className="header-login">Login</h5>
-        <div className="form__field">
-          <div className="email">
+      <form noValidate method="post" className={styles.login}>
+        <h5 className={styles["header-login"]}>Login</h5>
+        <div className={styles.form__field}>
+          <div className={styles.email}>
             <input
               type="email"
               ref={emailRef}
               className={
-                emailError == "" ? "email-input" : "email-input incorrect"
+                emailError == ""
+                  ? styles["email-input"]
+                  : `${styles["email-input"]} ${styles["incorrect"]}`
               }
               placeholder="Email"
               value={email}
@@ -36,24 +38,24 @@ function Register() {
               }}
               required
             />
-            <img src={vector} className="email-icon" />
+            <img src={vector} className={styles["email-icon"]} />
           </div>
           <span
-            className="email-error error"
+            className={`${styles["email-error"]} ${styles["error"]}`}
             style={{ display: emailError == "" ? "none" : "block" }}
           >
             {emailError}
           </span>
         </div>
-        <div className="form__field">
-          <div className="password">
+        <div className={styles.form__field}>
+          <div className={styles.password}>
             <input
               type="password"
               ref={passwordRef}
               className={
                 passwordError == ""
-                  ? "password-input"
-                  : "password-input incorrect"
+                  ? styles["password-input"]
+                  : `${styles["password-input"]} ${styles["incorrect"]}`
               }
               placeholder="Password"
               value={password}
@@ -63,10 +65,10 @@ function Register() {
               }}
               required
             />
-            <img src={lock} className="password-icon" />
+            <img src={lock} className={styles["password-icon"]} />
           </div>
           <span
-            className="password-error error"
+            className={`${styles["password-error"]} ${styles["error"]}`}
             style={{ display: passwordError == "" ? "none" : "block" }}
           >
             {passwordError}
@@ -74,7 +76,7 @@ function Register() {
         </div>
         <button
           type="submit"
-          className="login-button"
+          className={styles["register-button"]}
           disabled={emailError != "" || passwordError != ""}
           onClick={() => Validation(emailRef.current, passwordRef.current)}
         >
