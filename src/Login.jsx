@@ -45,7 +45,7 @@ function Login() {
           </div>
           <span
             className={`${styles["email-error"]} ${styles["error"]}`}
-            style={{ display: emailError == "" ? "none" : "block" }}
+            style={{ visibility: emailError == "" ? "hidden" : "visible" }}
           >
             {emailError}
           </span>
@@ -68,7 +68,7 @@ function Login() {
           </div>
           <span
             className={`${styles["password-error"]} ${styles["error"]}`}
-            style={{ display: passwordError == "" ? "none" : "block" }}
+            style={{ visibility: passwordError == "" ? "hidden" : "visible" }}
           >
             {passwordError}
           </span>

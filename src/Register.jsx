@@ -45,7 +45,7 @@ function Register() {
           </div>
           <span
             className={`${styles["email-error"]} ${styles["error"]}`}
-            style={{ display: emailError == "" ? "none" : "block" }}
+            style={{ visibility: emailError == "" ? "none" : "visible" }}
           >
             {emailError}
           </span>
@@ -68,7 +68,7 @@ function Register() {
           </div>
           <span
             className={`${styles["password-error"]} ${styles["error"]}`}
-            style={{ display: passwordError == "" ? "none" : "block" }}
+            style={{ visibility: passwordError == "" ? "none" : "visible" }}
           >
             {passwordError}
           </span>
