@@ -1,88 +1,94 @@
-import "./Login.css";
+import styles from "./Login.module.css";
 import vector from "./assets/vector.svg";
 import lock from "./assets/lock.svg";
 import { useRef, useState } from "react";
 
 function Login() {
-  const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const emailRef = useRef(null);
-  const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const passwordRef = useRef(null);
 
-  function Validation(emailInput, passwordInput) {
-    setEmailError(emailInput.validationMessage);
-    setPasswordError(passwordInput.validationMessage);
+  function Validation(inputElement, setError) {
+    if (
+      !inputElement.checkValidity() &&
+      inputElement.type == "email" &&
+      inputElement.value != ""
+    ) {
+      setError("Адрес некорректен");
+    } else if (inputElement.value == "") {
+      setError("Заполните поле");
+    } else {
+      setError("");
+    }
   }
 
   return (
     <>
-      <form noValidate method="post" className="login">
-        <h5 className="header-login">Login</h5>
-        <div className="form__field">
-          <div className="email">
+      <form noValidate method="post" className={styles.login}>
+        <h5 className={styles["header-login"]}>Login</h5>
+        <div className={styles["form__field"]}>
+          <div className={styles.email}>
             <input
               type="email"
+              maxLength={32}
               ref={emailRef}
               className={
-                emailError == "" ? "email-input" : "email-input incorrect"
+                emailError == ""
+                  ? styles["email-input"]
+                  : `${styles["email-input"]} ${styles["incorrect"]}`
               }
               placeholder="Email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                setEmailError(e.target.validationMessage);
-              }}
+              onChange={() => Validation(emailRef.current, setEmailError)}
               required
             />
-            <img src={vector} className="email-icon" />
+            <img src={vector} className={styles["email-icon"]} />
           </div>
           <span
-            className="email-error error"
-            style={{ display: emailError == "" ? "none" : "block" }}
+            className={`${styles["email-error"]} ${styles["error"]}`}
+            style={{ visibility: emailError == "" ? "hidden" : "visible" }}
           >
             {emailError}
           </span>
         </div>
-        <div className="form__field">
-          <div className="password">
+        <div className={styles["form__field"]}>
+          <div className={styles.password}>
             <input
               type="password"
+              maxLength={20}
               ref={passwordRef}
               className={
                 passwordError == ""
-                  ? "password-input"
-                  : "password-input incorrect"
+                  ? styles["password-input"]
+                  : `${styles["password-input"]} ${styles["incorrect"]}`
               }
               placeholder="Password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                setPasswordError(e.target.validationMessage);
-              }}
+              onChange={() => Validation(passwordRef.current, setPasswordError)}
               required
             />
-            <img src={lock} className="password-icon" />
+            <img src={lock} className={styles["password-icon"]} />
           </div>
           <span
-            className="password-error error"
-            style={{ display: passwordError == "" ? "none" : "block" }}
+            className={`${styles["password-error"]} ${styles["error"]}`}
+            style={{ visibility: passwordError == "" ? "hidden" : "visible" }}
           >
             {passwordError}
           </span>
         </div>
         <button
           type="submit"
-          className="login-button"
+          className={styles["login-button"]}
           disabled={emailError != "" || passwordError != ""}
-          onClick={() => Validation(emailRef.current, passwordRef.current)}
+          onClick={() => {
+            Validation(emailRef.current, setEmailError);
+            Validation(passwordRef.current, setPasswordError);
+          }}
         >
           Login
         </button>
-        <div className="register">
+        <div className={styles.register}>
           Don`t have an account?{" "}
-          <a href="/register" className="register-link">
+          <a href="/register" className={styles["register-link"]}>
             Register
           </a>
         </div>

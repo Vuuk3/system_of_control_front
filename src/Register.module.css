@@ -1,0 +1,128 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  width: calc(100vw * var(--login-width) / 1920);
+  min-width: 320px;
+  background: #2b92bf10;
+  opacity: 1;
+  backdrop-filter: blur(125px);
+  border-radius: 38px;
+  position: relative;
+  top: calc(100vh * var(--login-top) / 1080);
+  align-items: center;
+}
+
+.header-login {
+  font-size: max(calc(100vw * 55 / 1920), 40px);
+  color: #bbc0db;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 70px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.form__field {
+  margin-bottom: max(calc(100vh * (var(--error-height) + 5) / 1080), 30px);
+  width: calc(100% * var(--form__field-width) / var(--login-width));
+  min-width: 186px;
+}
+
+.email,
+.password {
+  display: flex;
+  align-items: center;
+  height: max(calc(100vh * var(--form__field-height) / 800), 36px);
+}
+
+.email-input,
+.password-input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 100px;
+  opacity: 1;
+  color: #2e4756;
+  background-color: #d9d9d9;
+  font-size: 25px;
+  padding-left: 20px;
+  padding-right: 55px;
+}
+
+.email-icon,
+.password-icon {
+  position: absolute;
+  pointer-events: none;
+}
+
+.email-icon {
+  width: 28px;
+  height: 25px;
+  right: 9%;
+}
+
+.password-icon {
+  width: 25px;
+  height: 25px;
+  right: 9%;
+}
+
+.error {
+  display: block;
+  color: #ff6f61;
+  font-size: 21px;
+  min-height: calc(var(--error-height) * 1px);
+}
+
+.incorrect {
+  border: 1px #ff6f61 solid;
+}
+
+.register-button {
+  width: 221px;
+  height: calc(100vh * 60.19 / 1080);
+  min-height: 40px;
+  background-color: #d9d9d9;
+  color: #2e4756;
+  border: none;
+  border-radius: 100px;
+  margin-bottom: calc(100vh * 38 / 1080);
+  font-size: 28px;
+}
+
+.register-button:hover {
+  background-color: #80808073;
+  color: white;
+  cursor: pointer;
+}
+
+.register-button:active {
+  background-color: #2e4756;
+  color: white;
+}
+
+@media (max-width: 600px) {
+  .register-button {
+    width: 150px;
+    font-size: 25px;
+  }
+
+  .email-input,
+  .password-input {
+    font-size: 22px;
+    padding-right: 43px;
+  }
+
+  .email-icon {
+    width: 20px;
+    height: 18px;
+    right: 10%;
+  }
+
+  .password-icon {
+    width: 18px;
+    height: 18px;
+    right: 10%;
+  }
+}

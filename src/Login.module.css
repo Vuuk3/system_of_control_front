@@ -1,3 +1,11 @@
+:root {
+  --login-width: 500;
+  --login-top: 140;
+  --form__field-width: 450;
+  --form__field-height: 43;
+  --error-height: 29;
+}
+
 body {
   height: 100vh;
   overflow-y: hidden;
@@ -14,40 +22,38 @@ body {
 .login {
   display: flex;
   flex-direction: column;
-  width: calc(100vw * 800 / 1920);
-  min-width: 480px;
-  height: calc(100vh * 800 / 1080);
+  width: calc(100vw * var(--login-width) / 1920);
+  min-width: 320px;
   background: #2b92bf10;
   opacity: 1;
   backdrop-filter: blur(125px);
   border-radius: 38px;
   position: relative;
-  top: calc(100vh * 70 / 1080);
+  top: calc(100vh * var(--login-top) / 1080);
   align-items: center;
 }
 
 .header-login {
-  font-size: max(calc(100vw * 75 / 1920), 50px);
+  font-size: max(calc(100vw * 55 / 1920), 40px);
   color: #bbc0db;
   font-style: normal;
   font-weight: 300;
-  line-height: 116px;
-  margin: 0px;
+  line-height: 70px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .form__field {
-  margin-top: calc(100vh * 73 / 1080);
-  width: calc(100% * 701 / 800);
-  min-width: 386px;
-  max-width: 701px;
+  margin-bottom: max(calc(100vh * (var(--error-height) + 5) / 1080), 30px);
+  width: calc(100% * var(--form__field-width) / var(--login-width));
+  min-width: 186px;
 }
 
 .email,
 .password {
   display: flex;
   align-items: center;
-  height: calc(100vh * 86 / 800);
-  max-height: 86px;
+  height: max(calc(100vh * var(--form__field-height) / 800), 36px);
 }
 
 .email-input,
@@ -60,8 +66,9 @@ body {
   opacity: 1;
   color: #2e4756;
   background-color: #d9d9d9;
-  font-size: 30px;
+  font-size: 25px;
   padding-left: 20px;
+  padding-right: 55px;
 }
 
 .email-icon,
@@ -71,20 +78,22 @@ body {
 }
 
 .email-icon {
-  width: 41px;
-  height: 38px;
-  right: 70px;
+  width: 28px;
+  height: 25px;
+  right: 9%;
 }
 
 .password-icon {
-  width: 47px;
-  height: 47px;
-  right: 65px;
+  width: 25px;
+  height: 25px;
+  right: 9%;
 }
 
 .error {
+  display: block;
   color: #ff6f61;
   font-size: 21px;
+  min-height: calc(var(--error-height) * 1px);
 }
 
 .incorrect {
@@ -93,14 +102,14 @@ body {
 
 .login-button {
   width: 221px;
-  height: calc(100vh * 84.19 / 1080);
+  height: calc(100vh * 60.19 / 1080);
+  min-height: 40px;
   background-color: #d9d9d9;
   color: #2e4756;
   border: none;
   border-radius: 100px;
-  margin-top: calc(100vh * 68 / 1080);
-  margin-bottom: calc(100vh * 68 / 1080);
-  font-size: 32px;
+  margin-bottom: calc(100vh * 38 / 1080);
+  font-size: 28px;
 }
 
 .login-button:hover {
@@ -124,9 +133,10 @@ body {
   height: 47px;
   font-style: normal;
   font-weight: 400;
-  font-size: 22px;
+  font-size: 18px;
   line-height: 34px;
   color: #2e4756;
+  margin-bottom: 10px;
 }
 
 .register-link {
@@ -135,8 +145,34 @@ body {
   text-decoration: underline;
 }
 
-@media (max-width: 608px) {
+@media (max-width: 600px) {
   .login-button {
-    width: 239.42px;
+    width: 150px;
+    font-size: 25px;
+  }
+  .register {
+    width: 320px;
+    height: 70px;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .email-input,
+  .password-input {
+    font-size: 22px;
+    padding-right: 43px;
+  }
+
+  .email-icon {
+    width: 20px;
+    height: 18px;
+    right: 9%;
+  }
+
+  .password-icon {
+    width: 18px;
+    height: 18px;
+    right: 10%;
   }
 }

@@ -1,0 +1,10 @@
+body {
+  background-image: url("./assets/main.png");
+}
+
+.logo {
+  position: absolute;
+  bottom: 40px;
+  width: calc(100vw * 1030 / 1920);
+  height: calc(100vh * 642 / 1080);
+}
