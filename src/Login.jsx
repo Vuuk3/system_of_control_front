@@ -15,7 +15,7 @@ function Login() {
       inputElement.type == "email" &&
       inputElement.value != ""
     ) {
-      setError(`Адрес "${inputElement.value}" некорректен`);
+      setError("Адрес некорректен");
     } else if (inputElement.value == "") {
       setError("Заполните поле");
     } else {
@@ -31,6 +31,7 @@ function Login() {
           <div className={styles.email}>
             <input
               type="email"
+              maxLength={32}
               ref={emailRef}
               className={
                 emailError == ""
@@ -54,6 +55,7 @@ function Login() {
           <div className={styles.password}>
             <input
               type="password"
+              maxLength={20}
               ref={passwordRef}
               className={
                 passwordError == ""

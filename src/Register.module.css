@@ -1,24 +1,3 @@
-:root {
-  --login-width: 500;
-  --login-top: 140;
-  --form__field-width: 350;
-  --form__field-height: 43;
-  --error-height: 29;
-}
-
-body {
-  height: 100vh;
-  overflow-y: hidden;
-  background-image: url("./assets/login.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  font-family: "Inter", sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .login {
   display: flex;
   flex-direction: column;
@@ -68,6 +47,7 @@ body {
   background-color: #d9d9d9;
   font-size: 25px;
   padding-left: 20px;
+  padding-right: 55px;
 }
 
 .email-icon,
@@ -79,13 +59,13 @@ body {
 .email-icon {
   width: 28px;
   height: 25px;
-  right: 18.5%;
+  right: 9%;
 }
 
 .password-icon {
   width: 25px;
   height: 25px;
-  right: 18.5%;
+  right: 9%;
 }
 
 .error {
@@ -127,23 +107,22 @@ body {
     width: 150px;
     font-size: 25px;
   }
-  .register {
-    width: 320px;
-    height: 70px;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
+
+  .email-input,
+  .password-input {
+    font-size: 22px;
+    padding-right: 43px;
   }
 
   .email-icon {
     width: 20px;
     height: 18px;
-    right: 20%;
+    right: 10%;
   }
 
   .password-icon {
     width: 18px;
     height: 18px;
-    right: 20%;
+    right: 10%;
   }
 }
