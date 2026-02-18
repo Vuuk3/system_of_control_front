@@ -1,6 +1,7 @@
 import styles from "./Login.module.css";
-import vector from "./assets/vector.svg";
-import lock from "./assets/lock.svg";
+import mail from "./assets/mail.svg";
+import eye from "./assets/eye.svg";
+import eyeSlash from "./assets/eye-slash.svg";
 import { useRef, useState } from "react";
 
 function Login() {
@@ -8,8 +9,9 @@ function Login() {
   const emailRef = useRef(null);
   const [passwordError, setPasswordError] = useState("");
   const passwordRef = useRef(null);
+  const [showPassword, setShowPassword] = useState(false);
 
-  function Validation(inputElement, setError) {
+  function validation(inputElement, setError) {
     if (
       !inputElement.checkValidity() &&
       inputElement.type == "email" &&
@@ -24,7 +26,7 @@ function Login() {
   }
 
   return (
-    <>
+    <div className={styles["main"]}>
       <form noValidate method="post" className={styles.login}>
         <h5 className={styles["header-login"]}>Login</h5>
         <div className={styles["form__field"]}>
@@ -39,10 +41,10 @@ function Login() {
                   : `${styles["email-input"]} ${styles["incorrect"]}`
               }
               placeholder="Email"
-              onChange={() => Validation(emailRef.current, setEmailError)}
+              onChange={() => validation(emailRef.current, setEmailError)}
               required
             />
-            <img src={vector} className={styles["email-icon"]} />
+            <img src={mail} className={styles["email-icon"]} />
           </div>
           <span
             className={`${styles["email-error"]} ${styles["error"]}`}
@@ -54,7 +56,7 @@ function Login() {
         <div className={styles["form__field"]}>
           <div className={styles.password}>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               maxLength={20}
               ref={passwordRef}
               className={
@@ -63,10 +65,14 @@ function Login() {
                   : `${styles["password-input"]} ${styles["incorrect"]}`
               }
               placeholder="Password"
-              onChange={() => Validation(passwordRef.current, setPasswordError)}
+              onChange={() => validation(passwordRef.current, setPasswordError)}
               required
             />
-            <img src={lock} className={styles["password-icon"]} />
+            <img
+              src={showPassword ? eye : eyeSlash}
+              className={styles["password-icon"]}
+              onClick={() => setShowPassword(!showPassword)}
+            />
           </div>
           <span
             className={`${styles["password-error"]} ${styles["error"]}`}
@@ -80,8 +86,8 @@ function Login() {
           className={styles["login-button"]}
           disabled={emailError != "" || passwordError != ""}
           onClick={() => {
-            Validation(emailRef.current, setEmailError);
-            Validation(passwordRef.current, setPasswordError);
+            validation(emailRef.current, setEmailError);
+            validation(passwordRef.current, setPasswordError);
           }}
         >
           Login
@@ -93,7 +99,7 @@ function Login() {
           </a>
         </div>
       </form>
-    </>
+    </div>
   );
 }
 
