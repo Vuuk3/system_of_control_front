@@ -15,17 +15,17 @@
   backdrop-filter: blur(125px);
   border-radius: 38px;
   position: relative;
-  top: calc(100vh * (var(--login-top) - 40) / 1080);
+  top: calc(100vh * (var(--login-top) - 60) / 1080);
   overflow: hidden;
 }
 
 .login__scroll {
-  padding-top: 12px;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
   width: calc(100vw * var(--login-width) / 1920);
   min-width: 320px;
-  height: 80vh;
+  height: 85%;
   align-items: center;
   overflow-y: auto;
   scroll-behavior: smooth;
@@ -37,12 +37,12 @@
   font-style: normal;
   font-weight: 300;
   line-height: 70px;
-  margin-top: 15px;
+  margin-top: 0px;
   margin-bottom: 15px;
 }
 
 .form__field {
-  margin-bottom: max(calc(100vh * (var(--error-height) + 5) / 1080), 30px);
+  margin-bottom: 5px;
   width: calc(100% * var(--form__field-width) / var(--login-width));
   min-width: 186px;
 }
