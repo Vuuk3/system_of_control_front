@@ -74,12 +74,12 @@ function Register() {
     );
     const innRegex = new RegExp("^[0-9]{10}$");
     const fioRegex = new RegExp(
-      "^[A-ZА-Я]{1}[a-zа-я]+(-[A-ZА-Я]{1}[a-zа-я]+)?\s[A-ZА-Я]{1}[a-zа-я]+(\s[A-ZА-Я]{1}[a-zа-я]+)?$",
+      "^[A-ZА-Я][a-zа-я]+(-[A-ZА-Я][a-zа-я]+)?\\s[A-ZА-Я][a-zа-я]+(\\s[A-ZА-Я][a-zа-я]+)?$",
+      "u",
     );
     if (values.email.length == 0) {
       newErrors.email = "Заполните поле";
     } else if (!emailRegex.test(values.email)) {
-      console.log(1);
       newErrors.email = "Адрес некорректен";
     }
     if (values.companyName.length == 0) {
