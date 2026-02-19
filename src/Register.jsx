@@ -166,8 +166,8 @@ function Register() {
   return (
     <div className={styles["main"]}>
       <form noValidate method="post" className={styles["login"]}>
+        <h5 className={styles["header-login"]}>Registration</h5>
         <div className={styles["login__scroll"]}>
-          <h5 className={styles["header-login"]}>Registration</h5>
           {fields.slice(1, 6).map((field) => (
             <FormField
               key={field.name}
