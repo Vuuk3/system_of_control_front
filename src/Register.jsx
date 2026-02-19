@@ -96,7 +96,7 @@ function Register() {
     if (values.fio.length == 0) {
       newErrors.fio = "Заполните поле";
     } else if (!fioRegex.test(values.fio)) {
-      newErrors.fio = "Не соответствует формату Фф Ии Оо";
+      newErrors.fio = 'Не соответствует формату: "Иванов Иван Иавнович"';
     }
     if (values.contactEmail.length == 0) {
       newErrors.contactEmail = "Заполните поле";
@@ -166,74 +166,91 @@ function Register() {
   return (
     <div className={styles["main"]}>
       <form noValidate method="post" className={styles["login"]}>
-        <h5 className={styles["header-login"]}>Registration</h5>
-        {fields.map((field) => (
-          <FormField
-            key={field.name}
-            name={field.name}
-            inputType={field.inputType}
-            maxLength={field.maxLength}
-            placeholder={field.placeholder}
-            logo={field.logo}
-            value={values[field.name]}
-            error={errors[field.name]}
-            handleChange={handleChange}
-          />
-        ))}
-        <div className={styles["form__field"]}>
-          <div className={styles["form__field-div"]}>
-            <input
-              type={showPassword ? "password" : "text"}
-              maxLength={20}
-              className={
-                errors.password == "" || errors.password == null
-                  ? styles["form__field-div-input"]
-                  : `${styles["form__field-div-input"]} ${styles["incorrect"]}`
-              }
-              placeholder="Password"
-              value={values.password}
-              onChange={(e) => handleChange("password", e.target.value)}
-              required
+        <div className={styles["login__scroll"]}>
+          <h5 className={styles["header-login"]}>Registration</h5>
+          {fields.slice(1, 6).map((field) => (
+            <FormField
+              key={field.name}
+              name={field.name}
+              inputType={field.inputType}
+              maxLength={field.maxLength}
+              placeholder={field.placeholder}
+              logo={field.logo}
+              value={values[field.name]}
+              error={errors[field.name]}
+              handleChange={handleChange}
             />
-            <img
-              src={showPassword ? eyeSlash : eye}
-              className={styles["password-icon"]}
-              onClick={() => {
-                setShowPassword(!showPassword);
-              }}
-            />
+          ))}
+          <div className={styles["form__field"]}>
+            <div className={styles["form__field-select"]}>
+              <select className={styles["select"]}>
+                <option value="ооо">ООО</option>
+                <option value="ип">ИП</option>
+                <option value="ао">АО</option>
+                <option value="пао">ПАО</option>
+                <option value="нао">НАО</option>
+                <option value="гуп">ГУП</option>
+                <option value="муп">МУП</option>
+                <option value="нко">НКО</option>
+              </select>
+            </div>
           </div>
-          <span
-            className={styles["error"]}
-            style={{ visibility: errors.password == "" ? "none" : "visible" }}
+          {fields.slice(0, 1).map((field) => (
+            <FormField
+              key={field.name}
+              name={field.name}
+              inputType={field.inputType}
+              maxLength={field.maxLength}
+              placeholder={field.placeholder}
+              logo={field.logo}
+              value={values[field.name]}
+              error={errors[field.name]}
+              handleChange={handleChange}
+            />
+          ))}
+
+          <div className={styles["form__field"]}>
+            <div className={styles["form__field-div"]}>
+              <input
+                type={showPassword ? "password" : "text"}
+                maxLength={20}
+                className={
+                  errors.password == "" || errors.password == null
+                    ? styles["form__field-div-input"]
+                    : `${styles["form__field-div-input"]} ${styles["incorrect"]}`
+                }
+                placeholder="Password"
+                value={values.password}
+                onChange={(e) => handleChange("password", e.target.value)}
+                required
+              />
+              <img
+                src={showPassword ? eyeSlash : eye}
+                className={styles["password-icon"]}
+                onClick={() => {
+                  setShowPassword(!showPassword);
+                }}
+              />
+            </div>
+            <span
+              className={styles["error"]}
+              style={{ visibility: errors.password == "" ? "none" : "visible" }}
+            >
+              {errors.password}
+            </span>
+          </div>
+
+          <button
+            type="submit"
+            className={styles["register-button"]}
+            disabled={Object.values(errors).some(Boolean)}
+            onClick={() => {
+              setErrors(validation(values));
+            }}
           >
-            {errors.password}
-          </span>
+            Register
+          </button>
         </div>
-        <div className={styles["form__field"]}>
-          <div className={styles["form__field-select"]}>
-            <select className={styles["select"]}>
-              <option value="ооо">ООО</option>
-              <option value="ип">ИП</option>
-              <option value="ао">АО</option>
-              <option value="пао">ПАО</option>
-              <option value="нао">НАО</option>
-              <option value="гуп">ГУП</option>
-              <option value="муп">МУП</option>
-              <option value="нко">НКО</option>
-            </select>
-          </div>
-        </div>
-        <button
-          type="submit"
-          className={styles["register-button"]}
-          disabled={Object.values(errors).some(Boolean)}
-          onClick={() => {
-            setErrors(validation(values));
-          }}
-        >
-          Register
-        </button>
       </form>
     </div>
   );

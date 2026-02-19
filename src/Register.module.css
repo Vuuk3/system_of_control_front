@@ -3,33 +3,32 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.main::before {
-  content: "";
-  position: fixed;
-  inset: 0;
+  overflow-y: hidden;
+  height: 100vh;
   background-image: url("./assets/main.png");
   background-position: center;
 }
 
-.main::after {
-  content: "";
-  height: 150px;
-}
-
 .login {
-  display: flex;
-  flex-direction: column;
-  width: calc(100vw * var(--login-width) / 1920);
-  min-width: 320px;
   background: #2b92bf10;
   opacity: 1;
   backdrop-filter: blur(125px);
   border-radius: 38px;
   position: relative;
   top: calc(100vh * (var(--login-top) - 40) / 1080);
+  overflow: hidden;
+}
+
+.login__scroll {
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  width: calc(100vw * var(--login-width) / 1920);
+  min-width: 320px;
+  height: 80vh;
   align-items: center;
+  overflow-y: auto;
+  scroll-behavior: smooth;
 }
 
 .header-login {
@@ -52,6 +51,7 @@
   display: flex;
   align-items: center;
   height: max(calc(100vh * var(--form__field-height) / 800), 36px);
+  position: relative;
 }
 
 .form__field-div-input {
@@ -73,14 +73,14 @@
   pointer-events: none;
   width: 25px;
   height: 25px;
-  right: 9%;
+  right: 4%;
 }
 
 .password-icon {
   position: absolute;
   width: 30px;
   height: 30px;
-  right: 8%;
+  right: 3%;
 }
 
 .password-icon:hover {
@@ -99,7 +99,7 @@
 }
 
 .form__field-select {
-  height: max(calc(100vh * var(--form__field-height) / 800 * 1.5), 60px);
+  height: max(calc(100vh * var(--form__field-height) / 800), 50px);
   display: flex;
   flex-direction: column;
 }
@@ -159,6 +159,6 @@
   .icon {
     width: 18px;
     height: 18px;
-    right: 10%;
+    right: 5%;
   }
 }
