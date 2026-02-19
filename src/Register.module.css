@@ -1,15 +1,36 @@
-.login {
+.main {
+  font-family: "Inter", sans-serif;
   display: flex;
   flex-direction: column;
-  width: calc(100vw * var(--login-width) / 1920);
-  min-width: 320px;
+  align-items: center;
+  overflow-y: hidden;
+  height: 100vh;
+  background-image: url("./assets/main.png");
+  background-position: center;
+}
+
+.login {
+  max-height: 650px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background: #2b92bf10;
   opacity: 1;
   backdrop-filter: blur(125px);
   border-radius: 38px;
   position: relative;
-  top: calc(100vh * var(--login-top) / 1080);
+  top: calc(100vh * (var(--login-top) - 60) / 1080);
+  overflow: hidden;
+}
+
+.login__scroll {
+  display: flex;
+  flex-direction: column;
+  width: calc(100vw * var(--login-width) / 1920);
+  min-width: 320px;
   align-items: center;
+  overflow-y: auto;
+  scroll-behavior: smooth;
 }
 
 .header-login {
@@ -23,20 +44,19 @@
 }
 
 .form__field {
-  margin-bottom: max(calc(100vh * (var(--error-height) + 5) / 1080), 30px);
+  margin-bottom: 5px;
   width: calc(100% * var(--form__field-width) / var(--login-width));
   min-width: 186px;
 }
 
-.email,
-.password {
+.form__field-div {
   display: flex;
   align-items: center;
   height: max(calc(100vh * var(--form__field-height) / 800), 36px);
+  position: relative;
 }
 
-.email-input,
-.password-input {
+.form__field-div-input {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -50,22 +70,23 @@
   padding-right: 55px;
 }
 
-.email-icon,
-.password-icon {
+.icon {
   position: absolute;
   pointer-events: none;
-}
-
-.email-icon {
-  width: 28px;
+  width: 25px;
   height: 25px;
-  right: 9%;
+  right: 4%;
 }
 
 .password-icon {
-  width: 25px;
-  height: 25px;
-  right: 9%;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  right: 3%;
+}
+
+.password-icon:hover {
+  cursor: pointer;
 }
 
 .error {
@@ -79,6 +100,22 @@
   border: 1px #ff6f61 solid;
 }
 
+.form__field-select {
+  height: max(calc(100vh * var(--form__field-height) / 800), 50px);
+  display: flex;
+  flex-direction: column;
+}
+
+.select {
+  border: none;
+  border-radius: 20px;
+  opacity: 1;
+  color: #2e4756;
+  background-color: #d9d9d9;
+  font-size: 25px;
+  padding-left: 20px;
+}
+
 .register-button {
   width: 221px;
   height: calc(100vh * 60.19 / 1080);
@@ -87,7 +124,7 @@
   color: #2e4756;
   border: none;
   border-radius: 100px;
-  margin-bottom: calc(100vh * 38 / 1080);
+  margin-bottom: 50px;
   font-size: 28px;
 }
 
@@ -102,27 +139,28 @@
   color: white;
 }
 
+.register-button:disabled {
+  cursor: not-allowed;
+}
+
 @media (max-width: 600px) {
   .register-button {
     width: 150px;
     font-size: 25px;
   }
 
-  .email-input,
-  .password-input {
+  .form__field-div-input {
     font-size: 22px;
     padding-right: 43px;
   }
 
-  .email-icon {
-    width: 20px;
-    height: 18px;
-    right: 10%;
+  .select {
+    font-size: 22px;
   }
 
-  .password-icon {
+  .icon {
     width: 18px;
     height: 18px;
-    right: 10%;
+    right: 5%;
   }
 }

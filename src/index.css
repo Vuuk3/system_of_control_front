@@ -1,1 +1,12 @@
+:root {
+  --login-width: 500;
+  --login-top: 140;
+  --form__field-width: 450;
+  --form__field-height: 43;
+  --error-height: 29;
+}
 
+body {
+  margin: 0px;
+  height: 100%;
+}
