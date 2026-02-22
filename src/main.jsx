@@ -5,7 +5,8 @@ import Login from "./Login.jsx";
 import Register from "./Register.jsx";
 import MainPage from "./MainPage.jsx";
 import PersonalAccount from "./PersonalAccount.jsx";
-import ManagerPage from "./ManagerPage.jsx";
+import { UserProvider } from "./UserContext.jsx";
+import EditInformation from "./EditInformation.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -13,8 +14,15 @@ createRoot(document.getElementById("root")).render(
       <Route path="/" element={<MainPage />}></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/register" element={<Register />}></Route>
-      <Route path="/personal_account" element={<PersonalAccount />}></Route>
-      <Route path="/manager" element={<ManagerPage />}></Route>
     </Routes>
+    <UserProvider>
+      <Routes>
+        <Route
+          path="/editing_information"
+          element={<EditInformation />}
+        ></Route>
+        <Route path="/personal_account" element={<PersonalAccount />}></Route>
+      </Routes>
+    </UserProvider>
   </BrowserRouter>,
 );

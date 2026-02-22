@@ -24,6 +24,7 @@
 }
 
 .login__scroll {
+  padding-top: 10px;
   display: flex;
   flex-direction: column;
   width: calc(100vw * var(--login-width) / 1920);

@@ -1,11 +1,11 @@
 import company from "./assets/company.jpg";
 import settings from "./assets/settings.svg";
 import person from "./assets/fio.svg";
-import exit from "./assets/exit.svg";
+import exitLogo from "./assets/exit.svg";
 import styles from "./ManagerPage.module.css";
 import { useEffect, useRef, useState } from "react";
 
-function ManagerPage() {
+function ManagerPage({ props }) {
   const [settingsIsOpen, SetSettingsIsOpen] = useState(false);
   const settingsRef = useRef(null);
   const openSettingsRef = useRef(null);
@@ -15,9 +15,22 @@ function ManagerPage() {
       !settingsRef.current.contains(e.target) &&
       !openSettingsRef.current.contains(e.target)
         ? SetSettingsIsOpen(false)
-        : {};
+        : null;
     });
   }, []);
+
+  function exit() {
+    const URL = "http://localhost:8001/api/auth/logout";
+    fetch(URL, {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((response) => response.json())
+      .then((answer) =>
+        answer.detail == "Logged out" ? (window.location.pathname = "/") : null,
+      );
+  }
   return (
     <>
       <div className={styles["main"]}>
@@ -45,14 +58,13 @@ function ManagerPage() {
           />
           <div className={styles["company_info"]}>
             <h2 className={styles["company_info-name"]}>
-              ООО «Название компании»
+              {props.company.legal_form.toUpperCase()} «{props.company.name}»
             </h2>
-            <p className={styles["company_info-inn"]}>ИНН: 1111111111</p>
             <h5 className={styles["company_info-legal_adress"]}>
               Юридический адрес:
             </h5>
             <p className={styles["company_info-address"]}>
-              г. Москва, ул. Примерная, дом 1, офис 2
+              {props.company.legal_address}
             </p>
           </div>
         </div>
@@ -66,12 +78,16 @@ function ManagerPage() {
         >
           <div className={styles["setting"]}>
             <img src={person} draggable={false} />
-            <button className={styles["setting-button"]}>Настройки</button>
+            <a href="/editing_information" className={styles["setting-button"]}>
+              Настройки
+            </a>
           </div>
           <li className={styles["border"]}></li>
           <div className={styles["setting"]}>
-            <img src={exit} draggable={false} />
-            <button className={styles["setting-button"]}>Выйти</button>
+            <img src={exitLogo} draggable={false} />
+            <button className={styles["setting-button"]} onClick={() => exit()}>
+              Выйти
+            </button>
           </div>
         </div>
       </div>

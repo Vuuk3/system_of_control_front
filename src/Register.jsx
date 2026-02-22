@@ -1,7 +1,6 @@
 import styles from "./Register.module.css";
 import mail from "./assets/mail.svg";
 import building from "./assets/building.svg";
-import inn from "./assets/inn.svg";
 import address from "./assets/address.svg";
 import fio from "./assets/fio.svg";
 import field from "./assets/field.svg";
@@ -48,18 +47,17 @@ function FormField({
 }
 
 function Register() {
-  const [values, setValues] = useState({
-    email: "1@1.ru",
+  const data = {
+    email: "test@yan.ru",
     companyName: "1",
-    inn: "1111111111",
     address: "1",
     fio: "Dd Dd",
-    contactEmail: "1@1.ru",
+    contactEmail: "test@yan.ru",
     field: "1",
-    legalForm: "ооо",
+    legalForm: "пао",
     password: "1",
-  });
-
+  };
+  const [values, setValues] = useState(data);
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
 
@@ -73,7 +71,6 @@ function Register() {
     const emailRegex = new RegExp(
       "^([A-Za-z0-9._%+-])+@+([a-z0-9.-])+\.[a-z]{2,}$",
     );
-    const innRegex = new RegExp("^[0-9]{10}$");
     const fioRegex = new RegExp(
       "^[A-ZА-Я][a-zа-я]+(-[A-ZА-Я][a-zа-я]+)?\\s[A-ZА-Я][a-zа-я]+(\\s[A-ZА-Я][a-zа-я]+)?$",
       "u",
@@ -85,11 +82,6 @@ function Register() {
     }
     if (values.companyName.length == 0) {
       newErrors.companyName = "Заполните поле";
-    }
-    if (values.inn.length == 0) {
-      newErrors.inn = "Заполните поле";
-    } else if (!innRegex.test(values.inn)) {
-      newErrors.inn = "Не соответсвует формату";
     }
     if (values.address.length == 0) {
       newErrors.address = "Заполните поле";
@@ -151,25 +143,11 @@ function Register() {
 
   const fields = [
     {
-      name: "email",
-      inputType: "email",
-      maxLength: 32,
-      placeholder: "Email",
-      logo: mail,
-    },
-    {
       name: "companyName",
       inputType: "text",
       maxLength: 50,
       placeholder: "Company name",
       logo: building,
-    },
-    {
-      name: "inn",
-      inputType: "text",
-      maxLength: 10,
-      placeholder: "INN",
-      logo: inn,
     },
     {
       name: "address",
@@ -199,6 +177,13 @@ function Register() {
       placeholder: "Field of activity",
       logo: field,
     },
+    {
+      name: "email",
+      inputType: "email",
+      maxLength: 32,
+      placeholder: "Email",
+      logo: mail,
+    },
   ];
   return (
     <div className={styles["main"]}>
@@ -213,7 +198,7 @@ function Register() {
       >
         <h5 className={styles["header-login"]}>Registration</h5>
         <div className={styles["login__scroll"]}>
-          {fields.slice(1, 7).map((field) => (
+          {fields.slice(0, fields.length - 1).map((field) => (
             <FormField
               key={field.name}
               name={field.name}
@@ -230,7 +215,10 @@ function Register() {
             <div className={styles["form__field-select"]}>
               <select
                 className={styles["select"]}
-                onChange={() => handleChange("legalForm", e.target.value)}
+                defaultValue={values.legalForm}
+                onChange={(e) => {
+                  handleChange("legalForm", e.target.value);
+                }}
               >
                 <option value="ооо">ООО</option>
                 <option value="ип">ИП</option>
@@ -243,7 +231,7 @@ function Register() {
               </select>
             </div>
           </div>
-          {fields.slice(0, 1).map((field) => (
+          {fields.slice(-1).map((field) => (
             <FormField
               key={field.name}
               name={field.name}
@@ -256,7 +244,6 @@ function Register() {
               handleChange={handleChange}
             />
           ))}
-
           <div className={styles["form__field"]}>
             <div className={styles["form__field-div"]}>
               <input
@@ -282,12 +269,13 @@ function Register() {
             </div>
             <span
               className={styles["error"]}
-              style={{ visibility: errors.password == "" ? "none" : "visible" }}
+              style={{
+                visibility: errors.password == "" ? "none" : "visible",
+              }}
             >
               {errors.password}
             </span>
           </div>
-
           <button
             type="submit"
             className={styles["register-button"]}

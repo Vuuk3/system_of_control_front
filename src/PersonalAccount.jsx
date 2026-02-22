@@ -1,12 +1,6 @@
-import { useEffect, useState } from "react";
-
-function AdminPage() {
-  return (
-    <>
-      <h1>Админ</h1>
-    </>
-  );
-}
+import { useEffect } from "react";
+import ManagerPage from "./ManagerPage";
+import { useUser } from "./UserContext";
 
 function EmployeePage() {
   return (
@@ -25,26 +19,13 @@ function UndfinedRolePage() {
 }
 
 function PersonalAccount() {
-  const [role, setRole] = useState("");
-  const URL = "http://localhost:8001/api/auth/me";
-  useEffect(() => {
-    (fetch(URL, {
-      method: "GET",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((response) => response.json())
-      .then((answer) =>
-        answer.detail == "Not authenticated"
-          ? (window.location.pathname = "/login")
-          : setRole(answer.role),
-      )
-      .catch(() => {}),
-      []);
-  });
-  return role == "admin" ? (
-    <AdminPage />
-  ) : role == "employee" ? (
+  const { userData } = useUser();
+  if (userData.detail == "Not authenticated") {
+    window.location.pathname = "/login";
+  }
+  return userData.role == "admin" ? (
+    <ManagerPage props={userData} />
+  ) : userData.role == "employee" ? (
     <EmployeePage />
   ) : (
     <UndfinedRolePage />
