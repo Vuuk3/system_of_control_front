@@ -25,9 +25,40 @@ function Login() {
     }
   }
 
+  function submit() {
+    const URL = "http://localhost:8001/api/auth/login";
+    const data = {
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    };
+    fetch(URL, {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((answer) =>
+        answer.detail == "Logged in"
+          ? (window.location.pathname = "/personal_account")
+          : answer.detail == "Invalid email or password"
+            ? setPasswordError("Неправильный email или пароль")
+            : {},
+      )
+      .catch(() => {});
+  }
+
   return (
     <div className={styles["main"]}>
-      <form noValidate method="post" className={styles.login}>
+      <form
+        noValidate
+        method="post"
+        className={styles.login}
+        onSubmit={(e) => {
+          e.preventDefault();
+          submit();
+        }}
+      >
         <h5 className={styles["header-login"]}>Login</h5>
         <div className={styles["form__field"]}>
           <div className={styles.email}>
@@ -41,7 +72,7 @@ function Login() {
                   : `${styles["email-input"]} ${styles["incorrect"]}`
               }
               placeholder="Email"
-              onChange={() => validation(emailRef.current, setEmailError)}
+              onChange={() => setEmailError("")}
               required
             />
             <img src={mail} className={styles["email-icon"]} />
@@ -65,7 +96,7 @@ function Login() {
                   : `${styles["password-input"]} ${styles["incorrect"]}`
               }
               placeholder="Password"
-              onChange={() => validation(passwordRef.current, setPasswordError)}
+              onChange={() => setPasswordError("")}
               required
             />
             <img
