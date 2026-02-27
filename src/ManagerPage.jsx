@@ -36,7 +36,9 @@ function ManagerPage({ props }) {
       <div className={styles["main"]}>
         <nav className={styles["menu"]}>
           <ul className={styles["navigation"]}>
-            <a className={styles["link"]}>Персонал</a>
+            <a href="employees" className={styles["link"]}>
+              Персонал
+            </a>
             <a className={styles["link"]}>Зарплаты</a>
             <a className={styles["link"]}>Расписание смен</a>
             <a className={styles["link"]}>Заявки</a>
