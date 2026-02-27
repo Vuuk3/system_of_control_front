@@ -2,6 +2,9 @@ import employee1 from "./assets/employee.jpg";
 import employee2 from "./assets/employee2.jpg";
 import employee3 from "./assets/employee3.jpg";
 import employee4 from "./assets/employee4.jpg";
+import employee5 from "./assets/employee5.jpg";
+import employee6 from "./assets/employee6.jpg";
+import employee7 from "./assets/employee7.jpg";
 import person from "./assets/fio.svg";
 import plus from "./assets/plus.svg";
 import search from "./assets/search.svg";
@@ -137,7 +140,7 @@ function ListEmployee() {
     },
     {
       user_id: 5,
-      photo: employee2,
+      photo: employee5,
       first_name: "Dd",
       last_name: "Dd",
       patronymic: "Dd",
@@ -150,7 +153,7 @@ function ListEmployee() {
     },
     {
       user_id: 6,
-      photo: employee2,
+      photo: employee6,
       first_name: "Dd",
       last_name: "Dd",
       patronymic: "Dd",
@@ -163,7 +166,7 @@ function ListEmployee() {
     },
     {
       user_id: 7,
-      photo: employee2,
+      photo: employee7,
       first_name: "Dd",
       last_name: "Dd",
       patronymic: "Dd",
@@ -185,6 +188,11 @@ function ListEmployee() {
 }
 
 function Employees() {
+  function copyQuestionaryLink() {
+    const link = "example";
+    navigator.clipboard.writeText(link);
+  }
+
   return (
     <>
       <div className={styles["main"]}>
@@ -213,7 +221,11 @@ function Employees() {
             </div>
             <div className={styles["download"]}>
               <button className={styles["download-button"]}>
-                <img className={styles["download-logo"]} src={download} />
+                <img
+                  className={styles["download-logo"]}
+                  src={download}
+                  onClick={() => copyQuestionaryLink()}
+                />
               </button>
             </div>
           </div>
