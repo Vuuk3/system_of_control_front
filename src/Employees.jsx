@@ -13,6 +13,7 @@ import dossier from "./assets/dossier.svg";
 import download from "./assets/download.svg";
 import styles from "./Employees.module.css";
 import styles_manager from "./ManagerPage.module.css";
+import { useEffect, useState } from "react";
 
 function Employee({
   photo,
@@ -21,6 +22,7 @@ function Employee({
   email,
   position,
   rate_amount,
+  currency,
   entry_time,
   exit_time,
 }) {
@@ -53,7 +55,10 @@ function Employee({
           <p className={styles["position-p"]}>{position}</p>
         </td>
         <td className={styles["content"]}>
-          <p className={styles["rate-p"]}>{rate_amount}</p>
+          <p className={styles["rate-p"]}>
+            {rate_amount}{" "}
+            {currency == "RUB" ? "₽" : currency == "EUR" ? "€" : "$"}
+          </p>
         </td>
         <td className={styles["content"]}>
           <div className={styles["times"]}>
@@ -84,96 +89,54 @@ function Employee({
   );
 }
 
-function ListEmployee() {
-  const employees = [
-    {
-      user_id: 1,
-      photo: employee2,
-      name: "Dd Dd",
-      phone_number: "+79873210012",
-      email: "test@example.ru",
-      position: "test",
-      rate_amount: 30000,
-      entry_time: "09:00",
-      exit_time: "18:01",
-    },
-    {
-      user_id: 2,
-      photo: employee1,
-      name: "Шиханова Дарья",
-      phone_number: "+79873210012",
-      email: "test@example.ru",
-      position: "test2",
-      rate_amount: 30000,
-      entry_time: "08:14",
-      exit_time: "18:01",
-    },
-    {
-      user_id: 3,
-      photo: employee3,
-      name: "Шиханова Дарья Сергеевна",
-      phone_number: "+79873210012",
-      email: "test@example.ru",
-      position: "test2",
-      rate_amount: 30000,
-      entry_time: "08:14",
-      exit_time: "18:16",
-    },
-    {
-      user_id: 4,
-      photo: employee4,
-      name: "Dd Dd Dd",
-      phone_number: "+79873210012",
-      email: "test@example.ru",
-      position: "test",
-      rate_amount: 30000,
-      entry_time: "09:00",
-      exit_time: "18:01",
-    },
-    {
-      user_id: 5,
-      photo: employee5,
-      name: "Dd Dd Dd",
-      phone_number: "+79873210012",
-      email: "test@example.ru",
-      position: "test",
-      rate_amount: 30000,
-      entry_time: "09:00",
-      exit_time: "18:01",
-    },
-    {
-      user_id: 6,
-      photo: employee6,
-      name: "Dd Dd Dd",
-      phone_number: "+79873210012",
-      email: "test@example.ru",
-      position: "test",
-      rate_amount: 30000,
-      entry_time: "09:00",
-      exit_time: "18:01",
-    },
-    {
-      user_id: 7,
-      photo: employee7,
-      name: "Dd Dd Dd",
-      phone_number: "+79873210012",
-      email: "test@example.ru",
-      position: "test",
-      rate_amount: 30000,
-      entry_time: "09:00",
-      exit_time: "18:01",
-    },
+function ListEmployee({ employees }) {
+  const test_employees = [...employees];
+  const logos = [
+    employee1,
+    employee2,
+    employee3,
+    employee4,
+    employee5,
+    employee6,
+    employee7,
   ];
   return (
     <>
-      {employees.map((employee) => (
-        <Employee key={employee.user_id} {...employee} />
+      {test_employees.map((employee) => (
+        <Employee
+          key={employee.id}
+          photo={logos[Math.floor(Math.random() * logos.length)]}
+          email={employee.email}
+          name={employee.profile.full_name}
+          phone_number={employee.profile.phone}
+          position={employee.profile.position}
+          rate_amount={employee.profile.rate_amount}
+          currency={employee.profile.currency}
+          entry_time="08:01"
+          exit_time="18:01"
+        />
       ))}
     </>
   );
 }
 
 function Employees() {
+  const URL = "http://localhost:8001/api/employees";
+  const [employees, setEmployees] = useState([]);
+  useEffect(() => {
+    fetch(URL, {
+      method: "GET",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((response) => response.json())
+      .then((answer) =>
+        answer.detail == "Not authenticated"
+          ? (window.location.pathname = "/login")
+          : setEmployees(answer),
+      );
+  }, []);
+
   function copyQuestionaryLink() {
     const link = "example";
     navigator.clipboard.writeText(link);
@@ -244,7 +207,7 @@ function Employees() {
                   </tr>
                 </thead>
                 <tbody>
-                  <ListEmployee />
+                  <ListEmployee employees={employees} />
                 </tbody>
               </table>
             </div>
