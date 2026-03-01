@@ -53,13 +53,14 @@
   border-radius: 5px;
 }
 
-.add_employee-button {
+.add_employee-link {
   padding: 10px;
   border: none;
   border-radius: 5px;
   color: white;
   background-color: inherit;
   font-size: 1.25rem;
+  text-decoration: none;
 }
 
 .add_employee-logo {

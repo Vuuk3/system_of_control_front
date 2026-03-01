@@ -8,6 +8,7 @@ import PersonalAccount from "./PersonalAccount.jsx";
 import { UserProvider } from "./UserContext.jsx";
 import EditInformation from "./EditInformation.jsx";
 import Employees from "./Employees.jsx";
+import AddEmployee from "./AddEmployee.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -16,6 +17,7 @@ createRoot(document.getElementById("root")).render(
       <Route path="/login" element={<Login />}></Route>
       <Route path="/register" element={<Register />}></Route>
       <Route path="/employees" element={<Employees />}></Route>
+      <Route path="/add_employee" element={<AddEmployee />}></Route>
       <Route
         element={
           <UserProvider>

@@ -16,9 +16,7 @@ import styles_manager from "./ManagerPage.module.css";
 
 function Employee({
   photo,
-  first_name,
-  last_name,
-  patronymic,
+  name,
   phone_number,
   email,
   position,
@@ -37,10 +35,12 @@ function Employee({
       <tr className={styles["employee"]}>
         <td className={styles["content"]}>
           <div className={styles["profile"]}>
-            <img className={styles["profile-logo"]} src={photo} />
-            <p className={styles["profile-name"]}>
-              {first_name} {last_name} {patronymic && patronymic}
-            </p>
+            <img
+              className={styles["profile-logo"]}
+              src={photo}
+              draggable={false}
+            />
+            <p className={styles["profile-name"]}>{name}</p>
           </div>
         </td>
         <td className={styles["content"]}>
@@ -89,9 +89,7 @@ function ListEmployee() {
     {
       user_id: 1,
       photo: employee2,
-      first_name: "Dd",
-      last_name: "Dd",
-      patronymic: "Dd",
+      name: "Dd Dd",
       phone_number: "+79873210012",
       email: "test@example.ru",
       position: "test",
@@ -102,9 +100,7 @@ function ListEmployee() {
     {
       user_id: 2,
       photo: employee1,
-      first_name: "Шиханова",
-      last_name: "Дарья",
-      patronymic: null,
+      name: "Шиханова Дарья",
       phone_number: "+79873210012",
       email: "test@example.ru",
       position: "test2",
@@ -115,9 +111,7 @@ function ListEmployee() {
     {
       user_id: 3,
       photo: employee3,
-      first_name: "Шиханова",
-      last_name: "Дарья",
-      patronymic: "Сергеевна",
+      name: "Шиханова Дарья Сергеевна",
       phone_number: "+79873210012",
       email: "test@example.ru",
       position: "test2",
@@ -128,9 +122,7 @@ function ListEmployee() {
     {
       user_id: 4,
       photo: employee4,
-      first_name: "Dd",
-      last_name: "Dd",
-      patronymic: "Dd",
+      name: "Dd Dd Dd",
       phone_number: "+79873210012",
       email: "test@example.ru",
       position: "test",
@@ -141,9 +133,7 @@ function ListEmployee() {
     {
       user_id: 5,
       photo: employee5,
-      first_name: "Dd",
-      last_name: "Dd",
-      patronymic: "Dd",
+      name: "Dd Dd Dd",
       phone_number: "+79873210012",
       email: "test@example.ru",
       position: "test",
@@ -154,9 +144,7 @@ function ListEmployee() {
     {
       user_id: 6,
       photo: employee6,
-      first_name: "Dd",
-      last_name: "Dd",
-      patronymic: "Dd",
+      name: "Dd Dd Dd",
       phone_number: "+79873210012",
       email: "test@example.ru",
       position: "test",
@@ -167,9 +155,7 @@ function ListEmployee() {
     {
       user_id: 7,
       photo: employee7,
-      first_name: "Dd",
-      last_name: "Dd",
-      patronymic: "Dd",
+      name: "Dd Dd Dd",
       phone_number: "+79873210012",
       email: "test@example.ru",
       position: "test",
@@ -215,9 +201,9 @@ function Employees() {
           <div className={styles["buttons"]}>
             <div className={styles["add_employee"]}>
               <img className={styles["add_employee-logo"]} src={plus} />
-              <button className={styles["add_employee-button"]}>
+              <a className={styles["add_employee-link"]} href="/add_employee">
                 Добавить сотрудника
-              </button>
+              </a>
             </div>
             <div className={styles["download"]}>
               <button className={styles["download-button"]}>
