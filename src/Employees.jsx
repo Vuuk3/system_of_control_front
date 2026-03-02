@@ -127,14 +127,16 @@ function Employees() {
     fetch(URL, {
       method: "GET",
       credentials: "include",
-      headers: { "Content-Type": "application/json" },
     })
       .then((response) => response.json())
       .then((answer) =>
         answer.detail == "Not authenticated"
           ? (window.location.pathname = "/login")
-          : setEmployees(answer),
-      );
+          : console.log(answer),
+      )
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   function copyQuestionaryLink() {
