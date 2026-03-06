@@ -12,8 +12,8 @@ import schedule from "./assets/schedule.svg";
 import dossier from "./assets/dossier.svg";
 import download from "./assets/download.svg";
 import styles from "./Employees.module.css";
-import styles_manager from "./ManagerPage.module.css";
 import { useEffect, useState } from "react";
+import NavBar from "./NavBar/NavBar";
 
 function Employee({
   photo,
@@ -127,12 +127,13 @@ function Employees() {
     fetch(URL, {
       method: "GET",
       credentials: "include",
+      headers: { "Content-Type": "application/json" },
     })
       .then((response) => response.json())
       .then((answer) =>
         answer.detail == "Not authenticated"
           ? (window.location.pathname = "/login")
-          : console.log(answer),
+          : setEmployees(answer),
       )
       .catch((error) => {
         console.log(error);
@@ -153,15 +154,7 @@ function Employees() {
             <h1 className={styles["logo-header"]}>Персонал</h1>
           </div>
           <nav>
-            <ul className={styles_manager["navigation"]}>
-              <a href="personal_account" className={styles_manager["link"]}>
-                Главная страница
-              </a>
-              <a className={styles_manager["link"]}>Зарплаты</a>
-              <a className={styles_manager["link"]}>Расписание смен</a>
-              <a className={styles_manager["link"]}>Заявки</a>
-              <a className={styles_manager["link"]}>Показать QR-код</a>
-            </ul>
+            <NavBar />
           </nav>
           <div className={styles["buttons"]}>
             <div className={styles["add_employee"]}>

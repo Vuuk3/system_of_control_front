@@ -1,52 +1,71 @@
 import styles from "./Login.module.css";
-import mail from "./assets/mail.svg";
-import eye from "./assets/eye.svg";
-import eyeSlash from "./assets/eye-slash.svg";
-import { useRef, useState } from "react";
+import { mail } from "./icons.js";
+import { useState } from "react";
+import FormField from "./FormField/FormField";
+import PasswordField from "./PasswordField/PasswordField";
+import SubmitButton from "./SubmitButton/SubmitButton";
+import { useUser } from "./UserContext";
+import { useNavigate } from "react-router";
+
+function validation(values) {
+  const newErrors = {};
+  const emailRegex = new RegExp(
+    "^([A-Za-z0-9._%+-])+@+([a-z0-9.-])+\.[a-z]{2,}$",
+  );
+  if (values.email.length == 0) {
+    newErrors.email = "Заполните поле";
+  } else if (!emailRegex.test(values.email)) {
+    newErrors.email = "Адрес некорректен";
+  }
+  if (values.password.length == 0) {
+    newErrors.password = "Заполните поле";
+  }
+  return newErrors;
+}
 
 function Login() {
-  const [emailError, setEmailError] = useState("");
-  const emailRef = useRef(null);
-  const [passwordError, setPasswordError] = useState("");
-  const passwordRef = useRef(null);
-  const [showPassword, setShowPassword] = useState(false);
+  const data = {
+    email: "test@yan.ru",
+    password: "1",
+  };
+  const [values, setValues] = useState(data);
+  const [errors, setErrors] = useState({});
+  const { login } = useUser();
+  const navigate = useNavigate();
 
-  function validation(inputElement, setError) {
-    if (
-      !inputElement.checkValidity() &&
-      inputElement.type == "email" &&
-      inputElement.value != ""
-    ) {
-      setError("Адрес некорректен");
-    } else if (inputElement.value == "") {
-      setError("Заполните поле");
-    } else {
-      setError("");
+  function handleChange(name, value) {
+    setValues((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
+  }
+
+  const submit = async () => {
+    try {
+      await login(values);
+      navigate("/personal_account");
+    } catch (err) {
+      if (err.response.status == 401) {
+        setErrors((prev) => ({
+          ...prev,
+          ["email"]: "Неправильный email или пароль",
+        }));
+      } else {
+        setErrors((prev) => ({
+          ...prev,
+          ["email"]: "Ошибка, попробуйте позже",
+        }));
+      }
     }
-  }
+  };
 
-  function submit() {
-    const URL = "http://localhost:8001/api/auth/login";
-    const data = {
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-    };
-    fetch(URL, {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((answer) =>
-        answer.detail == "Logged in"
-          ? (window.location.pathname = "/personal_account")
-          : answer.detail == "Invalid email or password"
-            ? setPasswordError("Неправильный email или пароль")
-            : {},
-      )
-      .catch(() => {});
-  }
+  const fields = [
+    {
+      name: "email",
+      inputType: "email",
+      maxLength: 32,
+      placeholder: "Email",
+      logo: mail,
+    },
+  ];
 
   return (
     <div className={styles["main"]}>
@@ -60,69 +79,32 @@ function Login() {
         }}
       >
         <h5 className={styles["header-login"]}>Login</h5>
-        <div className={styles["form__field"]}>
-          <div className={styles.email}>
-            <input
-              type="email"
-              maxLength={32}
-              ref={emailRef}
-              className={
-                emailError == ""
-                  ? styles["email-input"]
-                  : `${styles["email-input"]} ${styles["incorrect"]}`
-              }
-              placeholder="Email"
-              onChange={() => setEmailError("")}
-              required
-            />
-            <img src={mail} className={styles["email-icon"]} />
-          </div>
-          <span
-            className={`${styles["email-error"]} ${styles["error"]}`}
-            style={{ visibility: emailError == "" ? "hidden" : "visible" }}
-          >
-            {emailError}
-          </span>
-        </div>
-        <div className={styles["form__field"]}>
-          <div className={styles.password}>
-            <input
-              type={showPassword ? "text" : "password"}
-              maxLength={20}
-              ref={passwordRef}
-              className={
-                passwordError == ""
-                  ? styles["password-input"]
-                  : `${styles["password-input"]} ${styles["incorrect"]}`
-              }
-              placeholder="Password"
-              onChange={() => setPasswordError("")}
-              required
-            />
-            <img
-              src={showPassword ? eye : eyeSlash}
-              className={styles["password-icon"]}
-              onClick={() => setShowPassword(!showPassword)}
-            />
-          </div>
-          <span
-            className={`${styles["password-error"]} ${styles["error"]}`}
-            style={{ visibility: passwordError == "" ? "hidden" : "visible" }}
-          >
-            {passwordError}
-          </span>
-        </div>
-        <button
-          type="submit"
-          className={styles["login-button"]}
-          disabled={emailError != "" || passwordError != ""}
-          onClick={() => {
-            validation(emailRef.current, setEmailError);
-            validation(passwordRef.current, setPasswordError);
-          }}
-        >
-          Login
-        </button>
+        {fields.map((field) => (
+          <FormField
+            key={field.name}
+            name={field.name}
+            inputType={field.inputType}
+            maxLength={field.maxLength}
+            placeholder={field.placeholder}
+            logo={field.logo}
+            value={values[field.name]}
+            error={errors[field.name]}
+            handleChange={handleChange}
+          />
+        ))}
+        <PasswordField
+          maxLength={20}
+          placeholder="Password"
+          value={values["password"]}
+          error={errors["password"]}
+          handleChange={handleChange}
+        />
+        <SubmitButton
+          text="Login"
+          disabled={Object.values(errors).some(Boolean)}
+          handleClick={() => setErrors(validation(values))}
+        />
+
         <div className={styles.register}>
           Don`t have an account?{" "}
           <a href="/register" className={styles["register-link"]}>

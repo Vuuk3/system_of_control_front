@@ -1,0 +1,27 @@
+.form__field {
+  margin-bottom: 5px;
+  width: calc(100% * var(--form__field-width) / var(--login-width));
+  min-width: 186px;
+}
+
+.form__field-select {
+  height: max(calc(100vh * var(--form__field-height) / 800), 50px);
+  display: flex;
+  flex-direction: column;
+}
+
+.select {
+  border: none;
+  border-radius: 20px;
+  opacity: 1;
+  color: #2e4756;
+  background-color: #d9d9d9;
+  font-size: 25px;
+  padding-left: 20px;
+}
+
+@media (width: 600px) {
+  .select {
+    font-size: 22px;
+  }
+}
