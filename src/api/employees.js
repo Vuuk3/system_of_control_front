@@ -1,7 +1,7 @@
 import api from "./api";
 
-export const getEmployeesRequest = () => {
-  return api.get("/employees");
+export const getEmployeesRequest = (q) => {
+  return api.get("/employees", { params: { q: q } });
 };
 
 export const createEmployeeRequest = (data) => {

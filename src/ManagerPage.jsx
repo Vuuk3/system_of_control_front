@@ -44,24 +44,19 @@ function ManagerPage({ props, logout }) {
                   : styles["settings-menu"]
               }
             >
-              <div className={styles["setting"]}>
-                <img src={person} draggable={false} />
-                <Link
-                  to="/editing_information"
-                  className={styles["setting-button"]}
-                >
-                  Настройки
-                </Link>
-              </div>
+              <Link
+                to="/editing_information"
+                className={styles["link-wrapper"]}
+              >
+                <div className={styles["setting"]}>
+                  <img src={person} draggable={false} />
+                  <label className={styles["setting-button"]}>Настройки</label>
+                </div>
+              </Link>
               <li className={styles["border"]}></li>
-              <div className={styles["setting"]}>
+              <div className={styles["setting"]} onClick={() => exit()}>
                 <img src={exitIcon} draggable={false} />
-                <button
-                  className={styles["setting-button"]}
-                  onClick={() => exit()}
-                >
-                  Выйти
-                </button>
+                <button className={styles["setting-button"]}>Выйти</button>
               </div>
             </div>
           </div>

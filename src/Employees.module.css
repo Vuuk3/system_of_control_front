@@ -176,6 +176,11 @@ thead th {
   background-color: #f1effa;
 }
 
+.link-wrapper {
+  text-decoration: none;
+  color: black;
+}
+
 .profile {
   display: flex;
   flex-direction: row;
@@ -185,6 +190,10 @@ thead th {
   padding-bottom: 5px;
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.profile:hover {
+  cursor: pointer;
 }
 
 .profile-logo {
@@ -245,11 +254,16 @@ thead th {
 .entry_time,
 .exit_time {
   margin: 0;
+  margin-left: 5px;
+  margin-right: 5px;
   font-size: 1.4rem;
 }
 
 .schedule-button,
 .dossier-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 60px;
   height: 50px;
   border: none;

@@ -13,15 +13,17 @@ const useEmployees = () => useContext(EmployeesContext);
 
 function EmployeesProvider({ children }) {
   const [employeesData, setEmployeesData] = useState([]);
+  const [employeeData, setEmployeeData] = useState(null);
 
-  const getEmployees = async () => {
-    const response = await getEmployeesRequest();
+  const getEmployees = async (q = "") => {
+    const response = await getEmployeesRequest(q);
     setEmployeesData(response.data);
     return response.data;
   };
 
   const getEmployee = async (id) => {
     const response = await getEmployeeRequest(id);
+    setEmployeeData(response.data);
     return response.data;
   };
 
@@ -37,6 +39,7 @@ function EmployeesProvider({ children }) {
       employee.id == id ? response.data : employee,
     );
     setEmployeesData(newData);
+    setEmployeeData(data);
     return response.data;
   };
 
@@ -50,6 +53,7 @@ function EmployeesProvider({ children }) {
     <EmployeesContext.Provider
       value={{
         employeesData,
+        employeeData,
         getEmployees,
         getEmployee,
         createEmployee,

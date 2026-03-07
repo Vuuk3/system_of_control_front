@@ -11,6 +11,7 @@ import Employees from "./Employees.jsx";
 import AddEmployee from "./AddEmployee.jsx";
 import { CompanyProvider } from "./CompanyContext.jsx";
 import { EmployeesProvider } from "./EmployeesContext.jsx";
+import EmployeeDossier from "./EmployeeDossier.jsx";
 
 function UserLayout() {
   return (
@@ -54,6 +55,7 @@ createRoot(document.getElementById("root")).render(
       <Route element={<EmployeesLayout />}>
         <Route path="/employees" element={<Employees />}></Route>
         <Route path="/add_employee" element={<AddEmployee />}></Route>
+        <Route path="/employee/:id" element={<EmployeeDossier />}></Route>
       </Route>
     </Routes>
   </BrowserRouter>,

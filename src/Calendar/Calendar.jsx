@@ -3,14 +3,18 @@ import { DayPicker } from "react-day-picker";
 import { ru } from "date-fns/locale";
 import { useState } from "react";
 
-function Calendar({ days, setDays }) {
+function Calendar({ days, setDays, setEdit = null }) {
   function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   function handleClick(days) {
     if (!days) return;
-    setDays(days.sort((a, b) => a.getTime() - b.getTime()));
+    const newDays = days.map((day) => ({
+      date: day,
+    }));
+    setDays(newDays.sort((a, b) => a.date.getTime() - b.date.getTime()));
+    if (setEdit) setEdit(true);
   }
 
   const [month, setMonth] = useState(new Date());
@@ -25,7 +29,7 @@ function Calendar({ days, setDays }) {
         fixedWeeks={true}
         mode="multiple"
         showOutsideDays={true}
-        selected={days}
+        selected={days.map((day) => new Date(day.date))}
         onSelect={handleClick}
         disabled={{ before: today }}
         month={month}

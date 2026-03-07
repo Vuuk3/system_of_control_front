@@ -141,8 +141,11 @@
   height: 1px;
 }
 
-.setting-button {
+.link-wrapper {
   text-decoration: none;
+}
+
+.setting-button {
   display: flex;
   flex-direction: row;
   align-items: center;
