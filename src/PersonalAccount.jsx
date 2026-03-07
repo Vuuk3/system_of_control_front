@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import ManagerPage from "./ManagerPage";
 import { useUser } from "./UserContext";
+import { useNavigate } from "react-router";
 
 function EmployeePage() {
   return (
@@ -19,12 +20,21 @@ function UndfinedRolePage() {
 }
 
 function PersonalAccount() {
-  const { userData } = useUser();
-  if (userData.detail == "Not authenticated") {
-    window.location.pathname = "/login";
-  }
+  const { me, logout, userData } = useUser();
+  const navigation = useNavigate();
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        await me();
+      } catch (err) {
+        navigation("/login");
+      }
+    };
+    checkAuth();
+  }, []);
+  if (!userData) return <></>;
   return userData.role == "admin" ? (
-    <ManagerPage props={userData} />
+    <ManagerPage props={userData} logout={logout} />
   ) : userData.role == "employee" ? (
     <EmployeePage />
   ) : (

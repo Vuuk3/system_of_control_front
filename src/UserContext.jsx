@@ -1,26 +1,42 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
+import {
+  loginRequest,
+  getMeRequest,
+  registerRequest,
+  logoutRequest,
+} from "./api/auth";
 
 const UserContext = createContext(null);
 
 const useUser = () => useContext(UserContext);
 
 function UserProvider({ children }) {
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState(null);
 
-  const URL = "http://localhost:8001/api/auth/me";
-  useEffect(() => {
-    fetch(URL, {
-      method: "GET",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((response) => response.json())
-      .then((answer) => setUserData(answer))
-      .catch(() => {});
-  }, []);
+  const login = async (data) => {
+    const response = await loginRequest(data);
+    return response.data;
+  };
+
+  const register = async (data) => {
+    const response = await registerRequest(data);
+    return response.data;
+  };
+
+  const me = async () => {
+    const response = await getMeRequest();
+    setUserData(response.data);
+    return response.data;
+  };
+
+  const logout = async () => {
+    const response = await logoutRequest();
+    setUserData(null);
+    return response.data;
+  };
 
   return (
-    <UserContext.Provider value={{ userData, setUserData }}>
+    <UserContext.Provider value={{ userData, login, me, register, logout }}>
       {children}
     </UserContext.Provider>
   );

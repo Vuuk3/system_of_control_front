@@ -5,7 +5,6 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  font-family: "Inter", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,87 +34,6 @@
   margin-bottom: 15px;
 }
 
-.form__field {
-  margin-bottom: max(calc(100vh * (var(--error-height) + 5) / 1080), 30px);
-  width: calc(100% * var(--form__field-width) / var(--login-width));
-  min-width: 186px;
-}
-
-.email,
-.password {
-  display: flex;
-  align-items: center;
-  height: max(calc(100vh * var(--form__field-height) / 800), 36px);
-}
-
-.email-input,
-.password-input {
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  border: none;
-  border-radius: 100px;
-  opacity: 1;
-  color: #2e4756;
-  background-color: #d9d9d9;
-  font-size: 25px;
-  padding-left: 20px;
-  padding-right: 55px;
-}
-
-.email-icon {
-  position: absolute;
-  pointer-events: none;
-  width: 28px;
-  height: 25px;
-  right: 9%;
-}
-
-.password-icon {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  right: 8%;
-}
-
-.password-icon:hover {
-  cursor: pointer;
-}
-
-.error {
-  display: block;
-  color: #ff6f61;
-  font-size: 21px;
-  min-height: calc(var(--error-height) * 1px);
-}
-
-.incorrect {
-  border: 1px #ff6f61 solid;
-}
-
-.login-button {
-  width: 221px;
-  height: calc(100vh * 60.19 / 1080);
-  min-height: 40px;
-  background-color: #d9d9d9;
-  color: #2e4756;
-  border: none;
-  border-radius: 100px;
-  margin-bottom: calc(100vh * 38 / 1080);
-  font-size: 28px;
-}
-
-.login-button:hover {
-  background-color: #80808073;
-  color: white;
-  cursor: pointer;
-}
-
-.login-button:active {
-  background-color: #2e4756;
-  color: white;
-}
-
 .register {
   display: flex;
   flex-direction: row;
@@ -139,27 +57,11 @@
 }
 
 @media (max-width: 600px) {
-  .login-button {
-    width: 150px;
-    font-size: 25px;
-  }
   .register {
     width: 320px;
     height: 70px;
     flex-direction: column;
     align-items: center;
     gap: 2px;
-  }
-
-  .email-input,
-  .password-input {
-    font-size: 22px;
-    padding-right: 43px;
-  }
-
-  .email-icon {
-    width: 20px;
-    height: 18px;
-    right: 9%;
   }
 }

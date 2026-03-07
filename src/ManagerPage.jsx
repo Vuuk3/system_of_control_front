@@ -1,56 +1,65 @@
-import company from "./assets/company.jpg";
-import settings from "./assets/settings.svg";
-import person from "./assets/fio.svg";
-import exitLogo from "./assets/exit.svg";
+import { person, company, settingsIcon, exitIcon } from "./icons";
 import styles from "./ManagerPage.module.css";
 import { useEffect, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router";
+import NavBar from "./NavBar/NavBar";
 
-function ManagerPage({ props }) {
-  const [settingsIsOpen, SetSettingsIsOpen] = useState(false);
+function ManagerPage({ props, logout }) {
+  const [settings, setSettings] = useState(false);
   const settingsRef = useRef(null);
   const openSettingsRef = useRef(null);
+  const navigate = useNavigate();
   useEffect(() => {
     document.addEventListener("mousedown", (e) => {
-      settingsRef &&
+      settingsRef.current &&
       !settingsRef.current.contains(e.target) &&
       !openSettingsRef.current.contains(e.target)
-        ? SetSettingsIsOpen(false)
+        ? setSettings(false)
         : null;
     });
-  }, []);
+  }, [settingsRef]);
+  const exit = async () => {
+    logout();
+    navigate("/");
+  };
 
-  function exit() {
-    const URL = "http://localhost:8001/api/auth/logout";
-    fetch(URL, {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((response) => response.json())
-      .then((answer) =>
-        answer.detail == "Logged out" ? (window.location.pathname = "/") : null,
-      );
-  }
   return (
     <>
       <div className={styles["main"]}>
         <nav className={styles["menu"]}>
-          <ul className={styles["navigation"]}>
-            <a href="employees" className={styles["link"]}>
-              Персонал
-            </a>
-            <a className={styles["link"]}>Зарплаты</a>
-            <a className={styles["link"]}>Расписание смен</a>
-            <a className={styles["link"]}>Заявки</a>
-            <a className={styles["link"]}>Показать QR-код</a>
-          </ul>
-          <button
-            ref={openSettingsRef}
-            className={styles["settings"]}
-            onClick={() => SetSettingsIsOpen((x) => !x)}
-          >
-            <img src={settings} draggable={false} />
-          </button>
+          <NavBar />
+          <div className={styles["settings-wrapper"]}>
+            <button
+              ref={openSettingsRef}
+              className={styles["settings"]}
+              onClick={() => setSettings((x) => !x)}
+            >
+              <img src={settingsIcon} draggable={false} />
+            </button>
+            <div
+              ref={settingsRef}
+              className={
+                settings
+                  ? `${styles["settings-menu"]} ${styles["show"]}`
+                  : styles["settings-menu"]
+              }
+            >
+              <Link
+                to="/editing_information"
+                className={styles["link-wrapper"]}
+              >
+                <div className={styles["setting"]}>
+                  <img src={person} draggable={false} />
+                  <label className={styles["setting-button"]}>Настройки</label>
+                </div>
+              </Link>
+              <li className={styles["border"]}></li>
+              <div className={styles["setting"]} onClick={() => exit()}>
+                <img src={exitIcon} draggable={false} />
+                <button className={styles["setting-button"]}>Выйти</button>
+              </div>
+            </div>
+          </div>
         </nav>
         <div className={styles["company"]}>
           <img
@@ -68,28 +77,6 @@ function ManagerPage({ props }) {
             <p className={styles["company_info-address"]}>
               {props.company.legal_address}
             </p>
-          </div>
-        </div>
-        <div
-          ref={settingsRef}
-          className={
-            settingsIsOpen
-              ? `${styles["settings-menu"]} ${styles["show"]}`
-              : styles["settings-menu"]
-          }
-        >
-          <div className={styles["setting"]}>
-            <img src={person} draggable={false} />
-            <a href="/editing_information" className={styles["setting-button"]}>
-              Настройки
-            </a>
-          </div>
-          <li className={styles["border"]}></li>
-          <div className={styles["setting"]}>
-            <img src={exitLogo} draggable={false} />
-            <button className={styles["setting-button"]} onClick={() => exit()}>
-              Выйти
-            </button>
           </div>
         </div>
       </div>

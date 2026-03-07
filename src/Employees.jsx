@@ -5,17 +5,22 @@ import employee4 from "./assets/employee4.jpg";
 import employee5 from "./assets/employee5.jpg";
 import employee6 from "./assets/employee6.jpg";
 import employee7 from "./assets/employee7.jpg";
-import person from "./assets/fio.svg";
-import plus from "./assets/plus.svg";
-import search from "./assets/search.svg";
-import schedule from "./assets/schedule.svg";
-import dossier from "./assets/dossier.svg";
-import download from "./assets/download.svg";
+import {
+  person,
+  plus,
+  searchIcon,
+  scheduleIcon,
+  dossier,
+  download,
+} from "./icons";
 import styles from "./Employees.module.css";
-import styles_manager from "./ManagerPage.module.css";
 import { useEffect, useState } from "react";
+import NavBar from "./NavBar/NavBar";
+import { useEmployees } from "./EmployeesContext";
+import { Link, useNavigate } from "react-router";
 
 function Employee({
+  id,
   photo,
   name,
   phone_number,
@@ -25,6 +30,7 @@ function Employee({
   currency,
   entry_time,
   exit_time,
+  schedule,
 }) {
   function substractTime(time1, time2) {
     const [hours1, minutes1] = time1.split(":").map(Number);
@@ -36,14 +42,21 @@ function Employee({
     <>
       <tr className={styles["employee"]}>
         <td className={styles["content"]}>
-          <div className={styles["profile"]}>
-            <img
-              className={styles["profile-logo"]}
-              src={photo}
-              draggable={false}
-            />
-            <p className={styles["profile-name"]}>{name}</p>
-          </div>
+          <Link
+            className={styles["link-wrapper"]}
+            to={`/employee/${String(id)}`}
+            target="_blank"
+            rel="noopener norefferrer"
+          >
+            <div className={styles["profile"]}>
+              <img
+                className={styles["profile-logo"]}
+                src={photo}
+                draggable={false}
+              />
+              <p className={styles["profile-name"]}>{name}</p>
+            </div>
+          </Link>
         </td>
         <td className={styles["content"]}>
           <div className={styles["contacts"]}>
@@ -56,7 +69,7 @@ function Employee({
         </td>
         <td className={styles["content"]}>
           <p className={styles["rate-p"]}>
-            {rate_amount}{" "}
+            {rate_amount * schedule.length}{" "}
             {currency == "RUB" ? "₽" : currency == "EUR" ? "€" : "$"}
           </p>
         </td>
@@ -76,13 +89,18 @@ function Employee({
         </td>
         <td className={styles["content"]}>
           <button className={styles["schedule-button"]}>
-            <img className={styles["schedule-logo"]} src={schedule} />
+            <img className={styles["schedule-logo"]} src={scheduleIcon} />
           </button>
         </td>
         <td className={styles["content"]}>
-          <button className={styles["dossier-button"]}>
+          <Link
+            className={styles["dossier-button"]}
+            to={`/employee/${String(id)}`}
+            target="_blank"
+            rel="noopener norefferrer"
+          >
             <img className={styles["dossier-logo"]} src={dossier} />
-          </button>
+          </Link>
         </td>
       </tr>
     </>
@@ -105,6 +123,7 @@ function ListEmployee({ employees }) {
       {test_employees.map((employee) => (
         <Employee
           key={employee.id}
+          id={employee.id}
           photo={logos[Math.floor(Math.random() * logos.length)]}
           email={employee.email}
           name={employee.profile.full_name}
@@ -114,6 +133,7 @@ function ListEmployee({ employees }) {
           currency={employee.profile.currency}
           entry_time="08:01"
           exit_time="18:01"
+          schedule={employee.profile.schedule}
         />
       ))}
     </>
@@ -121,27 +141,40 @@ function ListEmployee({ employees }) {
 }
 
 function Employees() {
-  const URL = "http://localhost:8001/api/employees";
-  const [employees, setEmployees] = useState([]);
+  const { employeesData, getEmployees } = useEmployees();
+  const [employees, setEmployees] = useState(null);
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
   useEffect(() => {
-    fetch(URL, {
-      method: "GET",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((response) => response.json())
-      .then((answer) =>
-        answer.detail == "Not authenticated"
-          ? (window.location.pathname = "/login")
-          : setEmployees(answer),
-      );
-  }, []);
+    const checkEmployees = async () => {
+      try {
+        getEmployees(search);
+      } catch (err) {
+        navigate("/personal_account");
+      }
+    };
+    checkEmployees();
+    const channel = new BroadcastChannel("employees");
+    const handleMessage = (event) => {
+      if (event.data.type == "employees-changed") {
+        checkEmployees();
+      }
+    };
+    channel.addEventListener("message", handleMessage);
+    return () => channel.close();
+  }, [search]);
+
+  useEffect(() => {
+    if (employeesData) {
+      setEmployees(employeesData);
+    }
+  }, [employeesData]);
 
   function copyQuestionaryLink() {
     const link = "example";
     navigator.clipboard.writeText(link);
   }
-
+  if (!employees) return <></>;
   return (
     <>
       <div className={styles["main"]}>
@@ -151,22 +184,19 @@ function Employees() {
             <h1 className={styles["logo-header"]}>Персонал</h1>
           </div>
           <nav>
-            <ul className={styles_manager["navigation"]}>
-              <a href="personal_account" className={styles_manager["link"]}>
-                Главная страница
-              </a>
-              <a className={styles_manager["link"]}>Зарплаты</a>
-              <a className={styles_manager["link"]}>Расписание смен</a>
-              <a className={styles_manager["link"]}>Заявки</a>
-              <a className={styles_manager["link"]}>Показать QR-код</a>
-            </ul>
+            <NavBar />
           </nav>
           <div className={styles["buttons"]}>
             <div className={styles["add_employee"]}>
               <img className={styles["add_employee-logo"]} src={plus} />
-              <a className={styles["add_employee-link"]} href="/add_employee">
+              <Link
+                className={styles["add_employee-link"]}
+                to="/add_employee"
+                target="_blank"
+                rel="noopener norefferrer"
+              >
                 Добавить сотрудника
-              </a>
+              </Link>
             </div>
             <div className={styles["download"]}>
               <button className={styles["download-button"]}>
@@ -182,9 +212,13 @@ function Employees() {
         <div className={styles["card"]}>
           <div className={styles["employees"]}>
             <div className={styles["search_bar"]}>
-              <img className={styles["search_bar-logo"]} src={search} />
+              <img className={styles["search_bar-logo"]} src={searchIcon} />
               <input
                 type="text"
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                }}
                 className={styles["search_bar-input"]}
                 placeholder="Поиск сотрудника..."
               />
