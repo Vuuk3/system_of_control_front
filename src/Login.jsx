@@ -4,7 +4,7 @@ import { useState } from "react";
 import FormField from "./FormField/FormField";
 import PasswordField from "./PasswordField/PasswordField";
 import SubmitButton from "./SubmitButton/SubmitButton";
-import { useUser } from "./UserContext";
+import { useUser } from "./contexts/UserContext";
 import { useNavigate } from "react-router";
 
 function validation(values) {

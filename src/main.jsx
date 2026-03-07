@@ -5,13 +5,13 @@ import Login from "./Login.jsx";
 import Register from "./Register.jsx";
 import MainPage from "./MainPage.jsx";
 import PersonalAccount from "./PersonalAccount.jsx";
-import { UserProvider } from "./UserContext.jsx";
 import EditInformation from "./EditInformation.jsx";
 import Employees from "./Employees.jsx";
 import AddEmployee from "./AddEmployee.jsx";
-import { CompanyProvider } from "./CompanyContext.jsx";
-import { EmployeesProvider } from "./EmployeesContext.jsx";
 import EmployeeDossier from "./EmployeeDossier.jsx";
+import { UserProvider } from "./contexts/UserContext.jsx";
+import { CompanyProvider } from "./contexts/CompanyContext.jsx";
+import { EmployeesProvider } from "./contexts/EmployeesContext.jsx";
 
 function UserLayout() {
   return (

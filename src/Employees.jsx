@@ -16,7 +16,7 @@ import {
 import styles from "./Employees.module.css";
 import { useEffect, useState } from "react";
 import NavBar from "./NavBar/NavBar";
-import { useEmployees } from "./EmployeesContext";
+import { useEmployees } from "./contexts/EmployeesContext";
 import { Link, useNavigate } from "react-router";
 
 function Employee({
