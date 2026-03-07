@@ -99,12 +99,13 @@ function Login() {
           error={errors["password"]}
           handleChange={handleChange}
         />
-        <SubmitButton
-          text="Login"
-          disabled={Object.values(errors).some(Boolean)}
-          handleClick={() => setErrors(validation(values))}
-        />
-
+        <div style={{ marginBottom: 30 }}>
+          <SubmitButton
+            text="Login"
+            disabled={Object.values(errors).some(Boolean)}
+            handleClick={() => setErrors(validation(values))}
+          />
+        </div>
         <div className={styles.register}>
           Don`t have an account?{" "}
           <a href="/register" className={styles["register-link"]}>

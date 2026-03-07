@@ -44,14 +44,16 @@ createRoot(document.getElementById("root")).render(
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/personal_account" element={<PersonalAccount />}></Route>
-        <Route path="/employees" element={<Employees />}></Route>
-        <Route path="/add_employee" element={<AddEmployee />}></Route>
         <Route element={<CompanyLayout />}>
           <Route
             path="/editing_information"
             element={<EditInformation />}
           ></Route>
         </Route>
+      </Route>
+      <Route element={<EmployeesLayout />}>
+        <Route path="/employees" element={<Employees />}></Route>
+        <Route path="/add_employee" element={<AddEmployee />}></Route>
       </Route>
     </Routes>
   </BrowserRouter>,

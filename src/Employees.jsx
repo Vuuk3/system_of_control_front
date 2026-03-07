@@ -5,15 +5,12 @@ import employee4 from "./assets/employee4.jpg";
 import employee5 from "./assets/employee5.jpg";
 import employee6 from "./assets/employee6.jpg";
 import employee7 from "./assets/employee7.jpg";
-import person from "./assets/fio.svg";
-import plus from "./assets/plus.svg";
-import search from "./assets/search.svg";
-import schedule from "./assets/schedule.svg";
-import dossier from "./assets/dossier.svg";
-import download from "./assets/download.svg";
+import { person, plus, search, schedule, dossier, download } from "./icons";
 import styles from "./Employees.module.css";
 import { useEffect, useState } from "react";
 import NavBar from "./NavBar/NavBar";
+import { useEmployees } from "./EmployeesContext";
+import { Link, useNavigate } from "react-router";
 
 function Employee({
   photo,
@@ -121,30 +118,28 @@ function ListEmployee({ employees }) {
 }
 
 function Employees() {
-  const URL = "http://localhost:8001/api/employees";
-  const [employees, setEmployees] = useState([]);
+  const { employeesData, getEmployees } = useEmployees();
+  const [employees, setEmployees] = useState(null);
+  const navigate = useNavigate();
   useEffect(() => {
-    fetch(URL, {
-      method: "GET",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((response) => response.json())
-      .then((answer) =>
-        answer.detail == "Not authenticated"
-          ? (window.location.pathname = "/login")
-          : setEmployees(answer),
-      )
-      .catch((error) => {
-        console.log(error);
-      });
+    try {
+      getEmployees();
+    } catch (err) {
+      navigate("/personal_account");
+    }
   }, []);
+
+  useEffect(() => {
+    if (employeesData) {
+      setEmployees(employeesData);
+    }
+  }, [employeesData]);
 
   function copyQuestionaryLink() {
     const link = "example";
     navigator.clipboard.writeText(link);
   }
-
+  if (!employees) return <></>;
   return (
     <>
       <div className={styles["main"]}>
@@ -159,9 +154,9 @@ function Employees() {
           <div className={styles["buttons"]}>
             <div className={styles["add_employee"]}>
               <img className={styles["add_employee-logo"]} src={plus} />
-              <a className={styles["add_employee-link"]} href="/add_employee">
+              <Link className={styles["add_employee-link"]} to="/add_employee">
                 Добавить сотрудника
-              </a>
+              </Link>
             </div>
             <div className={styles["download"]}>
               <button className={styles["download-button"]}>

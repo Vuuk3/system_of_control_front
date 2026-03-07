@@ -1,6 +1,7 @@
 import styles from "./FormField.module.css";
 
 function FormField({
+  className = "",
   name,
   inputType,
   maxLength,
@@ -18,15 +19,15 @@ function FormField({
           maxLength={maxLength}
           className={
             error == "" || error == null
-              ? styles["form__field-div-input"]
-              : `${styles["form__field-div-input"]} ${styles["incorrect"]}`
+              ? `${styles["form__field-div-input"]} ${className}`
+              : `${styles["form__field-div-input"]} ${className} ${styles["incorrect"]}`
           }
           placeholder={placeholder}
           value={value}
           onChange={(e) => handleChange(name, e.target.value)}
           required
         />
-        <img src={logo} className={styles["icon"]} />
+        {logo ? <img src={logo} className={styles["icon"]} /> : null}
       </div>
       <span
         className={styles["error"]}

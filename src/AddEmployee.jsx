@@ -1,49 +1,13 @@
 import styles from "./AddEmployee.module.css";
-import edit_information_styles from "./EditInformation.module.css";
-import fio from "./assets/fio.svg";
-import contacts from "./assets/contacts.svg";
-import calendar from "./assets/calendar.svg";
-import salary from "./assets/salary.svg";
-import company from "./assets/company.jpg";
-import { useState, useRef } from "react";
-import { DayPicker } from "react-day-picker";
-import { ru } from "date-fns/locale";
-
-function FormField({
-  name,
-  inputType,
-  maxLength,
-  placeholder,
-  value,
-  error,
-  handleChange,
-}) {
-  return (
-    <div className={styles["form_field"]} name={name}>
-      <div className={styles["form_field-div"]}>
-        <input
-          type={inputType}
-          maxLength={maxLength}
-          className={
-            error == "" || error == null
-              ? styles["form_field-div-input"]
-              : `${styles["form_field-div-input"]} ${styles["incorrect"]}`
-          }
-          placeholder={placeholder}
-          value={value}
-          onChange={(e) => handleChange(name, e.target.value)}
-          required
-        />
-      </div>
-      <span
-        className={styles["error"]}
-        style={{ visibility: error == "" ? "none" : "visible" }}
-      >
-        {error}
-      </span>
-    </div>
-  );
-}
+import { person, calendar, salary, company } from "./icons";
+import { useState } from "react";
+import FormField from "./FormField/FormField";
+import Calendar from "./Calendar/Calendar";
+import SelectField from "./SelectField/SelectField";
+import SubmitButton from "./SubmitButton/SubmitButton";
+import Dialog from "./Dialog/Dialog";
+import { useNavigate } from "react-router";
+import { useEmployees } from "./EmployeesContext";
 
 function CardHeader({ text, logo }) {
   return (
@@ -51,97 +15,6 @@ function CardHeader({ text, logo }) {
       <img className={styles["card_header-logo"]} src={logo} />
       <h2 className={styles["card_header-h2"]}>{text}</h2>
     </div>
-  );
-}
-
-function Calendar({ days, setDays }) {
-  function capitalize(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
-  function handleClick(days) {
-    if (!days) return;
-    setDays(days.sort((a, b) => a.getTime() - b.getTime()));
-  }
-
-  const [month, setMonth] = useState(new Date());
-  const [isCurrentMonth, setIsCurrentMonth] = useState(true);
-  const prevMonth = new Date(month.getFullYear(), month.getMonth() - 1);
-  const nextMonth = new Date(month.getFullYear(), month.getMonth() + 1);
-  const today = new Date().setHours(0, 0, 0, 0);
-
-  return (
-    <>
-      <DayPicker
-        mode="multiple"
-        showOutsideDays={true}
-        selected={days}
-        onSelect={handleClick}
-        disabled={{ before: today }}
-        month={month}
-        onMonthChange={setMonth}
-        locale={ru}
-        classNames={{
-          day: styles["day"],
-          day_button: styles["day_button"],
-          selected: styles["selected"],
-          disabled: styles["disabled"],
-          month_grid: styles["month_grid"],
-          month: styles["month"],
-          weekday: styles["weekday"],
-        }}
-        formatters={{
-          formatCaption: (date) =>
-            capitalize(
-              new Intl.DateTimeFormat("ru-RU", {
-                month: "long",
-                year: "numeric",
-              }).format(date),
-            ),
-          formatWeekdayName: (date) =>
-            capitalize(
-              new Intl.DateTimeFormat("ru-RU", {
-                weekday: "short",
-              }).format(date),
-            ),
-        }}
-        components={{
-          MonthCaption: () => (
-            <div className={styles["calendar-nav"]}>
-              <button
-                className={styles["calendar-nav-button"]}
-                onClick={() => {
-                  setMonth(prevMonth);
-                  setIsCurrentMonth(true);
-                }}
-                style={{ visibility: isCurrentMonth ? "visible" : "visible" }}
-              >
-                ‹
-              </button>
-              <p className={styles["calendar-nav-p"]}>
-                {capitalize(
-                  new Intl.DateTimeFormat("ru-RU", {
-                    month: "long",
-                    year: "numeric",
-                  }).format(month),
-                )}
-              </p>
-              <button
-                className={styles["calendar-nav-button"]}
-                onClick={() => {
-                  setMonth(nextMonth);
-                  setIsCurrentMonth(false);
-                }}
-                style={{ visibility: isCurrentMonth ? "visible" : "hidden" }}
-              >
-                ›
-              </button>
-            </div>
-          ),
-          Nav: () => null,
-        }}
-      />
-    </>
   );
 }
 
@@ -191,7 +64,7 @@ function AddEmployee() {
   const data = {
     email: "test@yan.ru",
     password: "",
-    fio: "Dd Dd",
+    full_name: "Dd Dd",
     phone: "",
     position: "",
     rate_type: "hourly",
@@ -201,8 +74,10 @@ function AddEmployee() {
   const [values, setValues] = useState(data);
   const [errors, setErrors] = useState({});
   const [days, setDays] = useState([]);
-  const cancelRef = useRef(null);
-  const saveRef = useRef(null);
+  const [cancel, setCancel] = useState(false);
+  const [save, setSave] = useState(false);
+  const { createEmployee } = useEmployees();
+  const navigate = useNavigate();
 
   function handleChange(name, value) {
     setValues((prev) => ({ ...prev, [name]: value }));
@@ -219,10 +94,10 @@ function AddEmployee() {
       "u",
     );
     const phoneRegex = new RegExp("^\\+?[1-9]\\d{7,14}$");
-    if (values.fio.length == 0) {
-      newErrors.fio = "Заполните поле";
-    } else if (!fioRegex.test(values.fio)) {
-      newErrors.fio = 'Не соответствует формату: "Иванов Иван Иавнович"';
+    if (values.full_name.length == 0) {
+      newErrors.full_name = "Заполните поле";
+    } else if (!fioRegex.test(values.full_name)) {
+      newErrors.full_name = 'Не соответствует формату: "Иванов Иван Иавнович"';
     }
     if (values.position.length == 0) {
       newErrors.position = "Заполните поле";
@@ -243,89 +118,73 @@ function AddEmployee() {
     return newErrors;
   }
 
-  function save() {
-    const URL = "http://localhost:8001/api/employees";
+  const add = async () => {
     const data = {
-      email: values.email,
-      password: values.password,
-      full_name: values.fio,
-      phone: values.phone,
-      position: values.position,
-      rate_type: values.rate_type,
-      rate_amount: values.rate_amount,
-      currency: values.currency,
+      ...values,
+      schedule: days,
     };
-    fetch(URL, {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((answer) =>
-        answer.detail == "Not authenticated"
-          ? (window.location.pathname = "/login")
-          : answer.detail == "User with this email already exists"
-            ? setErrors((prev) => ({
-                ...prev,
-                email: "Пользователь с таким email уже существует",
-              }))
-            : (window.location.pathname = "/employees"),
-      );
-  }
+    setSave(false);
+    try {
+      await createEmployee(data);
+      navigate("/employees");
+    } catch (err) {
+      if (err.response.data.detail == "User with this email already exists") {
+        setErrors((prev) => ({
+          ...prev,
+          ["email"]: "Email занят",
+        }));
+      } else {
+        setErrors((prev) => ({
+          ...prev,
+          ["email"]: "Ошибка, попробуйте позже",
+        }));
+      }
+    }
+  };
+  const fields = [
+    { name: "full_name", inputType: "text", maxLength: 60, placeholder: "ФИО" },
+    {
+      name: "position",
+      inputType: "text",
+      maxLength: 50,
+      placeholder: "Должность",
+    },
+    { name: "email", inputType: "email", maxLength: 32, placeholder: "Почта" },
+    {
+      name: "phone",
+      inputType: "tel",
+      maxLength: 18,
+      placeholder: "Номер телефона",
+    },
+  ];
+
   return (
     <>
       <div className={styles["main"]}>
         <div className={styles["header"]}>
-          <img className={styles["header-logo"]} src={fio} />
+          <img className={styles["header-logo"]} src={person} />
           <h1 className={styles["header-h1"]}>Анкета сотрудника</h1>
         </div>
         <div className={styles["cards"]}>
           <div className={`${styles["card"]} ${styles["profile"]}`}>
-            <CardHeader text="Информация о сотруднике" logo={fio} />
+            <CardHeader text="Информация о сотруднике" logo={person} />
             <div className={styles["profile-content"]}>
               <img className={styles["profile-content-img"]} src={company} />
-              <FormField
-                name="fio"
-                inputType="text"
-                maxLength={60}
-                placeholder="ФИО"
-                value={values["fio"]}
-                error={errors["fio"]}
-                handleChange={handleChange}
-              />
-              <FormField
-                name="position"
-                inputType="text"
-                maxLength={50}
-                placeholder="Должность"
-                value={values["position"]}
-                error={errors["position"]}
-                handleChange={handleChange}
-              />
-            </div>
-          </div>
-          <div className={`${styles["card"]} ${styles["contacts"]}`}>
-            <CardHeader text="Контактные данные" logo={contacts} />
-            <div className={styles["contacts-content"]}>
-              <FormField
-                name="email"
-                inputType="email"
-                maxLength={32}
-                placeholder="Почта"
-                value={values["email"]}
-                error={errors["email"]}
-                handleChange={handleChange}
-              />
-              <FormField
-                name="phone"
-                inputType="tel"
-                maxLength={18}
-                placeholder="Номер телефона"
-                value={values["phone"]}
-                error={errors["phone"]}
-                handleChange={handleChange}
-              />
+              <div className={styles["profile-content-inputs"]}>
+                {fields.map((field) => (
+                  <FormField
+                    key={field.name}
+                    className={styles["form_field-div-input"]}
+                    name={field.name}
+                    inputType={field.inputType}
+                    maxLength={field.maxLength}
+                    placeholder={field.placeholder}
+                    value={values[field.name]}
+                    error={errors[field.name]}
+                    handleChange={handleChange}
+                  />
+                ))}
+              </div>
             </div>
           </div>
           <div className={`${styles["card"]} ${styles["schedule"]}`}>
@@ -341,6 +200,7 @@ function AddEmployee() {
             <CardHeader text="Расчет зарплаты" logo={salary} />
             <div className={styles["salary-content"]}>
               <FormField
+                className={styles["form_field-div-input"]}
                 name="rate_amount"
                 inputType="number"
                 placeholder="Ставка"
@@ -348,19 +208,17 @@ function AddEmployee() {
                 error={errors["rate_amount"]}
                 handleChange={handleChange}
               />
-              <div className={styles["form_field-select"]}>
-                <select
-                  className={styles["select"]}
-                  defaultValue={values.currency}
-                  onChange={(e) => {
-                    handleChange("currency", e.target.value);
-                  }}
-                >
-                  <option value="RUB">Рубли</option>
-                  <option value="EUR">Евро</option>
-                  <option value="USD">Доллары</option>
-                </select>
-              </div>
+              <SelectField
+                className={styles["select"]}
+                name="currency"
+                defaultValue={values["currency"]}
+                handleChange={handleChange}
+                options={[
+                  { value: "RUB", text: "Рубли" },
+                  { value: "EUR", text: "Евро" },
+                  { value: "USD", text: "Доллары" },
+                ]}
+              />
               <div className={styles["time_type"]}>
                 <h3 className={styles["salary-h3"]}>Вид времени</h3>
                 <div className={styles["form_field-rate_type"]}>
@@ -408,78 +266,37 @@ function AddEmployee() {
             </div>
           </div>
           <div className={`${styles["card"]} ${styles["buttons"]}`}>
-            <button
-              className={styles["button"]}
-              onClick={() => cancelRef.current.showModal()}
-            >
-              Отмена
-            </button>
-            <button
-              type="button"
-              className={styles["button"]}
+            <SubmitButton text="Отменить" handleClick={() => setCancel(true)} />
+            <SubmitButton
+              text="Сохранить"
               disabled={Object.values(errors).some(Boolean)}
-              onClick={() => {
+              handleClick={() => {
                 const newErrors = validation(values);
                 setErrors(newErrors);
-                !Object.values(newErrors).some(Boolean)
-                  ? saveRef.current.showModal()
-                  : null;
+                if (!Object.values(newErrors).some(Boolean)) {
+                  setSave(true);
+                }
               }}
-            >
-              Создать
-            </button>
+            />
           </div>
         </div>
-        <dialog
-          ref={cancelRef}
-          className={edit_information_styles["cancel_dialog"]}
-        >
-          <div className={edit_information_styles["cancel_dialog-content"]}>
-            <p className={edit_information_styles["cancel_dialog-header"]}>
-              Внимание! Изменения не сохранятся
-            </p>
-            <div className={edit_information_styles["button-container"]}>
-              <button
-                type="button"
-                className={edit_information_styles["dialog-button"]}
-                onClick={() => cancelRef.current.close()}
-              >
-                Вернуться к изменениям
-              </button>
-              <a
-                className={`${edit_information_styles["dialog-button"]} ${edit_information_styles["main-button"]}`}
-                href="/employees"
-              >
-                Выйти
-              </a>
-            </div>
-          </div>
-        </dialog>
-        <dialog
-          ref={saveRef}
-          className={edit_information_styles["save_dialog"]}
-        >
-          <div className={edit_information_styles["save_dialog-content"]}>
-            <p className={edit_information_styles["save_dialog-header"]}>
-              Сохранить изменения?
-            </p>
-            <div className={edit_information_styles["button-container"]}>
-              <button
-                className={edit_information_styles["dialog-button"]}
-                onClick={() => saveRef.current.close()}
-              >
-                Вернуться к изменениям
-              </button>
-              <button
-                className={`${edit_information_styles["dialog-button"]} ${edit_information_styles["main-button"]}`}
-                onClick={() => save()}
-              >
-                Сохранить
-              </button>
-            </div>
-          </div>
-        </dialog>
       </div>
+      <Dialog
+        text="Внимание! Изменения не сохранятся"
+        cancelText="Вернуться к добавлению"
+        saveText="Отменить"
+        handleClick={() => navigate("/employees")}
+        isOpen={cancel}
+        onClose={() => setCancel(false)}
+      />
+      <Dialog
+        text="Добавить сотрудника?"
+        cancelText="Вернуться к добавлению"
+        saveText="Добавить"
+        handleClick={() => add()}
+        isOpen={save}
+        onClose={() => setSave(false)}
+      />
     </>
   );
 }

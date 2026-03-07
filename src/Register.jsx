@@ -210,11 +210,13 @@ function Register() {
             error={errors["password"]}
             handleChange={handleChange}
           />
-          <SubmitButton
-            text="Register"
-            disabled={Object.values(errors).some(Boolean)}
-            handleClick={() => setErrors(validation(values))}
-          />
+          <div style={{ marginBottom: 50 }}>
+            <SubmitButton
+              text="Register"
+              disabled={Object.values(errors).some(Boolean)}
+              handleClick={() => setErrors(validation(values))}
+            />
+          </div>
         </div>
       </form>
     </div>

@@ -3,7 +3,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "Inter", sans-serif;
+  gap: 20px;
+
   background-color: #f2f3f9;
   overflow-y: hidden;
 }
@@ -59,14 +60,10 @@
 }
 
 .form_field-div-input {
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
+  background-color: white;
   border: 0.5px solid #d7dae9;
   border-radius: 10px;
-  color: #2e4756;
-  font-size: 1.5rem;
-  padding-left: 20px;
+  padding-right: 0px;
 }
 
 .profile {
@@ -74,21 +71,27 @@
   grid-row: 1 / 2;
 }
 
-.profile-content,
-.contacts-content {
+.profile-content {
   margin-left: 50px;
+  margin-right: 20px;
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
   align-items: center;
   gap: 20px;
 }
 
 .profile-content-img {
   border-radius: 50%;
-  width: 130px;
-  height: 130px;
+  width: 180px;
+  height: 180px;
+}
+
+.profile-content-inputs {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
 }
 
 .salary {
@@ -98,19 +101,9 @@
   flex-direction: column;
 }
 
-.contacts {
-  grid-column: 1 / 22;
-  grid-row: 2;
-}
-
-.contacts-content {
-  margin-left: 0;
-  justify-content: space-around;
-}
-
 .schedule {
   grid-column: 1 / 22;
-  grid-row: 3 / 9;
+  grid-row: 2 / 10;
   display: flex;
   flex-direction: column;
 }
@@ -121,94 +114,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
-
-.month {
-  margin-bottom: 20px;
-  border: 2px solid #f2f3fa;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.calendar-nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.calendar-nav-button {
-  padding-bottom: 9px;
-  line-height: 0.8;
-  font-size: 2.5rem;
-  border: none;
-  background: none;
-}
-
-.calendar-nav-button:hover {
-  cursor: pointer;
-  background-color: #d9d9d9;
-}
-
-.calendar-nav-button:active {
-  background-color: #b3b3b3;
-}
-
-.calendar-nav-p {
-  font-size: 1.2rem;
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-.weekday {
-  background-color: #f2f3fa;
-  height: 30px;
-}
-
-.day {
-  border: 2px solid #f2f3fa;
-  width: 56px;
-  height: 46px;
-  text-align: center;
-}
-
-.day_button {
-  padding-left: 10px;
-  padding-right: 10px;
-  background: none;
-  font-size: 1.5rem;
-  border: none;
-  border-radius: 5px;
-}
-
-.month_grid {
-  border-collapse: collapse;
-}
-
-.month_grid .day:first-child {
-  border-left: none;
-}
-
-.month_grid .day:last-child {
-  border-right: none;
-}
-
-.month_grid .day:nth-last-child(-n + 7) {
-  border-bottom: none;
-}
-
-.day_button:hover {
-  cursor: pointer;
-}
-
-.disabled > .day_button:hover {
-  cursor: not-allowed;
-}
-
-.selected > .day_button {
-  background: linear-gradient(#3e96fd, #1a67f9);
-  border-radius: 5px;
-  color: white;
 }
 
 .dates {
@@ -267,12 +172,13 @@
   width: 80%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  column-gap: 10px;
 }
 
 .salary-h3 {
   font-size: 1.2rem;
   font-weight: 450;
+  margin-top: 0;
   margin-bottom: 10px;
 }
 
@@ -323,12 +229,10 @@ input[name="rate_type"] {
 }
 
 .select {
-  width: 50%;
-  font-size: 1.5rem;
+  width: 62%;
   background: none;
   border: 0.5px solid #d7dae9;
   border-radius: 10px;
-  color: #2e4756;
   padding-left: 10px;
 }
 
@@ -349,7 +253,7 @@ input[name="rate_type"] {
 
 .buttons {
   grid-column: 22 / 34;
-  grid-row: 6 / 9;
+  grid-row: 6 / 10;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -381,15 +285,4 @@ input[name="rate_type"] {
 
 .button:disabled {
   cursor: not-allowed;
-}
-
-.error {
-  display: block;
-  color: #ff6f61;
-  font-size: 21px;
-  min-height: calc(var(--error-height) * 1px);
-}
-
-.incorrect {
-  border: 1px #ff6f61 solid;
 }

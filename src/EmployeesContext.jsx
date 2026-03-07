@@ -9,7 +9,7 @@ import {
 
 const EmployeesContext = createContext(null);
 
-const useEmployees = () => useContext(CompanyContext);
+const useEmployees = () => useContext(EmployeesContext);
 
 function EmployeesProvider({ children }) {
   const [employeesData, setEmployeesData] = useState([]);

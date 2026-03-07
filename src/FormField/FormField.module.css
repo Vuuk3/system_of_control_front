@@ -7,7 +7,7 @@
 .form__field-div {
   display: flex;
   align-items: center;
-  height: max(calc(100vh * var(--form__field-height) / 800), 36px);
+  height: calc(var(--form__field-height) * 1px);
   position: relative;
 }
 
@@ -20,7 +20,7 @@
   opacity: 1;
   color: #2e4756;
   background-color: #d9d9d9;
-  font-size: 25px;
+  font-size: 1.5rem;
   padding-left: 20px;
   padding-right: 55px;
 }
@@ -36,11 +36,11 @@
 .error {
   display: block;
   color: #ff6f61;
-  font-size: 21px;
+  font-size: 1.2rem;
   min-height: calc(var(--error-height) * 1px);
 }
 
-.incorrect {
+.form__field-div-input.incorrect {
   border: 1px #ff6f61 solid;
 }
 

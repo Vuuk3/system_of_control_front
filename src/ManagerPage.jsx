@@ -28,13 +28,43 @@ function ManagerPage({ props, logout }) {
       <div className={styles["main"]}>
         <nav className={styles["menu"]}>
           <NavBar />
-          <button
-            ref={openSettingsRef}
-            className={styles["settings"]}
-            onClick={() => setSettings((x) => !x)}
-          >
-            <img src={settingsIcon} draggable={false} />
-          </button>
+          <div className={styles["settings-wrapper"]}>
+            <button
+              ref={openSettingsRef}
+              className={styles["settings"]}
+              onClick={() => setSettings((x) => !x)}
+            >
+              <img src={settingsIcon} draggable={false} />
+            </button>
+            <div
+              ref={settingsRef}
+              className={
+                settings
+                  ? `${styles["settings-menu"]} ${styles["show"]}`
+                  : styles["settings-menu"]
+              }
+            >
+              <div className={styles["setting"]}>
+                <img src={person} draggable={false} />
+                <Link
+                  to="/editing_information"
+                  className={styles["setting-button"]}
+                >
+                  Настройки
+                </Link>
+              </div>
+              <li className={styles["border"]}></li>
+              <div className={styles["setting"]}>
+                <img src={exitIcon} draggable={false} />
+                <button
+                  className={styles["setting-button"]}
+                  onClick={() => exit()}
+                >
+                  Выйти
+                </button>
+              </div>
+            </div>
+          </div>
         </nav>
         <div className={styles["company"]}>
           <img
@@ -52,31 +82,6 @@ function ManagerPage({ props, logout }) {
             <p className={styles["company_info-address"]}>
               {props.company.legal_address}
             </p>
-          </div>
-        </div>
-        <div
-          ref={settingsRef}
-          className={
-            settings
-              ? `${styles["settings-menu"]} ${styles["show"]}`
-              : styles["settings-menu"]
-          }
-        >
-          <div className={styles["setting"]}>
-            <img src={person} draggable={false} />
-            <Link
-              to="/editing_information"
-              className={styles["setting-button"]}
-            >
-              Настройки
-            </Link>
-          </div>
-          <li className={styles["border"]}></li>
-          <div className={styles["setting"]}>
-            <img src={exitIcon} draggable={false} />
-            <button className={styles["setting-button"]} onClick={() => exit()}>
-              Выйти
-            </button>
           </div>
         </div>
       </div>

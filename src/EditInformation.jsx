@@ -173,7 +173,10 @@ function EditInformation() {
                 { value: "нко", text: "НКО" },
               ]}
             />
-            <div className={edit_information_styles["button-container"]}>
+            <div
+              className={edit_information_styles["button-container"]}
+              style={{ marginBottom: 20 }}
+            >
               <SubmitButton
                 text="Отменить"
                 style={{ display: isEdit ? "block" : "none" }}
