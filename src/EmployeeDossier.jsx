@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
-import Employee from "./Employee";
-import { useEmployees } from "./EmployeesContext";
+import Employee from "./Employee/Employee";
+import { useEmployees } from "./contexts/EmployeesContext";
 import { useEffect, useState } from "react";
 
 function EmployeeDossier() {

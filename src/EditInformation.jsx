@@ -2,7 +2,7 @@ import register_styles from "./Register.module.css";
 import edit_information_styles from "./EditInformation.module.css";
 import { mail, building, address, person, field } from "./icons.js";
 import { useEffect, useState } from "react";
-import { useCompany } from "./CompanyContext.jsx";
+import { useCompany } from "./contexts/CompanyContext.jsx";
 import { useNavigate } from "react-router";
 import FormField from "./FormField/FormField.jsx";
 import SelectField from "./SelectField/SelectField.jsx";

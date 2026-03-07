@@ -5,7 +5,7 @@ import {
   createEmployeeRequest,
   updateEmployeeRequest,
   deleteEmployeeRequest,
-} from "./api/employees";
+} from "../api/employees";
 
 const EmployeesContext = createContext(null);
 

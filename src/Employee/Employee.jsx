@@ -1,11 +1,11 @@
 import styles from "./Employee.module.css";
-import { person, calendar, salary, company } from "./icons";
+import { person, calendar, salary, company } from "../icons";
 import { useState } from "react";
-import FormField from "./FormField/FormField";
-import Calendar from "./Calendar/Calendar";
-import SelectField from "./SelectField/SelectField";
-import SubmitButton from "./SubmitButton/SubmitButton";
-import Dialog from "./Dialog/Dialog";
+import FormField from "../FormField/FormField";
+import Calendar from "../Calendar/Calendar";
+import SelectField from "../SelectField/SelectField";
+import SubmitButton from "../SubmitButton/SubmitButton";
+import Dialog from "../Dialog/Dialog";
 import { useNavigate } from "react-router";
 import { format } from "date-fns";
 

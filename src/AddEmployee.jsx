@@ -1,6 +1,6 @@
 import styles from "./AddEmployee.module.css";
-import { useEmployees } from "./EmployeesContext";
-import Employee from "./Employee";
+import { useEmployees } from "./contexts/EmployeesContext";
+import Employee from "./Employee/Employee";
 
 function AddEmployee() {
   const data = {
