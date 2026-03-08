@@ -1,0 +1,55 @@
+.time-entries {
+  grid-column: 2;
+  grid-row: 2/5;
+}
+
+.time-entries-wrapper {
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  overflow-y: auto;
+}
+
+.time-entry {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.times {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.date {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.entry_time,
+.exit_time {
+  margin: 0;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 1.4rem;
+}
+
+.time {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+}
+
+.on_time {
+  background: linear-gradient(#7fb87e, #a5d79f);
+}
+
+.not_on_time {
+  background: linear-gradient(#bc4b4e, #eb7e7f);
+}

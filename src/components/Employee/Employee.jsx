@@ -16,6 +16,7 @@ function Employee({
   data = { currency: "RUB" },
   bonus = null,
   fine = null,
+  attendance = null,
   cancelFalseText,
   saveDialogText,
   saveFalseText,
@@ -103,6 +104,7 @@ function Employee({
             days={days}
             bonus={bonus}
             fine={fine}
+            attendance={attendance}
           />
           <Buttons
             isEdit={isEdit}

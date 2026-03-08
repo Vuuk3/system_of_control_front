@@ -2,6 +2,7 @@ import styles from "./Salary.module.css";
 import CardHeader from "../CardHeader/CardHeader";
 import FormField from "@components/FormField/FormField";
 import SelectField from "@components/SelectField/SelectField";
+import TimeEntries from "../TimeEntries/TimeEntries";
 
 const valuta = {
   RUB: "₽",
@@ -18,6 +19,7 @@ function Salary({
   days,
   bonus,
   fine,
+  attendance,
 }) {
   return (
     <>
@@ -68,6 +70,13 @@ function Salary({
                 Смена
               </label>
             </div>
+          </div>
+          <div
+            className={styles["attendance"]}
+            style={{ visibility: !attendance ? "hidden" : "visible" }}
+          >
+            <h3 className={styles["salary-h3"]}>Посещаемость</h3>
+            <TimeEntries values={attendance} />
           </div>
           <div className={styles["amount_of_work"]}>
             <h3 className={styles["salary-h3"]}>Количество</h3>
