@@ -6,7 +6,8 @@ import { useEffect, useState } from "react";
 function EmployeeDossier() {
   const [edit, setEdit] = useState(false);
   const { id } = useParams();
-  const { employeeData, getEmployee, updateEmployee } = useEmployees();
+  const { employeeData, getEmployee, updateEmployee, deleteEmployee } =
+    useEmployees();
   useEffect(() => {
     const checkEmployee = async (id) => {
       try {
@@ -38,7 +39,12 @@ function EmployeeDossier() {
   return (
     <Employee
       id={id}
-      data={{ ...employeeData.profile, email: employeeData.email }}
+      data={{
+        ...employeeData.profile,
+        email: employeeData.email,
+        monthly_salary: employeeData.monthly_salary,
+        final_salary: employeeData.final_salary,
+      }}
       isEdit={edit}
       setIsEdit={setEdit}
       bonus={0}
@@ -49,6 +55,7 @@ function EmployeeDossier() {
       saveFalseText="Вернуться к изменению"
       saveTrueText="Сохранить"
       handleCommand={updateEmployee}
+      deleteUser={deleteEmployee}
     />
   );
 }

@@ -3,17 +3,38 @@ import { DayPicker } from "react-day-picker";
 import { ru } from "date-fns/locale";
 import { useState } from "react";
 
-function Calendar({ days, setDays, setEdit = null }) {
+function Calendar({ days, setDays, setEdit = null, rate_amount, rate_type }) {
   function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
+  function updateRateList(rateList, dateList, rate_amount, rate_type) {
+    const dateSet = new Set(dateList);
 
-  function handleClick(days) {
+    const filtered = rateList.filter((entry) => dateSet.has(entry.date));
+
+    const result = [...filtered];
+
+    for (const date of dateList) {
+      if (!filtered.find((e) => e.date === date)) {
+        result.push({
+          date,
+          rate_type,
+          rate_amount,
+        });
+      }
+    }
+
+    return result;
+  }
+
+  function handleClick(newDays) {
     if (!days) return;
-    const newDays = days.map((day) => ({
-      date: day,
-    }));
-    setDays(newDays.sort((a, b) => a.date.getTime() - b.date.getTime()));
+    const updatedDays = updateRateList(days, newDays, rate_amount, rate_type);
+    setDays(
+      updatedDays.sort(
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+      ),
+    );
     if (setEdit) setEdit(true);
   }
 

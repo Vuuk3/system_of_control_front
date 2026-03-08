@@ -32,7 +32,6 @@ function Employee({
   phone_number,
   email,
   position,
-  rate_amount,
   currency,
   entry_time,
   exit_time,

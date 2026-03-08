@@ -2,7 +2,6 @@ import styles from "./Salary.module.css";
 import CardHeader from "../CardHeader/CardHeader";
 import FormField from "@components/FormField/FormField";
 import SelectField from "@components/SelectField/SelectField";
-import TimeEntries from "../TimeEntries/TimeEntries";
 
 const valuta = {
   RUB: "₽",
@@ -23,7 +22,9 @@ function Salary({
 }) {
   return (
     <>
-      <div className={`${styles["card"]} ${styles["salary"]}`}>
+      <div
+        className={`${styles["card"]} ${styles["salary"]} ${!attendance ? styles["no-time-entries"] : ""}`}
+      >
         <CardHeader text={text} logo={cardLogo} />
         <div className={styles["salary-content"]}>
           <FormField
@@ -71,13 +72,6 @@ function Salary({
               </label>
             </div>
           </div>
-          <div
-            className={styles["attendance"]}
-            style={{ visibility: !attendance ? "hidden" : "visible" }}
-          >
-            <h3 className={styles["salary-h3"]}>Посещаемость</h3>
-            <TimeEntries values={attendance} />
-          </div>
           <div className={styles["amount_of_work"]}>
             <h3 className={styles["salary-h3"]}>Количество</h3>
             <p className={styles["amount_of_work-p"]}>{days.length}</p>
@@ -102,7 +96,9 @@ function Salary({
           <div className={styles["final_salary"]}>
             <h3 className={styles["salary-h3"]}>Итоговая зарплата</h3>
             <p className={styles["final_salary-p"]}>
-              {days.length * values["rate_amount"] - fine + bonus}{" "}
+              {values.final_salary
+                ? values.final_salary
+                : values.rate_amount * days.length}{" "}
               {valuta[values["currency"]]}
             </p>
           </div>

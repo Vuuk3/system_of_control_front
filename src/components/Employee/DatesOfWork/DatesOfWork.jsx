@@ -1,5 +1,7 @@
 import styles from "./DatesOfWork.module.css";
 
+const rate_type = { hourly: "ч", shift: "с" };
+
 function DateOfWork({ day }) {
   return (
     <div className={styles["date"]}>
@@ -7,7 +9,10 @@ function DateOfWork({ day }) {
         {new Intl.DateTimeFormat("ru-RU", {
           day: "2-digit",
           month: "long",
-        }).format(new Date(day.date))}
+        }).format(new Date(day.date))}{" "}
+        {day.rate_amount}
+        {"/"}
+        {rate_type[day.rate_type]}
       </p>
       <div className={styles["time"]}>
         <input
