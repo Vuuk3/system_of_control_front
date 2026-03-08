@@ -1,13 +1,16 @@
 import styles from "./Menu.module.css";
 import { settingsIcon, exitIcon, person } from "@utils/icons";
 import { useState, useRef, useEffect } from "react";
-import { Link } from "react-router";
+import { useUser } from "@contexts/UserContext";
+import { Link, useNavigate } from "react-router";
 import NavBar from "@components/NavBar/NavBar";
 
-function Menu({ header_text, header_logo, exit }) {
+function Menu({ header_text, header_logo }) {
   const [settings, setSettings] = useState(false);
   const settingsRef = useRef(null);
   const openSettingsRef = useRef(null);
+  const { logout } = useUser();
+  const navigate = useNavigate();
   useEffect(() => {
     document.addEventListener("mousedown", (e) => {
       settingsRef.current &&
@@ -17,6 +20,10 @@ function Menu({ header_text, header_logo, exit }) {
         : null;
     });
   }, [settingsRef]);
+  const exit = async () => {
+    logout();
+    navigate("/");
+  };
   return (
     <>
       <nav className={styles["menu"]}>

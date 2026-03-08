@@ -20,7 +20,7 @@ function UndfinedRolePage() {
 }
 
 function PersonalAccount() {
-  const { me, logout, userData } = useUser();
+  const { me, userData } = useUser();
   const navigation = useNavigate();
   useEffect(() => {
     const checkAuth = async () => {
@@ -34,7 +34,7 @@ function PersonalAccount() {
   }, []);
   if (!userData) return <></>;
   return userData.role == "admin" ? (
-    <ManagerPage props={userData} logout={logout} />
+    <ManagerPage props={userData} />
   ) : userData.role == "employee" ? (
     <EmployeePage />
   ) : (
