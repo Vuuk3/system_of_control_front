@@ -41,6 +41,7 @@ function Employee({
   const handleClick = async () => {
     const data = {
       ...values,
+      password: "",
       schedule: days.map((d) => ({
         date: format(d.date, "yyyy-MM-dd"),
         start_time: "08:00:00",

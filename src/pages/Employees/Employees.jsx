@@ -36,7 +36,7 @@ function Employee({
   currency,
   entry_time,
   exit_time,
-  schedule,
+  salary,
 }) {
   return (
     <>
@@ -69,8 +69,7 @@ function Employee({
         </td>
         <td className={styles["content"]}>
           <p className={styles["rate-p"]}>
-            {rate_amount * schedule.length}{" "}
-            {currency == "RUB" ? "₽" : currency == "EUR" ? "€" : "$"}
+            {salary} {currency == "RUB" ? "₽" : currency == "EUR" ? "€" : "$"}
           </p>
         </td>
         <td className={styles["content"]}>
@@ -133,7 +132,7 @@ function ListEmployee({ employees }) {
           currency={employee.profile.currency}
           entry_time="08:01"
           exit_time="18:01"
-          schedule={employee.profile.schedule}
+          salary={employee.final_salary}
         />
       ))}
     </>
