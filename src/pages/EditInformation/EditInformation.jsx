@@ -1,14 +1,14 @@
-import register_styles from "./Register.module.css";
+import register_styles from "../Register/Register.module.css";
 import edit_information_styles from "./EditInformation.module.css";
 import { useEffect, useState } from "react";
-import { useCompany } from "./contexts/CompanyContext.jsx";
+import { useCompany } from "@contexts/CompanyContext";
 import { useNavigate } from "react-router";
-import FormField from "./FormField/FormField.jsx";
-import SelectField from "./SelectField/SelectField.jsx";
-import Dialog from "./Dialog/Dialog.jsx";
-import SubmitButton from "./SubmitButton/SubmitButton.jsx";
-import { EDIT_FIELDS } from "./utils/fields.js";
-import { validation } from "./utils/validation.js";
+import FormField from "@components/FormField/FormField";
+import SelectField from "@components/SelectField/SelectField";
+import Dialog from "@components/Dialog/Dialog";
+import SubmitButton from "@components/SubmitButton/SubmitButton";
+import { EDIT_FIELDS } from "@utils/fields.js";
+import { validation } from "@utils/validation.js";
 
 function EditInformation() {
   const { companyData, getCompany, updateCompany } = useCompany();

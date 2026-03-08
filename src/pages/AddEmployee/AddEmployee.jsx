@@ -1,5 +1,5 @@
-import { useEmployees } from "./contexts/EmployeesContext";
-import Employee from "./Employee/Employee";
+import { useEmployees } from "@contexts/EmployeesContext";
+import Employee from "@components/Employee/Employee";
 
 function AddEmployee() {
   const data = {

@@ -1,9 +1,9 @@
 import styles from "./Employee.module.css";
-import { person, calendar, salary, company } from "../utils/icons";
+import { person, calendar, salary, company } from "@utils/icons";
 import { useCallback, useState } from "react";
 import { useNavigate } from "react-router";
 import { format } from "date-fns";
-import Dialog from "../Dialog/Dialog";
+import Dialog from "@components/Dialog/Dialog";
 import Profile from "./Profile/Profile";
 import Schedule from "./Schedule/Schedule";
 import Salary from "./Salary/Salary";

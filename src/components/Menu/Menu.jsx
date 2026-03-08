@@ -1,8 +1,8 @@
 import styles from "./Menu.module.css";
-import { settingsIcon, exitIcon, person } from "../utils/icons";
+import { settingsIcon, exitIcon, person } from "@utils/icons";
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router";
-import NavBar from "../NavBar/NavBar";
+import NavBar from "@components/NavBar/NavBar";
 
 function Menu({ header_text, header_logo, exit }) {
   const [settings, setSettings] = useState(false);

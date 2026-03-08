@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { getCompanyRequest, updateCompanyRequest } from "../api/company";
+import { getCompanyRequest, updateCompanyRequest } from "@api/company";
 
 const CompanyContext = createContext(null);
 

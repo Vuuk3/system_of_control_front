@@ -1,6 +1,6 @@
 import styles from "./Buttons.module.css";
-import SubmitButton from "../../SubmitButton/SubmitButton";
-import { validation } from "../../utils/validation";
+import SubmitButton from "@components/SubmitButton/SubmitButton";
+import { validation } from "@utils/validation";
 
 function Buttons({ isEdit, setCancel, setSave, setErrors, values, errors }) {
   return (

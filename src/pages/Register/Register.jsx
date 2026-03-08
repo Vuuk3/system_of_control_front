@@ -1,13 +1,13 @@
 import styles from "./Register.module.css";
 import { useState } from "react";
-import FormField from "./FormField/FormField";
-import PasswordField from "./PasswordField/PasswordField";
-import SelectField from "./SelectField/SelectField";
-import SubmitButton from "./SubmitButton/SubmitButton";
-import { useUser } from "./contexts/UserContext";
+import FormField from "@components/FormField/FormField";
+import PasswordField from "@components/PasswordField/PasswordField";
+import SelectField from "@components/SelectField/SelectField";
+import SubmitButton from "@components/SubmitButton/SubmitButton";
+import { useUser } from "@contexts/UserContext";
 import { useNavigate } from "react-router";
-import { REGISTER_FIELDS } from "./utils/fields.js";
-import { validation } from "./utils/validation.js";
+import { REGISTER_FIELDS } from "@utils/fields.js";
+import { validation } from "@utils/validation.js";
 function Register() {
   const data = {
     user_email: "test@yan.ru",

@@ -4,7 +4,7 @@ import {
   getMeRequest,
   registerRequest,
   logoutRequest,
-} from "../api/auth";
+} from "@api/auth";
 
 const UserContext = createContext(null);
 

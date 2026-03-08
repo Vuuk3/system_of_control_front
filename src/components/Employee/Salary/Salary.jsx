@@ -1,7 +1,7 @@
 import styles from "./Salary.module.css";
 import CardHeader from "../CardHeader/CardHeader";
-import FormField from "../../FormField/FormField";
-import SelectField from "../../SelectField/SelectField";
+import FormField from "@components/FormField/FormField";
+import SelectField from "@components/SelectField/SelectField";
 
 const valuta = {
   RUB: "₽",

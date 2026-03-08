@@ -1,17 +1,17 @@
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import "./index.css";
-import Login from "./Login.jsx";
-import Register from "./Register.jsx";
-import MainPage from "./MainPage.jsx";
-import PersonalAccount from "./PersonalAccount.jsx";
-import EditInformation from "./EditInformation.jsx";
-import Employees from "./Employees.jsx";
-import AddEmployee from "./AddEmployee.jsx";
-import EmployeeDossier from "./EmployeeDossier.jsx";
-import { UserProvider } from "./contexts/UserContext.jsx";
-import { CompanyProvider } from "./contexts/CompanyContext.jsx";
-import { EmployeesProvider } from "./contexts/EmployeesContext.jsx";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
+import MainPage from "./pages/MainPage/MainPage";
+import PersonalAccount from "./pages/PersonalAccount/PersonalAccount";
+import EditInformation from "./pages/EditInformation/EditInformation";
+import Employees from "./pages/Employees/Employees";
+import AddEmployee from "./pages/AddEmployee/AddEmployee";
+import EmployeeDossier from "./pages/EmployeeDossier/EmployeeDossier";
+import { UserProvider } from "./contexts/UserContext";
+import { CompanyProvider } from "./contexts/CompanyContext";
+import { EmployeesProvider } from "./contexts/EmployeesContext";
 
 function UserLayout() {
   return (

@@ -1,6 +1,6 @@
 import styles from "./Schedule.module.css";
 import CardHeader from "../CardHeader/CardHeader";
-import Calendar from "../../Calendar/Calendar";
+import Calendar from "@components/Calendar/Calendar";
 import DatesOfWork from "../DatesOfWork/DatesOfWork";
 
 function Schedule({ text, cardLogo, days, setDays, setEdit }) {

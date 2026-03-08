@@ -1,7 +1,7 @@
 import styles from "./Profile.module.css";
-import FormField from "../../FormField/FormField";
+import FormField from "@components/FormField/FormField";
 import CardHeader from "../CardHeader/CardHeader";
-import { EMPLOYEE_FIELDS } from "../../utils/fields";
+import { EMPLOYEE_FIELDS } from "@utils/fields";
 
 function Profile({ text, cardLogo, img, handleChange, values, errors }) {
   return (

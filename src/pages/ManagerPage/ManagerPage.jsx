@@ -1,8 +1,8 @@
-import { company, building } from "./utils/icons";
+import { company, building } from "@utils/icons";
 import styles from "./ManagerPage.module.css";
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
-import Menu from "./Menu/Menu";
+import Menu from "@components/Menu/Menu";
 
 function ManagerPage({ props, logout }) {
   const settingsRef = useRef(null);

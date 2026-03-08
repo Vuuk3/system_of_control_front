@@ -1,12 +1,12 @@
 import styles from "./Login.module.css";
 import { useState } from "react";
-import FormField from "./FormField/FormField";
-import PasswordField from "./PasswordField/PasswordField";
-import SubmitButton from "./SubmitButton/SubmitButton";
-import { useUser } from "./contexts/UserContext";
+import FormField from "@components/FormField/FormField";
+import PasswordField from "@components/PasswordField/PasswordField";
+import SubmitButton from "@components/SubmitButton/SubmitButton";
+import { useUser } from "@contexts/UserContext";
 import { useNavigate } from "react-router";
-import { LOGIN_FIELDS } from "./utils/fields.js";
-import { validation } from "./utils/validation.js";
+import { LOGIN_FIELDS } from "@utils/fields.js";
+import { validation } from "@utils/validation.js";
 
 function Login() {
   const data = {

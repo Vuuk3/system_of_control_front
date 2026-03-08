@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import ManagerPage from "./ManagerPage";
-import { useUser } from "./contexts/UserContext";
+import ManagerPage from "@pages/ManagerPage/ManagerPage";
+import { useUser } from "@contexts/UserContext";
 import { useNavigate } from "react-router";
 
 function EmployeePage() {

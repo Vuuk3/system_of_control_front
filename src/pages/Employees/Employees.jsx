@@ -1,10 +1,10 @@
-import employee1 from "./assets/employee.jpg";
-import employee2 from "./assets/employee2.jpg";
-import employee3 from "./assets/employee3.jpg";
-import employee4 from "./assets/employee4.jpg";
-import employee5 from "./assets/employee5.jpg";
-import employee6 from "./assets/employee6.jpg";
-import employee7 from "./assets/employee7.jpg";
+import employee1 from "@assets/employee.jpg";
+import employee2 from "@assets/employee2.jpg";
+import employee3 from "@assets/employee3.jpg";
+import employee4 from "@assets/employee4.jpg";
+import employee5 from "@assets/employee5.jpg";
+import employee6 from "@assets/employee6.jpg";
+import employee7 from "@assets/employee7.jpg";
 import {
   person,
   plus,
@@ -12,12 +12,12 @@ import {
   scheduleIcon,
   dossier,
   download,
-} from "./utils/icons";
+} from "@utils/icons";
 import styles from "./Employees.module.css";
 import { useEffect, useState } from "react";
-import { useEmployees } from "./contexts/EmployeesContext";
+import { useEmployees } from "@contexts/EmployeesContext";
 import { Link, useNavigate } from "react-router";
-import Menu from "./Menu/Menu";
+import Menu from "@components/Menu/Menu";
 
 function substractTime(time1, time2) {
   const [hours1, minutes1] = time1.split(":").map(Number);
