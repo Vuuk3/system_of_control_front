@@ -1,0 +1,39 @@
+.card {
+  background-color: white;
+  border-radius: 15px;
+}
+
+.profile {
+  grid-column: 1 / 22;
+  grid-row: 1 / 2;
+}
+
+.profile-content {
+  margin-left: 50px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile-content-img {
+  border-radius: 50%;
+  width: 180px;
+  height: 180px;
+}
+
+.profile-content-inputs {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.form_field-div-input {
+  background-color: white;
+  border: 0.5px solid #d7dae9;
+  border-radius: 10px;
+  padding-right: 0px;
+}

@@ -1,0 +1,14 @@
+.card {
+  background-color: white;
+  border-radius: 15px;
+}
+
+.buttons {
+  grid-column: 22 / 34;
+  grid-row: 6 / 10;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}

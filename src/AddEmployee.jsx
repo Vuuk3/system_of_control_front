@@ -1,11 +1,9 @@
-import styles from "./AddEmployee.module.css";
 import { useEmployees } from "./contexts/EmployeesContext";
 import Employee from "./Employee/Employee";
 
 function AddEmployee() {
   const data = {
     email: "test@yan.ru",
-    password: "",
     full_name: "Dd Dd",
     phone: "",
     position: "",

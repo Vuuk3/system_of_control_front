@@ -1,27 +1,12 @@
 import styles from "./Login.module.css";
-import { mail } from "./icons.js";
 import { useState } from "react";
 import FormField from "./FormField/FormField";
 import PasswordField from "./PasswordField/PasswordField";
 import SubmitButton from "./SubmitButton/SubmitButton";
 import { useUser } from "./contexts/UserContext";
 import { useNavigate } from "react-router";
-
-function validation(values) {
-  const newErrors = {};
-  const emailRegex = new RegExp(
-    "^([A-Za-z0-9._%+-])+@+([a-z0-9.-])+\.[a-z]{2,}$",
-  );
-  if (values.email.length == 0) {
-    newErrors.email = "Заполните поле";
-  } else if (!emailRegex.test(values.email)) {
-    newErrors.email = "Адрес некорректен";
-  }
-  if (values.password.length == 0) {
-    newErrors.password = "Заполните поле";
-  }
-  return newErrors;
-}
+import { LOGIN_FIELDS } from "./utils/fields.js";
+import { validation } from "./utils/validation.js";
 
 function Login() {
   const data = {
@@ -57,16 +42,6 @@ function Login() {
     }
   };
 
-  const fields = [
-    {
-      name: "email",
-      inputType: "email",
-      maxLength: 32,
-      placeholder: "Email",
-      logo: mail,
-    },
-  ];
-
   return (
     <div className={styles["main"]}>
       <form
@@ -79,7 +54,7 @@ function Login() {
         }}
       >
         <h5 className={styles["header-login"]}>Login</h5>
-        {fields.map((field) => (
+        {LOGIN_FIELDS.map((field) => (
           <FormField
             key={field.name}
             name={field.name}

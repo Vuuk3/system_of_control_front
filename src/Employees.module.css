@@ -7,36 +7,8 @@
   overflow-y: hidden;
 }
 
-.main_panel {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 5px solid #6583ec;
-}
-
-.logo {
-  margin-left: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.logo-img {
-  width: 30px;
-  height: 30px;
-}
-
-.logo-header {
-  font-weight: 450;
-  font-size: 2rem;
-}
-
 .buttons {
-  margin-right: 20px;
+  margin-bottom: 15px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -102,7 +74,6 @@
 }
 
 .card {
-  margin-top: 60px;
   width: 95%;
   display: flex;
   flex-direction: column;
@@ -111,6 +82,13 @@
   padding: 20px;
   padding-top: 10px;
   border-radius: 15px;
+}
+
+.employees-tools {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .search_bar {

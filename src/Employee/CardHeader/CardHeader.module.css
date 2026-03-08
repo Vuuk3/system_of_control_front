@@ -1,0 +1,17 @@
+.card_header {
+  margin-left: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.card_header-logo {
+  width: 25px;
+  height: 25px;
+}
+
+.card_header-h2 {
+  font-size: 1.5rem;
+  font-weight: 430;
+}

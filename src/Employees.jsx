@@ -12,12 +12,18 @@ import {
   scheduleIcon,
   dossier,
   download,
-} from "./icons";
+} from "./utils/icons";
 import styles from "./Employees.module.css";
 import { useEffect, useState } from "react";
-import NavBar from "./NavBar/NavBar";
 import { useEmployees } from "./contexts/EmployeesContext";
 import { Link, useNavigate } from "react-router";
+import Menu from "./Menu/Menu";
+
+function substractTime(time1, time2) {
+  const [hours1, minutes1] = time1.split(":").map(Number);
+  const [hours2, minutes2] = time2.split(":").map(Number);
+  return hours1 * 60 + minutes1 - (hours2 * 60 + minutes2) < 15;
+}
 
 function Employee({
   id,
@@ -32,12 +38,6 @@ function Employee({
   exit_time,
   schedule,
 }) {
-  function substractTime(time1, time2) {
-    const [hours1, minutes1] = time1.split(":").map(Number);
-    const [hours2, minutes2] = time2.split(":").map(Number);
-    return hours1 * 60 + minutes1 - (hours2 * 60 + minutes2) < 15;
-  }
-
   return (
     <>
       <tr className={styles["employee"]}>
@@ -178,50 +178,44 @@ function Employees() {
   return (
     <>
       <div className={styles["main"]}>
-        <div className={styles["main_panel"]}>
-          <div className={styles["logo"]}>
-            <img className={styles["logo-img"]} src={person} />
-            <h1 className={styles["logo-header"]}>Персонал</h1>
-          </div>
-          <nav>
-            <NavBar />
-          </nav>
-          <div className={styles["buttons"]}>
-            <div className={styles["add_employee"]}>
-              <img className={styles["add_employee-logo"]} src={plus} />
-              <Link
-                className={styles["add_employee-link"]}
-                to="/add_employee"
-                target="_blank"
-                rel="noopener norefferrer"
-              >
-                Добавить сотрудника
-              </Link>
-            </div>
-            <div className={styles["download"]}>
-              <button className={styles["download-button"]}>
-                <img
-                  className={styles["download-logo"]}
-                  src={download}
-                  onClick={() => copyQuestionaryLink()}
-                />
-              </button>
-            </div>
-          </div>
-        </div>
+        <Menu header_text="Персонал" header_logo={person} />
         <div className={styles["card"]}>
           <div className={styles["employees"]}>
-            <div className={styles["search_bar"]}>
-              <img className={styles["search_bar-logo"]} src={searchIcon} />
-              <input
-                type="text"
-                value={search}
-                onChange={(e) => {
-                  setSearch(e.target.value);
-                }}
-                className={styles["search_bar-input"]}
-                placeholder="Поиск сотрудника..."
-              />
+            <div className={styles["employees-tools"]}>
+              <div className={styles["search_bar"]}>
+                <img className={styles["search_bar-logo"]} src={searchIcon} />
+                <input
+                  type="text"
+                  value={search}
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                  }}
+                  className={styles["search_bar-input"]}
+                  placeholder="Поиск сотрудника..."
+                />
+              </div>
+              <div className={styles["buttons"]}>
+                <div className={styles["add_employee"]}>
+                  <img className={styles["add_employee-logo"]} src={plus} />
+                  <Link
+                    className={styles["add_employee-link"]}
+                    to="/add_employee"
+                    target="_blank"
+                    rel="noopener norefferrer"
+                  >
+                    Добавить сотрудника
+                  </Link>
+                </div>
+                <div className={styles["download"]}>
+                  <button className={styles["download-button"]}>
+                    <img
+                      className={styles["download-logo"]}
+                      src={download}
+                      onClick={() => copyQuestionaryLink()}
+                    />
+                  </button>
+                </div>
+              </div>
             </div>
             <div className={styles["table-wrapper"]}>
               <table className={styles["table"]}>

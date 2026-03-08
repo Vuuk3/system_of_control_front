@@ -51,11 +51,11 @@ createRoot(document.getElementById("root")).render(
             element={<EditInformation />}
           ></Route>
         </Route>
-      </Route>
-      <Route element={<EmployeesLayout />}>
-        <Route path="/employees" element={<Employees />}></Route>
-        <Route path="/add_employee" element={<AddEmployee />}></Route>
-        <Route path="/employee/:id" element={<EmployeeDossier />}></Route>
+        <Route element={<EmployeesLayout />}>
+          <Route path="/employees" element={<Employees />}></Route>
+          <Route path="/add_employee" element={<AddEmployee />}></Route>
+          <Route path="/employee/:id" element={<EmployeeDossier />}></Route>
+        </Route>
       </Route>
     </Routes>
   </BrowserRouter>,
