@@ -2,8 +2,10 @@ import styles from "./Menu.module.css";
 import { settingsIcon, exitIcon, person } from "@utils/icons";
 import { useState, useRef, useEffect } from "react";
 import { useUser } from "@contexts/UserContext";
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import NavBar from "@components/NavBar/NavBar";
+import NoDraggableImg from "../NoDraggableImg/NoDraggableImg";
+import NoDraggableLink from "../NoDraggableLink/NoDraggableLink";
 
 function Menu({ header_text, header_logo }) {
   const [settings, setSettings] = useState(false);
@@ -28,7 +30,7 @@ function Menu({ header_text, header_logo }) {
     <>
       <nav className={styles["menu"]}>
         <div className={styles["logo"]}>
-          <img className={styles["logo-img"]} src={header_logo} />
+          <NoDraggableImg className={styles["logo-img"]} src={header_logo} />
           <h1 className={styles["logo-header"]}>{header_text}</h1>
         </div>
 
@@ -39,7 +41,7 @@ function Menu({ header_text, header_logo }) {
             className={styles["settings"]}
             onClick={() => setSettings((x) => !x)}
           >
-            <img src={settingsIcon} draggable={false} />
+            <NoDraggableImg src={settingsIcon} />
           </button>
           <div
             ref={settingsRef}
@@ -49,15 +51,18 @@ function Menu({ header_text, header_logo }) {
                 : styles["settings-menu"]
             }
           >
-            <Link to="/editing_information" className={styles["link-wrapper"]}>
+            <NoDraggableLink
+              to="/editing_information"
+              className={styles["link-wrapper"]}
+            >
               <div className={styles["setting"]}>
-                <img src={person} draggable={false} />
+                <NoDraggableImg src={person} />
                 <label className={styles["setting-button"]}>Настройки</label>
               </div>
-            </Link>
+            </NoDraggableLink>
             <li className={styles["border"]}></li>
             <div className={styles["setting"]} onClick={() => exit()}>
-              <img src={exitIcon} draggable={false} />
+              <NoDraggableImg src={exitIcon} />
               <button className={styles["setting-button"]}>Выйти</button>
             </div>
           </div>

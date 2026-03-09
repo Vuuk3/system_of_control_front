@@ -16,10 +16,12 @@ import {
 import styles from "./Employees.module.css";
 import { useEffect, useState } from "react";
 import { useEmployees } from "@contexts/EmployeesContext";
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import Menu from "@components/Menu/Menu";
 import Table from "@components/Table/Table";
 import { VALUTA } from "@utils/valuta";
+import NoDraggableImg from "@components/NoDraggableImg/NoDraggableImg";
+import NoDraggableLink from "@components/NoDraggableLink/NoDraggableLink";
 
 function substractTime(time1, time2) {
   const [hours1, minutes1] = time1.split(":").map(Number);
@@ -43,21 +45,17 @@ function Employee({
     <>
       <tr className={styles["employee"]}>
         <td className={styles["content"]}>
-          <Link
+          <NoDraggableLink
             className={styles["link-wrapper"]}
             to={`/employee/${String(id)}`}
             target="_blank"
             rel="noopener norefferrer"
           >
             <div className={styles["profile"]}>
-              <img
-                className={styles["profile-logo"]}
-                src={photo}
-                draggable={false}
-              />
+              <NoDraggableImg className={styles["profile-logo"]} src={photo} />
               <p className={styles["profile-name"]}>{name}</p>
             </div>
-          </Link>
+          </NoDraggableLink>
         </td>
         <td className={styles["content"]}>
           <div className={styles["contacts"]}>
@@ -89,18 +87,21 @@ function Employee({
         </td>
         <td className={styles["content"]}>
           <button className={styles["schedule-button"]}>
-            <img className={styles["schedule-logo"]} src={scheduleIcon} />
+            <NoDraggableImg
+              className={styles["schedule-logo"]}
+              src={scheduleIcon}
+            />
           </button>
         </td>
         <td className={styles["content"]}>
-          <Link
+          <NoDraggableLink
             className={styles["dossier-button"]}
             to={`/employee/${String(id)}`}
             target="_blank"
             rel="noopener norefferrer"
           >
-            <img className={styles["dossier-logo"]} src={dossier} />
-          </Link>
+            <NoDraggableImg className={styles["dossier-logo"]} src={dossier} />
+          </NoDraggableLink>
         </td>
       </tr>
     </>
@@ -183,7 +184,10 @@ function Employees() {
           <div className={styles["employees"]}>
             <div className={styles["employees-tools"]}>
               <div className={styles["search_bar"]}>
-                <img className={styles["search_bar-logo"]} src={searchIcon} />
+                <NoDraggableImg
+                  className={styles["search_bar-logo"]}
+                  src={searchIcon}
+                />
                 <input
                   type="text"
                   value={search}
@@ -196,19 +200,22 @@ function Employees() {
               </div>
               <div className={styles["buttons"]}>
                 <div className={styles["add_employee"]}>
-                  <img className={styles["add_employee-logo"]} src={plus} />
-                  <Link
+                  <NoDraggableImg
+                    className={styles["add_employee-logo"]}
+                    src={plus}
+                  />
+                  <NoDraggableLink
                     className={styles["add_employee-link"]}
                     to="/add_employee"
                     target="_blank"
                     rel="noopener norefferrer"
                   >
                     Добавить сотрудника
-                  </Link>
+                  </NoDraggableLink>
                 </div>
                 <div className={styles["download"]}>
                   <button className={styles["download-button"]}>
-                    <img
+                    <NoDraggableImg
                       className={styles["download-logo"]}
                       src={download}
                       onClick={() => copyQuestionaryLink()}

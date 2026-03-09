@@ -1,5 +1,6 @@
+import NoDraggableLink from "../NoDraggableLink/NoDraggableLink";
 import styles from "./NavBar.module.css";
-import { Link, useLocation } from "react-router";
+import { useLocation } from "react-router";
 
 function NavBar() {
   const location = useLocation();
@@ -16,9 +17,9 @@ function NavBar() {
       {links.map((l) =>
         l.link != location.pathname ? (
           <li key={l.text}>
-            <Link to={l.link} className={styles["link"]}>
+            <NoDraggableLink to={l.link} className={styles["link"]}>
               {l.text}
-            </Link>
+            </NoDraggableLink>
           </li>
         ) : null,
       )}

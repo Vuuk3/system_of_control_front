@@ -11,6 +11,7 @@ import Buttons from "./Buttons/Buttons";
 import TimeEntries from "./TimeEntries/TimeEntries";
 import { clock } from "@utils/icons";
 import SubmitButton from "../SubmitButton/SubmitButton";
+import NoDraggableImg from "../NoDraggableImg/NoDraggableImg";
 
 function Employee({
   id = null,
@@ -110,7 +111,7 @@ function Employee({
       <div className={styles["main"]}>
         <div className={styles["panel"]}>
           <div className={styles["header"]}>
-            <img className={styles["header-logo"]} src={person} />
+            <NoDraggableImg className={styles["header-logo"]} src={person} />
             <h1 className={styles["header-h1"]}>Анкета сотрудника</h1>
           </div>
 

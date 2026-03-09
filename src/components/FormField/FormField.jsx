@@ -1,3 +1,4 @@
+import NoDraggableImg from "../NoDraggableImg/NoDraggableImg";
 import styles from "./FormField.module.css";
 
 function FormField({
@@ -27,7 +28,7 @@ function FormField({
           onChange={(e) => handleChange(name, e.target.value)}
           required
         />
-        {logo ? <img src={logo} className={styles["icon"]} /> : null}
+        {logo ? <NoDraggableImg src={logo} className={styles["icon"]} /> : null}
       </div>
       <span
         className={styles["error"]}

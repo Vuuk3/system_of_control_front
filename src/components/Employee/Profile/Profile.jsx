@@ -2,6 +2,7 @@ import styles from "./Profile.module.css";
 import FormField from "@components/FormField/FormField";
 import CardHeader from "../CardHeader/CardHeader";
 import { EMPLOYEE_FIELDS } from "@utils/fields";
+import NoDraggableImg from "@components/NoDraggableImg/NoDraggableImg";
 
 function Profile({ text, cardLogo, img, handleChange, values, errors }) {
   return (
@@ -9,7 +10,7 @@ function Profile({ text, cardLogo, img, handleChange, values, errors }) {
       <div className={`${styles["card"]} ${styles["profile"]}`}>
         <CardHeader text={text} logo={cardLogo} />
         <div className={styles["profile-content"]}>
-          <img className={styles["profile-content-img"]} src={img} />
+          <NoDraggableImg className={styles["profile-content-img"]} src={img} />
           <div className={styles["profile-content-inputs"]}>
             {EMPLOYEE_FIELDS.map((field) => (
               <FormField

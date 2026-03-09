@@ -9,7 +9,6 @@ import employee7 from "@assets/employee7.jpg";
 import styles from "./Salaries.module.css";
 import Table from "@components/Table/Table";
 import Menu from "@components/Menu/Menu";
-import { Link } from "react-router";
 import { VALUTA } from "@utils/valuta";
 import { salary } from "@utils/icons";
 
@@ -30,20 +29,14 @@ function Salary({
     <>
       <tr className={styles["salary"]}>
         <td className={styles["content"]}>
-          <Link
-            className={styles["link-wrapper"]}
-            target="_blank"
-            rel="noopener norefferrer"
-          >
-            <div className={styles["profile"]}>
-              <img
-                className={styles["profile-logo"]}
-                src={photo}
-                draggable={false}
-              />
-              <p className={styles["profile-name"]}>{name}</p>
-            </div>
-          </Link>
+          <div className={styles["profile"]}>
+            <img
+              className={styles["profile-logo"]}
+              src={photo}
+              draggable={false}
+            />
+            <p className={styles["profile-name"]}>{name}</p>
+          </div>
         </td>
         <td className={styles["content"]}>
           <p className={styles["position-p"]}>{position}</p>

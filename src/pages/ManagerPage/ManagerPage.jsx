@@ -1,6 +1,7 @@
 import { company, building } from "@utils/icons";
 import styles from "./ManagerPage.module.css";
 import Menu from "@components/Menu/Menu";
+import NoDraggableImg from "@components/NoDraggableImg/NoDraggableImg";
 
 function ManagerPage({ props }) {
   return (
@@ -8,11 +9,7 @@ function ManagerPage({ props }) {
       <div className={styles["main"]}>
         <Menu header_text="Компания" header_logo={building} />
         <div className={styles["company"]}>
-          <img
-            className={styles["company_img"]}
-            src={company}
-            draggable={false}
-          />
+          <NoDraggableImg className={styles["company_img"]} src={company} />
           <div className={styles["company_info"]}>
             <h2 className={styles["company_info-name"]}>
               {props.company.legal_form.toUpperCase()} «{props.company.name}»

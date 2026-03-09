@@ -2,6 +2,7 @@ import styles from "./PasswordField.module.css";
 import eye from "./eye.svg";
 import eyeSlash from "./eye-slash.svg";
 import { useState } from "react";
+import NoDraggableImg from "../NoDraggableImg/NoDraggableImg";
 
 function PasswordField({ maxLength, placeholder, value, error, handleChange }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -23,7 +24,7 @@ function PasswordField({ maxLength, placeholder, value, error, handleChange }) {
             onChange={(e) => handleChange("password", e.target.value)}
             required
           />
-          <img
+          <NoDraggableImg
             src={showPassword ? eye : eyeSlash}
             className={styles["password-icon"]}
             onClick={() => {

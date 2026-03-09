@@ -7,6 +7,7 @@ import { useUser } from "@contexts/UserContext";
 import { useNavigate } from "react-router";
 import { LOGIN_FIELDS } from "@utils/fields.js";
 import { validation } from "@utils/validation.js";
+import NoDraggableLink from "@components/NoDraggableLink/NoDraggableLink";
 
 function Login() {
   const data = {
@@ -83,9 +84,9 @@ function Login() {
         </div>
         <div className={styles.register}>
           Don`t have an account?{" "}
-          <a href="/register" className={styles["register-link"]}>
+          <NoDraggableLink href="/register" className={styles["register-link"]}>
             Register
-          </a>
+          </NoDraggableLink>
         </div>
       </form>
     </div>

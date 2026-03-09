@@ -22,11 +22,6 @@
   background-color: #f1effa;
 }
 
-.link-wrapper {
-  text-decoration: none;
-  color: black;
-}
-
 .profile {
   display: flex;
   flex-direction: row;
@@ -36,10 +31,6 @@
   padding-bottom: 5px;
   padding-left: 10px;
   padding-right: 10px;
-}
-
-.profile:hover {
-  cursor: pointer;
 }
 
 .profile-logo {
