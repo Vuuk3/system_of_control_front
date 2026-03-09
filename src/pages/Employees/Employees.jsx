@@ -18,6 +18,7 @@ import { useEffect, useState } from "react";
 import { useEmployees } from "@contexts/EmployeesContext";
 import { Link, useNavigate } from "react-router";
 import Menu from "@components/Menu/Menu";
+import Table from "@components/Table/Table";
 
 function substractTime(time1, time2) {
   const [hours1, minutes1] = time1.split(":").map(Number);
@@ -215,28 +216,18 @@ function Employees() {
                 </div>
               </div>
             </div>
-            <div className={styles["table-wrapper"]}>
-              <table className={styles["table"]}>
-                <thead>
-                  <tr>
-                    <th className={styles["table-header"]}>ФИО</th>
-                    <th className={styles["table-header"]}>
-                      Контактные данные
-                    </th>
-                    <th className={styles["table-header"]}>Должность</th>
-                    <th className={styles["table-header"]}>Зарплата</th>
-                    <th className={styles["table-header"]}>
-                      Время прихода и ухода
-                    </th>
-                    <th className={styles["table-header"]}>Расписание</th>
-                    <th className={styles["table-header"]}>Досье</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <ListEmployee employees={employees} />
-                </tbody>
-              </table>
-            </div>
+            <Table
+              headers={[
+                "ФИО",
+                "Контактные данные",
+                "Должность",
+                "Зарплата",
+                "Время прихода и ухода",
+                "Расписание",
+                "Досье",
+              ]}
+              content={<ListEmployee employees={employees} />}
+            />
           </div>
         </div>
       </div>

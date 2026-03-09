@@ -1,0 +1,12 @@
+thead th {
+  top: 0;
+  position: sticky;
+  border: 1px solid #d0d7f3;
+  text-align: center;
+}
+
+.table-header {
+  padding: 10px;
+  background-color: #e8e8f9;
+  font-weight: 500;
+}
