@@ -2,12 +2,7 @@ import styles from "./Salary.module.css";
 import CardHeader from "../CardHeader/CardHeader";
 import FormField from "@components/FormField/FormField";
 import SelectField from "@components/SelectField/SelectField";
-
-const valuta = {
-  RUB: "₽",
-  EUR: "€",
-  USD: "$",
-};
+import { VALUTA } from "@utils/valuta";
 
 function Salary({
   text,
@@ -99,7 +94,7 @@ function Salary({
               {values.final_salary
                 ? values.final_salary
                 : values.rate_amount * days.length}{" "}
-              {valuta[values["currency"]]}
+              {VALUTA[values["currency"]]}
             </p>
           </div>
         </div>

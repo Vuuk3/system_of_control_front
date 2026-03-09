@@ -12,6 +12,7 @@ import EmployeeDossier from "./pages/EmployeeDossier/EmployeeDossier";
 import { UserProvider } from "./contexts/UserContext";
 import { CompanyProvider } from "./contexts/CompanyContext";
 import { EmployeesProvider } from "./contexts/EmployeesContext";
+import Salaries from "./pages/Salaries/Salaries";
 
 function UserLayout() {
   return (
@@ -56,6 +57,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/add_employee" element={<AddEmployee />}></Route>
           <Route path="/employee/:id" element={<EmployeeDossier />}></Route>
         </Route>
+        <Route path="/salaries" element={<Salaries />}></Route>
       </Route>
     </Routes>
   </BrowserRouter>,

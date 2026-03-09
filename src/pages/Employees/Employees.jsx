@@ -19,6 +19,7 @@ import { useEmployees } from "@contexts/EmployeesContext";
 import { Link, useNavigate } from "react-router";
 import Menu from "@components/Menu/Menu";
 import Table from "@components/Table/Table";
+import { VALUTA } from "@utils/valuta";
 
 function substractTime(time1, time2) {
   const [hours1, minutes1] = time1.split(":").map(Number);
@@ -69,7 +70,7 @@ function Employee({
         </td>
         <td className={styles["content"]}>
           <p className={styles["rate-p"]}>
-            {salary} {currency == "RUB" ? "₽" : currency == "EUR" ? "€" : "$"}
+            {salary} {VALUTA[currency]}
           </p>
         </td>
         <td className={styles["content"]}>

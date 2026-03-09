@@ -6,7 +6,7 @@ function NavBar() {
   const links = [
     { link: "/personal_account", text: "Главная страница" },
     { link: "/employees", text: "Персонал" },
-    { link: null, text: "Зарплаты" },
+    { link: "/salaries", text: "Зарплаты" },
     { link: null, text: "Расписание смен" },
     { link: null, text: "Заявки" },
     { link: null, text: "Показать QR-код" },

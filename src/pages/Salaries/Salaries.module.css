@@ -1,0 +1,65 @@
+.main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f2f3f9;
+  overflow-y: hidden;
+}
+
+.card {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fafbff;
+  padding: 20px;
+  padding-top: 10px;
+  border-radius: 15px;
+}
+
+.content {
+  background-color: #f1effa;
+}
+
+.link-wrapper {
+  text-decoration: none;
+  color: black;
+}
+
+.profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.profile:hover {
+  cursor: pointer;
+}
+
+.profile-logo {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+
+.profile-name {
+  font-weight: 500;
+}
+
+.position-p,
+.rate_amount-p,
+.amount_work-p,
+.bonus-p,
+.fine-p,
+.final_salary-p {
+  margin: 0;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 1.4rem;
+}
