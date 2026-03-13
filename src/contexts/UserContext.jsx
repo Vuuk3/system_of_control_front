@@ -5,26 +5,14 @@ import {
   registerRequest,
   logoutRequest,
 } from "@api/auth";
-import { useNavigate } from "react-router";
 
 const UserContext = createContext(null);
 
 const useUser = () => useContext(UserContext);
 
 function UserProvider({ children }) {
-  const [userData, setUserData] = useState(null);
-  const navigate = useNavigate();
   const channel = new BroadcastChannel("user");
-
-  useEffect(() => {
-    const handleMessage = (event) => {
-      if (event.data == "exited") {
-        navigate("/");
-      }
-    };
-    channel.addEventListener("message", handleMessage);
-    return () => channel.removeEventListener("message", handleMessage);
-  }, []);
+  const [userData, setUserData] = useState(null);
 
   const login = async (data) => {
     const response = await loginRequest(data);

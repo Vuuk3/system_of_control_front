@@ -9,10 +9,7 @@ function DateOfWork({ day }) {
         {new Intl.DateTimeFormat("ru-RU", {
           day: "2-digit",
           month: "long",
-        }).format(new Date(day.date))}{" "}
-        {day.rate_amount}
-        {"/"}
-        {rate_type[day.rate_type]}
+        }).format(new Date(day.date))}
       </p>
       <div className={styles["time"]}>
         <input

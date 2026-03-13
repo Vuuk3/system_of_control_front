@@ -84,7 +84,7 @@ function Login() {
         </div>
         <div className={styles.register}>
           Don`t have an account?{" "}
-          <NoDraggableLink href="/register" className={styles["register-link"]}>
+          <NoDraggableLink to="/register" className={styles["register-link"]}>
             Register
           </NoDraggableLink>
         </div>
