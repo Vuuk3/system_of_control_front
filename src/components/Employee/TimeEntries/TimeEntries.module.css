@@ -4,16 +4,17 @@
 }
 
 .time-entries {
-  grid-column: 20 / 34;
+  grid-column: 33 / 44;
   grid-row: 1 / 6;
 }
 
 .time-entries-wrapper {
+  margin-bottom: 30px;
   height: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 15px;
   overflow-y: auto;
 }
 
@@ -46,15 +47,17 @@
 
 .time {
   padding: 10px;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 5px;
-  color: white;
+  color: black;
 }
 
 .on_time {
-  background: linear-gradient(#7fb87e, #a5d79f);
+  background: none;
+  border: 1px solid #3e96fd;
 }
 
 .not_on_time {
-  background: linear-gradient(#bc4b4e, #eb7e7f);
+  color: white;
+  background: linear-gradient(#3e96fd, #1a67f9);
 }

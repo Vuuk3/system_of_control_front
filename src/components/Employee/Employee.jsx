@@ -14,6 +14,7 @@ import SubmitButton from "../SubmitButton/SubmitButton";
 import NoDraggableImg from "../NoDraggableImg/NoDraggableImg";
 
 function Employee({
+  mode = "add",
   id = null,
   deleteUser = null,
   isEdit = true,
@@ -114,12 +115,15 @@ function Employee({
             <NoDraggableImg className={styles["header-logo"]} src={person} />
             <h1 className={styles["header-h1"]}>Анкета сотрудника</h1>
           </div>
-
-          <SubmitButton
-            style={{ visibility: id ? "visible" : "hidden" }}
-            text="Удалить сотрудника"
-            handleClick={() => setDel(true)}
-          />
+          {mode == "dossier" ? (
+            <SubmitButton
+              text="Удалить сотрудника"
+              handleClick={() => setDel(true)}
+              className={styles["button"]}
+            />
+          ) : (
+            <></>
+          )}
         </div>
 
         <div className={styles["cards"]}>
@@ -141,6 +145,7 @@ function Employee({
             rate_amount={values["rate_amount"]}
           />
           <Salary
+            mode={mode}
             text="Расчет зарплаты"
             cardLogo={salary}
             handleChange={handleChange}

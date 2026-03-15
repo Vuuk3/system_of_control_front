@@ -9,18 +9,25 @@ function Buttons({ isEdit, setCancel, setSave, setErrors, values, errors }) {
         className={`${styles["card"]} ${styles["buttons"]}`}
         style={{ visibility: isEdit ? "visible" : "hidden" }}
       >
-        <SubmitButton text="Отменить" handleClick={() => setCancel(true)} />
-        <SubmitButton
-          text="Сохранить"
-          disabled={Object.values(errors).some(Boolean)}
-          handleClick={() => {
-            const newErrors = validation(values);
-            setErrors(newErrors);
-            if (!Object.values(newErrors).some(Boolean)) {
-              setSave(true);
-            }
-          }}
-        />
+        <div className={styles["content"]}>
+          <SubmitButton
+            text="Отменить"
+            className={`${styles["button"]} ${styles["left"]}`}
+            handleClick={() => setCancel(true)}
+          />
+          <SubmitButton
+            text="Сохранить"
+            className={styles["button"]}
+            disabled={Object.values(errors).some(Boolean)}
+            handleClick={() => {
+              const newErrors = validation(values);
+              setErrors(newErrors);
+              if (!Object.values(newErrors).some(Boolean)) {
+                setSave(true);
+              }
+            }}
+          />
+        </div>
       </div>
     </>
   );

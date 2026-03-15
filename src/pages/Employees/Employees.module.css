@@ -186,17 +186,19 @@
 
 .time {
   padding: 10px;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 5px;
-  color: white;
+  color: black;
 }
 
 .on_time {
-  background: linear-gradient(#7fb87e, #a5d79f);
+  background: none;
+  border: 1px solid #3e96fd;
 }
 
 .not_on_time {
-  background: linear-gradient(#bc4b4e, #eb7e7f);
+  color: white;
+  background: linear-gradient(#3e96fd, #1a67f9);
 }
 
 .position-p,

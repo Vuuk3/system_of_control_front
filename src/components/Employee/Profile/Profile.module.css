@@ -4,7 +4,7 @@
 }
 
 .profile {
-  grid-column: 1 / 18;
+  grid-column: 1 / 22;
   grid-row: 1 / 2;
 }
 
@@ -20,8 +20,8 @@
 
 .profile-content-img {
   border-radius: 50%;
-  width: 180px;
-  height: 180px;
+  width: 148px;
+  height: 148px;
 }
 
 .profile-content-inputs {

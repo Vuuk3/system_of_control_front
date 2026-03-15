@@ -38,6 +38,7 @@ function EmployeeDossier() {
   if (!employeeData) return <></>;
   return (
     <Employee
+      mode="dossier"
       id={id}
       data={{
         ...employeeData.profile,

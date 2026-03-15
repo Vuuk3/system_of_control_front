@@ -1,12 +1,16 @@
 import styles from "./SubmitButton.module.css";
 
-export default function SubmitButton({ text, style, disabled, handleClick }) {
+export default function SubmitButton({
+  text,
+  disabled,
+  handleClick,
+  className,
+}) {
   return (
     <>
       <button
         type="submit"
-        style={style}
-        className={styles["button"]}
+        className={`${styles["button"]} ${className}`}
         disabled={disabled}
         onClick={() => {
           handleClick();

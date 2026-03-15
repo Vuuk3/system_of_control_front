@@ -4,14 +4,14 @@
 }
 
 .salary {
-  grid-column: 18 / 20;
+  grid-column: 22 / 33;
   grid-row: 1 / 6;
   display: flex;
   flex-direction: column;
 }
 
 .no-time-entries {
-  grid-column: 18 / 34;
+  grid-column: 22 / 44;
 }
 
 .salary-content {
@@ -49,7 +49,7 @@ div[name="rate_amount"] {
 }
 
 .time_type {
-  grid-column: 1;
+  grid-column: 1 / -1;
   grid-row: 2;
 }
 
@@ -69,6 +69,7 @@ div[name="rate_amount"] {
 }
 
 .form_field-rate_type {
+  max-width: 230px;
   grid-column: 1;
   border: 0.5px solid #d7dae9;
   border-radius: 10px;
@@ -95,7 +96,7 @@ input[name="rate_type"]:hover,
 }
 
 .select {
-  width: 62%;
+  width: 65%;
   background: none;
   border: 0.5px solid #d7dae9;
   border-radius: 10px;

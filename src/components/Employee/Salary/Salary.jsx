@@ -5,6 +5,7 @@ import SelectField from "@components/SelectField/SelectField";
 import { VALUTA } from "@utils/valuta";
 
 function Salary({
+  mode = "add",
   text,
   cardLogo,
   handleChange,
@@ -13,12 +14,11 @@ function Salary({
   days,
   bonus,
   fine,
-  attendance,
 }) {
   return (
     <>
       <div
-        className={`${styles["card"]} ${styles["salary"]} ${!attendance ? styles["no-time-entries"] : ""}`}
+        className={`${styles["card"]} ${styles["salary"]} ${mode == "add" ? styles["no-time-entries"] : ""}`}
       >
         <CardHeader text={text} logo={cardLogo} />
         <div className={styles["salary-content"]}>
@@ -71,23 +71,20 @@ function Salary({
             <h3 className={styles["salary-h3"]}>Количество</h3>
             <p className={styles["amount_of_work-p"]}>{days.length}</p>
           </div>
-          <div className={styles["adjustments"]}>
-            <div
-              className={styles["adjustments-bonus"]}
-              style={{ visibility: bonus != null ? "visible" : "hidden" }}
-            >
-              <h3 className={styles["adjustments-bonus-h3"]}>Премии:</h3>
-              <p className={styles["adjustments-bonus-p"]}>{bonus}</p>
+          {mode == "dossier" ? (
+            <div className={styles["adjustments"]}>
+              <div className={styles["adjustments-bonus"]}>
+                <h3 className={styles["adjustments-bonus-h3"]}>Премии:</h3>
+                <p className={styles["adjustments-bonus-p"]}>{bonus}</p>
+              </div>
+              <div className={styles["adjustments-fine"]}>
+                <h3 className={styles["adjustments-fine-h3"]}>Штрафы:</h3>
+                <p className={styles["adjustments-fine-p"]}>{fine}</p>
+              </div>
             </div>
-            <div
-              className={styles["adjustments-fine"]}
-              style={{ visibility: fine != null ? "visible" : "hidden" }}
-            >
-              <h3 className={styles["adjustments-fine-h3"]}>Штрафы:</h3>
-              <p className={styles["adjustments-fine-p"]}>{fine}</p>
-            </div>
-          </div>
-
+          ) : (
+            <></>
+          )}
           <div className={styles["final_salary"]}>
             <h3 className={styles["salary-h3"]}>Итоговая зарплата</h3>
             <p className={styles["final_salary-p"]}>
