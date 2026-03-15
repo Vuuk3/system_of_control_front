@@ -149,12 +149,19 @@ function Employees() {
   useEffect(() => {
     const checkEmployees = async () => {
       try {
-        getEmployees(search);
+        await getEmployees(search);
       } catch (err) {
         navigate("/personal_account");
       }
     };
-    checkEmployees();
+    if (search == "") {
+      checkEmployees();
+    }
+    const timer = setTimeout(() => {
+      if (search) {
+        checkEmployees();
+      }
+    }, 300);
     const channel = new BroadcastChannel("employees");
     const handleMessage = (event) => {
       if (event.data.type == "employees-changed") {
@@ -162,7 +169,10 @@ function Employees() {
       }
     };
     channel.addEventListener("message", handleMessage);
-    return () => channel.close();
+    return () => {
+      channel.close();
+      clearTimeout(timer);
+    };
   }, [search]);
 
   useEffect(() => {

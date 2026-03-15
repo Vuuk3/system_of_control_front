@@ -32,7 +32,9 @@ function CheckAuthProvider({ children }) {
 
   if (!userData) return <></>;
 
-  return <CheckAuthContext.Provider>{children}</CheckAuthContext.Provider>;
+  return (
+    <CheckAuthContext.Provider value={{}}>{children}</CheckAuthContext.Provider>
+  );
 }
 
 export { useCheckAuth, CheckAuthProvider };
