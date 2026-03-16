@@ -54,7 +54,8 @@ function Login() {
           submit();
         }}
       >
-        <h5 className={styles["header-login"]}>Login</h5>
+        <h2 className={styles["header-main"]}>Staff Tracker</h2>
+        <h2 className={styles["header-login"]}>Вход</h2>
         {LOGIN_FIELDS.map((field) => (
           <FormField
             key={field.name}
@@ -70,22 +71,22 @@ function Login() {
         ))}
         <PasswordField
           maxLength={20}
-          placeholder="Password"
+          placeholder="Пароль"
           value={values["password"]}
           error={errors["password"]}
           handleChange={handleChange}
         />
         <div style={{ marginBottom: 30 }}>
           <SubmitButton
-            text="Login"
+            text="Войти"
             disabled={Object.values(errors).some(Boolean)}
             handleClick={() => setErrors(validation(values))}
           />
         </div>
         <div className={styles.register}>
-          Don`t have an account?{" "}
+          Нет аккаунта?{" "}
           <NoDraggableLink to="/register" className={styles["register-link"]}>
-            Register
+            Зарегистрируйтесь
           </NoDraggableLink>
         </div>
       </form>

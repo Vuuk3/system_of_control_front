@@ -50,3 +50,16 @@
 .button:active {
   background-color: #2e4e75;
 }
+
+.delete-button {
+  color: red;
+  background-color: #ffb2b2;
+}
+
+.delete-button:hover {
+  background-color: #d99797;
+}
+
+.delete-button:active {
+  background-color: #a67474;
+}

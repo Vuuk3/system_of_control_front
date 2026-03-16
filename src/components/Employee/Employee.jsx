@@ -117,9 +117,9 @@ function Employee({
           </div>
           {mode == "dossier" ? (
             <SubmitButton
-              text="Удалить сотрудника"
+              text="Удалить"
               handleClick={() => setDel(true)}
-              className={styles["button"]}
+              className={styles["delete-button"]}
             />
           ) : (
             <></>

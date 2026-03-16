@@ -10,6 +10,7 @@ function PasswordField({ maxLength, placeholder, value, error, handleChange }) {
   return (
     <>
       <div className={styles["form__field"]}>
+        <h5 className={styles["form__field-header"]}>{placeholder}</h5>
         <div className={styles["form__field-div"]}>
           <input
             type={showPassword ? "text" : "password"}

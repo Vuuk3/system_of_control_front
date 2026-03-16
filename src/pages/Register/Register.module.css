@@ -4,42 +4,57 @@
   align-items: center;
   overflow-y: hidden;
   height: 100vh;
-  background-image: url("@assets/main.png");
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: #f2f3f9;
 }
 
 .login {
-  max-height: 650px;
-  display: flex;
-  flex-direction: column;
+  max-height: 700px;
+  width: 80vw;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(8, 1fr);
   align-items: center;
-  background: #2b92bf10;
-  opacity: 1;
-  backdrop-filter: blur(125px);
+  justify-items: center;
+  background: white;
   border-radius: 38px;
   position: relative;
   top: calc(100vh * (var(--login-top) - 60) / 1080);
   overflow: hidden;
 }
 
-.login__scroll {
-  padding-top: 10px;
-  display: flex;
-  flex-direction: column;
-  width: calc(100vw * var(--login-width) / 1920);
-  min-width: 320px;
-  align-items: center;
-  overflow-y: auto;
-  scroll-behavior: smooth;
-}
-
-.header-login {
-  font-size: max(calc(100vw * 55 / 1920), 40px);
-  color: #bbc0db;
+.header-login,
+.header-main {
+  font-size: 2rem;
+  grid-column: 1 / -1;
+  text-align: center;
+  color: black;
   font-style: normal;
   font-weight: 300;
-  line-height: 70px;
+  line-height: 40px;
   margin-top: 15px;
   margin-bottom: 15px;
+}
+
+.header-main {
+  margin-bottom: 0;
+}
+
+.manager-info,
+.company-info,
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-row: 3 / 4;
+  align-self: self-start;
+  width: 90%;
+}
+
+.register-h3 {
+  font-weight: 400;
+}
+
+.button {
+  grid-column: 1 / -1;
+  margin-bottom: 30px;
 }

@@ -1,7 +1,16 @@
 .form__field {
   margin-bottom: 5px;
-  width: calc(100% * var(--form__field-width) / var(--login-width));
+  width: 90%;
   min-width: 186px;
+}
+
+.form__field-header {
+  margin: 0;
+  margin-bottom: 5px;
+  font-size: 1rem;
+  font-weight: 450;
+  color: black;
+  text-align: center;
 }
 
 .form__field-select {

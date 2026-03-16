@@ -71,9 +71,11 @@ function Register() {
           submit();
         }}
       >
-        <h5 className={styles["header-login"]}>Registration</h5>
-        <div className={styles["login__scroll"]}>
-          {REGISTER_FIELDS.slice(0, REGISTER_FIELDS.length - 1).map((field) => (
+        <h2 className={styles["header-main"]}>Staff Tracker</h2>
+        <h2 className={styles["header-login"]}>Регистрация</h2>
+        <div className={styles["company-info"]}>
+          <h3 className={styles["register-h3"]}>Данные о компании</h3>
+          {REGISTER_FIELDS.slice(0, REGISTER_FIELDS.length - 3).map((field) => (
             <FormField
               key={field.name}
               name={field.name}
@@ -87,6 +89,7 @@ function Register() {
             />
           ))}
           <SelectField
+            placeholder="Организационно-правовая форма"
             name="legalForm"
             defaultValue={values.legal_form}
             handleChange={handleChange}
@@ -101,6 +104,28 @@ function Register() {
               { value: "нко", text: "НКО" },
             ]}
           />
+        </div>
+        <div className={styles["contact-info"]}>
+          <h3 className={styles["register-h3"]}>Данные контактного лица</h3>
+          {REGISTER_FIELDS.slice(
+            REGISTER_FIELDS.length - 3,
+            REGISTER_FIELDS.length - 1,
+          ).map((field) => (
+            <FormField
+              key={field.name}
+              name={field.name}
+              inputType={field.inputType}
+              maxLength={field.maxLength}
+              placeholder={field.placeholder}
+              logo={field.logo}
+              value={values[field.name]}
+              error={errors[field.name]}
+              handleChange={handleChange}
+            />
+          ))}
+        </div>
+        <div className={styles["manager-info"]}>
+          <h3 className={styles["register-h3"]}>Данные пользователя</h3>
           {REGISTER_FIELDS.slice(-1).map((field) => (
             <FormField
               key={field.name}
@@ -116,19 +141,18 @@ function Register() {
           ))}
           <PasswordField
             maxLength={20}
-            placeholder="Password"
+            placeholder="Пароль"
             value={values["password"]}
             error={errors["password"]}
             handleChange={handleChange}
           />
-          <div style={{ marginBottom: 50 }}>
-            <SubmitButton
-              text="Register"
-              disabled={Object.values(errors).some(Boolean)}
-              handleClick={() => setErrors(validation(values))}
-            />
-          </div>
         </div>
+        <SubmitButton
+          className={styles["button"]}
+          text="Регистрация"
+          disabled={Object.values(errors).some(Boolean)}
+          handleClick={() => setErrors(validation(values))}
+        />
       </form>
     </div>
   );

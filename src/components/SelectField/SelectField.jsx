@@ -1,6 +1,7 @@
 import styles from "./SelectField.module.css";
 
 function SelectField({
+  placeholder,
   className = "",
   name,
   defaultValue,
@@ -10,6 +11,7 @@ function SelectField({
   return (
     <>
       <div className={styles["form__field"]}>
+        <h5 className={styles["form__field-header"]}>{placeholder}</h5>
         <div className={styles["form__field-select"]}>
           <select
             className={`${styles["select"]} ${className}`}

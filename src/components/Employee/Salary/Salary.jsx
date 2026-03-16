@@ -32,6 +32,7 @@ function Salary({
             handleChange={handleChange}
           />
           <SelectField
+            placeholder="Валюта"
             className={styles["select"]}
             name="currency"
             defaultValue={values["currency"]}

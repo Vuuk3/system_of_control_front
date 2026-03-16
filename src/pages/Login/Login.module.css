@@ -1,13 +1,10 @@
 .main {
-  height: 100vh;
-  overflow-y: hidden;
-  background-image: url("@assets/main.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: hidden;
+  height: 100vh;
+  background-color: #f2f3f9;
 }
 
 .login {
@@ -15,23 +12,28 @@
   flex-direction: column;
   width: calc(100vw * var(--login-width) / 1920);
   min-width: 320px;
-  background: #2b92bf10;
-  opacity: 1;
-  backdrop-filter: blur(125px);
+  background: white;
   border-radius: 38px;
   position: relative;
   top: calc(100vh * var(--login-top) / 1080);
   align-items: center;
 }
 
-.header-login {
-  font-size: max(calc(100vw * 55 / 1920), 40px);
-  color: #bbc0db;
+.header-login,
+.header-main {
+  font-size: 2rem;
+  grid-column: 1 / -1;
+  text-align: center;
+  color: black;
   font-style: normal;
   font-weight: 300;
-  line-height: 70px;
+  line-height: 40px;
   margin-top: 15px;
   margin-bottom: 15px;
+}
+
+.header-main {
+  margin-bottom: 0;
 }
 
 .register {
@@ -46,7 +48,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 34px;
-  color: #2e4756;
+  color: black;
   margin-bottom: 10px;
 }
 

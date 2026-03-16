@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 60px;
-  border-bottom: 5px solid #6583ec;
+  border-bottom: 5px solid #8b1e3f;
 }
 
 .logo {
@@ -35,7 +35,7 @@
   justify-content: center;
   height: 40px;
   width: 40px;
-  background-color: #5f8ef2;
+  background-color: #8b1e3f;
   border: none;
   border-radius: 5px;
 }
@@ -63,7 +63,7 @@
   flex-direction: column;
   background-color: #e4e7f3;
   padding: 3px;
-  border: 1px solid #6583ec;
+  border: 1px solid #8b1e3f;
   border-radius: 5px;
   position: absolute;
   visibility: hidden;
@@ -104,7 +104,7 @@
 
 .border {
   list-style: none;
-  background-color: #6583ec;
+  background-color: #8b1e3f;
   height: 1px;
 }
 
@@ -117,7 +117,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  color: #000080;
+  color: #8b1e3f;
   border: none;
   font-size: 0.95rem;
 }
