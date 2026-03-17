@@ -1,12 +1,12 @@
 .menu {
   width: 100vw;
-  min-width: 800px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 60px;
-  border-bottom: 5px solid #8b1e3f;
+  border-bottom: 5px solid var(--manager-background-color);
+  container-type: inline-size;
 }
 
 .logo {
@@ -35,7 +35,7 @@
   justify-content: center;
   height: 40px;
   width: 40px;
-  background-color: #8b1e3f;
+  background-color: var(--manager-background-color);
   border: none;
   border-radius: 5px;
 }
@@ -63,7 +63,7 @@
   flex-direction: column;
   background-color: #e4e7f3;
   padding: 3px;
-  border: 1px solid #8b1e3f;
+  border: 1px solid var(--manager-background-color);
   border-radius: 5px;
   position: absolute;
   visibility: hidden;
@@ -104,7 +104,7 @@
 
 .border {
   list-style: none;
-  background-color: #8b1e3f;
+  background-color: var(--manager-background-color);
   height: 1px;
 }
 
@@ -117,7 +117,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  color: #8b1e3f;
+  color: var(--manager-background-color);
   border: none;
   font-size: 0.95rem;
 }

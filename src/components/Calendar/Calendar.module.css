@@ -89,3 +89,13 @@
   border-radius: 5px;
   color: white;
 }
+
+@media (max-height: 900px) {
+  .day {
+    width: 40px;
+    height: 40px;
+  }
+  .day_button {
+    font-size: 1.25rem;
+  }
+}
