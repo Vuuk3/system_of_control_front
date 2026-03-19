@@ -2,7 +2,7 @@
   width: fit-content;
   padding-left: 10px;
   padding-right: 10px;
-  height: calc(100vh * 60.19 / 1080);
+  height: 60px;
   min-height: 40px;
   background-color: #d9d9d9;
   color: #2e4756;
@@ -24,11 +24,4 @@
 
 .button:disabled {
   cursor: not-allowed;
-}
-
-@media (max-width: 600px) {
-  .button {
-    width: 150px;
-    font-size: 25px;
-  }
 }
