@@ -84,6 +84,11 @@
   border-radius: 15px;
 }
 
+.employees {
+  display: flex;
+  flex-direction: column;
+}
+
 .employees-tools {
   display: flex;
   flex-direction: row;

@@ -19,7 +19,7 @@ function Table({ headers, content }) {
     };
   }, []);
   return (
-    <div className={styles["table-wrapper"]} ref={tableRef}>
+    <div className={styles["table-scroll"]} ref={tableRef}>
       <table className={styles["table"]} style={{ minWidth: width }}>
         <TableHeader headers={headers} />
         <tbody>{content}</tbody>
