@@ -1,0 +1,65 @@
+.card {
+  min-height: 600px;
+  background-color: white;
+  border-radius: 15px;
+  container-type: inline-size;
+}
+
+.time-entries {
+  grid-column: 33 / 44;
+  grid-row: 1 / 8;
+}
+
+.time-entries-wrapper {
+  margin-bottom: 30px;
+  height: 82%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  overflow-y: auto;
+}
+
+.time-entry {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.times {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.date {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.entry_time,
+.exit_time {
+  margin: 0;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: clamp(1rem, 5cqw, 1.4rem);
+}
+
+.time {
+  padding: 10px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  color: black;
+}
+
+.on_time {
+  background: none;
+  border: 1px solid #3e96fd;
+}
+
+.not_on_time {
+  color: white;
+  background: linear-gradient(#3e96fd, #1a67f9);
+}

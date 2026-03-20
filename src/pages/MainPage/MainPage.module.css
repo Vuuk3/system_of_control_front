@@ -1,5 +1,5 @@
 .main {
-  background-image: url("./assets/main.png");
+  background-image: url("@/assets/main.png");
 }
 
 .logo {

@@ -1,0 +1,92 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: hidden;
+  height: 100vh;
+  background-color: #f2f3f9;
+}
+
+.register {
+  height: 80%;
+  width: 80vw;
+  min-width: 400px;
+  background: white;
+  border-radius: 38px;
+  position: relative;
+  top: calc(100vh * (var(--login-top) - 60) / 1080);
+  overflow: hidden;
+}
+
+.register-scroll {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  align-items: center;
+  justify-items: center;
+}
+
+.header-login,
+.header-main {
+  font-size: 2rem;
+  grid-column: 1 / -1;
+  text-align: center;
+  color: black;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 40px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.header-main {
+  margin-bottom: 0;
+}
+
+.manager-info,
+.company-info,
+.contact-info {
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-row: 3 / 5;
+  align-self: self-start;
+  width: 90%;
+}
+
+.register-h3 {
+  font-size: clamp(1rem, 5cqw, 1.5rem);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.button {
+  grid-column: 2 / -1;
+  grid-row: -3/-1;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 2rem;
+}
+
+@media (max-width: 1000px) {
+  .register-scroll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+  }
+
+  .company-info,
+  .contact-info,
+  .manager-info {
+    align-self: center;
+    width: 80%;
+  }
+
+  .button {
+    margin-bottom: 30px;
+    min-height: 60px;
+  }
+}

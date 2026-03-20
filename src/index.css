@@ -4,9 +4,11 @@
   --form__field-width: 450;
   --form__field-height: 43;
   --error-height: 29;
+  --manager-background-color: #8b1e3f;
 }
 
 body {
   margin: 0px;
   height: 100%;
+  font-family: "Inter", sans-serif;
 }

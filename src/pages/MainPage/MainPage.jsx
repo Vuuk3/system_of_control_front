@@ -1,5 +1,5 @@
 import styles from "./MainPage.module.css";
-import logo from "./assets/main.svg";
+import logo from "@assets/main.svg";
 
 function MainPage() {
   return (

@@ -1,0 +1,30 @@
+.card {
+  min-height: 85px;
+  background-color: white;
+  border-radius: 15px;
+}
+
+.button {
+  color: black;
+}
+
+.button:active {
+  background-color: #2e4e75;
+}
+
+.buttons {
+  grid-column: 22 / 44;
+  grid-row: 8 / 10;
+}
+
+.content {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 30px;
+}
+
+.left {
+  justify-self: end;
+}

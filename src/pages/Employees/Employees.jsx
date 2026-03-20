@@ -1,0 +1,256 @@
+import employee1 from "@assets/employee.jpg";
+import employee2 from "@assets/employee2.jpg";
+import employee3 from "@assets/employee3.jpg";
+import employee4 from "@assets/employee4.jpg";
+import employee5 from "@assets/employee5.jpg";
+import employee6 from "@assets/employee6.jpg";
+import employee7 from "@assets/employee7.jpg";
+import {
+  person,
+  plus,
+  searchIcon,
+  scheduleIcon,
+  dossier,
+  download,
+} from "@utils/icons";
+import styles from "./Employees.module.css";
+import { useEffect, useState } from "react";
+import { useEmployees } from "@contexts/EmployeesContext";
+import { useNavigate } from "react-router";
+import Menu from "@components/Menu/Menu";
+import Table from "@components/Table/Table";
+import { VALUTA } from "@utils/valuta";
+import NoDraggableImg from "@components/NoDraggableImg/NoDraggableImg";
+import NoDraggableLink from "@components/NoDraggableLink/NoDraggableLink";
+
+function substractTime(time1, time2) {
+  const [hours1, minutes1] = time1.split(":").map(Number);
+  const [hours2, minutes2] = time2.split(":").map(Number);
+  return hours1 * 60 + minutes1 - (hours2 * 60 + minutes2) < 15;
+}
+
+function Employee({
+  id,
+  photo,
+  name,
+  phone_number,
+  email,
+  position,
+  currency,
+  entry_time,
+  exit_time,
+  salary,
+}) {
+  return (
+    <>
+      <tr className={styles["employee"]}>
+        <td className={styles["content"]}>
+          <NoDraggableLink
+            className={styles["link-wrapper"]}
+            to={`/employee/${String(id)}`}
+            target="_blank"
+            rel="noopener norefferrer"
+          >
+            <div className={styles["profile"]}>
+              <NoDraggableImg className={styles["profile-logo"]} src={photo} />
+              <p className={styles["profile-name"]}>{name}</p>
+            </div>
+          </NoDraggableLink>
+        </td>
+        <td className={styles["content"]}>
+          <div className={styles["contacts"]}>
+            <p className={styles["contacts-phone"]}>{phone_number}</p>
+            <p className={styles["contacts-email"]}>{email}</p>
+          </div>
+        </td>
+        <td className={styles["content"]}>
+          <p className={styles["position-p"]}>{position}</p>
+        </td>
+        <td className={styles["content"]}>
+          <p className={styles["rate-p"]}>
+            {salary} {VALUTA[currency]}
+          </p>
+        </td>
+        <td className={styles["content"]}>
+          <div className={styles["times"]}>
+            <div
+              className={`${styles["time"]} ${substractTime(entry_time, "08:00") ? styles["on_time"] : styles["not_on_time"]}`}
+            >
+              <p className={styles["entry_time"]}>{entry_time}</p>
+            </div>
+            <div
+              className={`${styles["time"]} ${substractTime(exit_time, "18:00") ? styles["on_time"] : styles["not_on_time"]}`}
+            >
+              <p className={styles["exit_time"]}>{exit_time}</p>
+            </div>
+          </div>
+        </td>
+        <td className={styles["content"]}>
+          <button className={styles["schedule-button"]}>
+            <NoDraggableImg
+              className={styles["schedule-logo"]}
+              src={scheduleIcon}
+            />
+          </button>
+        </td>
+        <td className={styles["content"]}>
+          <NoDraggableLink
+            className={styles["dossier-button"]}
+            to={`/employee/${String(id)}`}
+            target="_blank"
+            rel="noopener norefferrer"
+          >
+            <NoDraggableImg className={styles["dossier-logo"]} src={dossier} />
+          </NoDraggableLink>
+        </td>
+      </tr>
+    </>
+  );
+}
+
+function ListEmployee({ employees }) {
+  const test_employees = [...employees];
+  const logos = [
+    employee1,
+    employee2,
+    employee3,
+    employee4,
+    employee5,
+    employee6,
+    employee7,
+  ];
+  return (
+    <>
+      {test_employees.map((employee) => (
+        <Employee
+          key={employee.id}
+          id={employee.id}
+          photo={logos[Math.floor(Math.random() * logos.length)]}
+          email={employee.email}
+          name={employee.profile.full_name}
+          phone_number={employee.profile.phone}
+          position={employee.profile.position}
+          rate_amount={employee.profile.rate_amount}
+          currency={employee.profile.currency}
+          entry_time="08:01"
+          exit_time="18:01"
+          salary={employee.final_salary}
+        />
+      ))}
+    </>
+  );
+}
+
+function Employees() {
+  const { employeesData, getEmployees } = useEmployees();
+  const [employees, setEmployees] = useState(null);
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+  useEffect(() => {
+    const checkEmployees = async () => {
+      try {
+        await getEmployees(search);
+      } catch (err) {
+        navigate("/personal_account");
+      }
+    };
+    if (search == "") {
+      checkEmployees();
+    }
+    const timer = setTimeout(() => {
+      if (search) {
+        checkEmployees();
+      }
+    }, 300);
+    const channel = new BroadcastChannel("employees");
+    const handleMessage = (event) => {
+      if (event.data.type == "employees-changed") {
+        checkEmployees();
+      }
+    };
+    channel.addEventListener("message", handleMessage);
+    return () => {
+      channel.close();
+      clearTimeout(timer);
+    };
+  }, [search]);
+
+  useEffect(() => {
+    if (employeesData) {
+      setEmployees(employeesData);
+    }
+  }, [employeesData]);
+
+  function copyQuestionaryLink() {
+    const link = "example";
+    navigator.clipboard.writeText(link);
+  }
+  if (!employees) return <></>;
+  return (
+    <>
+      <div className={styles["main"]}>
+        <Menu header_text="Персонал" header_logo={person} />
+        <div className={styles["card"]}>
+          <div className={styles["employees"]}>
+            <div className={styles["employees-tools"]}>
+              <div className={styles["search_bar"]}>
+                <NoDraggableImg
+                  className={styles["search_bar-logo"]}
+                  src={searchIcon}
+                />
+                <input
+                  type="text"
+                  value={search}
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                  }}
+                  className={styles["search_bar-input"]}
+                  placeholder="Поиск сотрудника..."
+                />
+              </div>
+              <div className={styles["buttons"]}>
+                <div className={styles["add_employee"]}>
+                  <NoDraggableImg
+                    className={styles["add_employee-logo"]}
+                    src={plus}
+                  />
+                  <NoDraggableLink
+                    className={styles["add_employee-link"]}
+                    to="/add_employee"
+                    target="_blank"
+                    rel="noopener norefferrer"
+                  >
+                    Добавить сотрудника
+                  </NoDraggableLink>
+                </div>
+                <div className={styles["download"]}>
+                  <button className={styles["download-button"]}>
+                    <NoDraggableImg
+                      className={styles["download-logo"]}
+                      src={download}
+                      onClick={() => copyQuestionaryLink()}
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <Table
+              headers={[
+                "ФИО",
+                "Контактные данные",
+                "Должность",
+                "Зарплата",
+                "Время прихода и ухода",
+                "Расписание",
+                "Досье",
+              ]}
+              content={<ListEmployee employees={employees} />}
+            />
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default Employees;
