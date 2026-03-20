@@ -72,6 +72,13 @@ export const EDIT_FIELDS = [
     logo: address,
   },
   {
+    name: "business_area",
+    inputType: "text",
+    maxLength: 40,
+    placeholder: "Сфера деятельности",
+    logo: field,
+  },
+  {
     name: "contact_name",
     inputType: "text",
     maxLength: 60,
@@ -84,13 +91,6 @@ export const EDIT_FIELDS = [
     maxLength: 32,
     placeholder: "Электронная почта контактного лица",
     logo: mail,
-  },
-  {
-    name: "business_area",
-    inputType: "text",
-    maxLength: 40,
-    placeholder: "Сфера деятельности",
-    logo: field,
   },
 ];
 

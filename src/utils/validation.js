@@ -8,6 +8,7 @@ export function validation(values) {
     "u",
   );
   const phoneRegex = new RegExp("^\\+?[1-9]\\d{7,14}$");
+  const salaryRegex = new RegExp("^[0-9]{1,}(\\.[0-9]{1,})?$");
 
   const fields = [
     {
@@ -31,7 +32,11 @@ export function validation(values) {
       errorMessage: "Номер телефона некорректен",
     },
     { field: "position" },
-    { field: "rate_amount" },
+    {
+      field: "rate_amount",
+      regex: salaryRegex,
+      errorMessage: "Некорректное значение",
+    },
     {
       field: "full_name",
       regex: fioRegex,

@@ -76,21 +76,19 @@ function Register() {
           <h2 className={styles["header-login"]}>Регистрация</h2>
           <div className={styles["company-info"]}>
             <h3 className={styles["register-h3"]}>Данные о компании</h3>
-            {REGISTER_FIELDS.slice(0, REGISTER_FIELDS.length - 3).map(
-              (field) => (
-                <FormField
-                  key={field.name}
-                  name={field.name}
-                  inputType={field.inputType}
-                  maxLength={field.maxLength}
-                  placeholder={field.placeholder}
-                  logo={field.logo}
-                  value={values[field.name]}
-                  error={errors[field.name]}
-                  handleChange={handleChange}
-                />
-              ),
-            )}
+            {REGISTER_FIELDS.slice(0, -3).map((field) => (
+              <FormField
+                key={field.name}
+                name={field.name}
+                inputType={field.inputType}
+                maxLength={field.maxLength}
+                placeholder={field.placeholder}
+                logo={field.logo}
+                value={values[field.name]}
+                error={errors[field.name]}
+                handleChange={handleChange}
+              />
+            ))}
             <SelectField
               placeholder="Организационно-правовая форма"
               name="legalForm"
@@ -110,10 +108,7 @@ function Register() {
           </div>
           <div className={styles["contact-info"]}>
             <h3 className={styles["register-h3"]}>Данные контактного лица</h3>
-            {REGISTER_FIELDS.slice(
-              REGISTER_FIELDS.length - 3,
-              REGISTER_FIELDS.length - 1,
-            ).map((field) => (
+            {REGISTER_FIELDS.slice(-3, -1).map((field) => (
               <FormField
                 key={field.name}
                 name={field.name}

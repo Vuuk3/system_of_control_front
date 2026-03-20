@@ -125,47 +125,48 @@ function Employee({
             <></>
           )}
         </div>
+        <div className={styles["cards-wrapper"]}>
+          <div className={styles["cards"]}>
+            <Profile
+              text="Информация о сотруднике"
+              cardLogo={person}
+              img={company}
+              handleChange={handleChange}
+              values={values}
+              errors={errors}
+            />
+            <Schedule
+              text="Расписание смен"
+              cardLogo={calendar}
+              days={days}
+              setDays={setDays}
+              setEdit={setIsEdit}
+              rate_type={values["rate_type"]}
+              rate_amount={values["rate_amount"]}
+            />
+            <Salary
+              mode={mode}
+              text="Расчет зарплаты"
+              cardLogo={salary}
+              handleChange={handleChange}
+              values={values}
+              errors={errors}
+              days={days}
+              bonus={bonus}
+              fine={fine}
+              attendance={attendance}
+            />
+            <TimeEntries text="Посещаемость" logo={clock} values={attendance} />
 
-        <div className={styles["cards"]}>
-          <Profile
-            text="Информация о сотруднике"
-            cardLogo={person}
-            img={company}
-            handleChange={handleChange}
-            values={values}
-            errors={errors}
-          />
-          <Schedule
-            text="Расписание смен"
-            cardLogo={calendar}
-            days={days}
-            setDays={setDays}
-            setEdit={setIsEdit}
-            rate_type={values["rate_type"]}
-            rate_amount={values["rate_amount"]}
-          />
-          <Salary
-            mode={mode}
-            text="Расчет зарплаты"
-            cardLogo={salary}
-            handleChange={handleChange}
-            values={values}
-            errors={errors}
-            days={days}
-            bonus={bonus}
-            fine={fine}
-            attendance={attendance}
-          />
-          <TimeEntries text="Посещаемость" logo={clock} values={attendance} />
-
-          <Buttons
-            isEdit={isEdit}
-            setCancel={setCancel}
-            setSave={setSave}
-            setErrors={setErrors}
-            values={values}
-            errors={errors}
-          />
+            <Buttons
+              isEdit={isEdit}
+              setCancel={setCancel}
+              setSave={setSave}
+              setErrors={setErrors}
+              values={values}
+              errors={errors}
+            />
+          </div>
         </div>
       </div>
       <Dialog

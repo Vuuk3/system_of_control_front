@@ -1,5 +1,5 @@
 import register_styles from "../Register/Register.module.css";
-import edit_information_styles from "./EditInformation.module.css";
+import styles from "./EditInformation.module.css";
 import { useEffect, useState } from "react";
 import { useCompany } from "@contexts/CompanyContext";
 import { useNavigate } from "react-router";
@@ -20,6 +20,7 @@ function EditInformation() {
   const [save, setSave] = useState(false);
 
   useEffect(() => {
+    console.log(EDIT_FIELDS);
     const checkCompany = async () => {
       try {
         await getCompany();
@@ -69,63 +70,91 @@ function EditInformation() {
         <form
           noValidate
           method="post"
-          className={register_styles["login"]}
+          className={`${register_styles["register"]} ${styles["editing"]}`}
           onSubmit={(e) => {
             e.preventDefault();
           }}
         >
-          <h5 className={register_styles["header-login"]}>Editing</h5>
-          <div className={register_styles["login__scroll"]}>
-            {EDIT_FIELDS.map((field) => (
-              <FormField
-                key={field.name}
-                name={field.name}
-                inputType={field.inputType}
-                maxLength={field.maxLength}
-                placeholder={field.placeholder}
-                logo={field.logo}
-                value={values[field.name]}
-                error={errors[field.name]}
+          <div
+            className={`${register_styles["register-scroll"]} ${styles["editing-scroll"]}`}
+          >
+            <h2 className={register_styles["header-main"]}>Staff Tracker</h2>
+            <h2 className={register_styles["header-login"]}>
+              Изменение информации о компании
+            </h2>
+            <div className={register_styles["company-info"]}>
+              <h3 className={register_styles["register-h3"]}>
+                Данные о компании
+              </h3>
+              {EDIT_FIELDS.slice(0, -2).map((field) => (
+                <FormField
+                  key={field.name}
+                  name={field.name}
+                  inputType={field.inputType}
+                  maxLength={field.maxLength}
+                  placeholder={field.placeholder}
+                  logo={field.logo}
+                  value={values[field.name]}
+                  error={errors[field.name]}
+                  handleChange={handleChange}
+                />
+              ))}
+              <SelectField
+                placeholder="Организационно-правовая форма"
+                name="legal_form"
+                defaultValue={values.legal_form}
                 handleChange={handleChange}
-              />
-            ))}
-            <SelectField
-              name="legal_form"
-              defaultValue={values.legal_form}
-              handleChange={handleChange}
-              options={[
-                { value: "ооо", text: "ООО" },
-                { value: "ип", text: "ИП" },
-                { value: "ао", text: "АО" },
-                { value: "пао", text: "ПАО" },
-                { value: "нао", text: "НАО" },
-                { value: "гуп", text: "ГУП" },
-                { value: "муп", text: "МУП" },
-                { value: "нко", text: "НКО" },
-              ]}
-            />
-            <div
-              className={edit_information_styles["button-container"]}
-              style={{ marginBottom: 20 }}
-            >
-              <SubmitButton
-                text="Отменить"
-                style={{ display: isEdit ? "block" : "none" }}
-                handleClick={() => setCancel(true)}
-              />
-              <SubmitButton
-                text="Сохранить"
-                style={{ display: isEdit ? "block" : "none" }}
-                disabled={Object.values(errors).some(Boolean)}
-                handleClick={() => {
-                  const newErrors = validation(values);
-                  setErrors(newErrors);
-                  if (!Object.values(newErrors).some(Boolean)) {
-                    setSave(true);
-                  }
-                }}
+                options={[
+                  { value: "ооо", text: "ООО" },
+                  { value: "ип", text: "ИП" },
+                  { value: "ао", text: "АО" },
+                  { value: "пао", text: "ПАО" },
+                  { value: "нао", text: "НАО" },
+                  { value: "гуп", text: "ГУП" },
+                  { value: "муп", text: "МУП" },
+                  { value: "нко", text: "НКО" },
+                ]}
               />
             </div>
+            <div className={register_styles["contact-info"]}>
+              <h3 className={register_styles["register-h3"]}>
+                Данные контактного лица
+              </h3>
+              {EDIT_FIELDS.slice(-2).map((field) => (
+                <FormField
+                  key={field.name}
+                  name={field.name}
+                  inputType={field.inputType}
+                  maxLength={field.maxLength}
+                  placeholder={field.placeholder}
+                  logo={field.logo}
+                  value={values[field.name]}
+                  error={errors[field.name]}
+                  handleChange={handleChange}
+                />
+              ))}
+            </div>
+            {isEdit ? (
+              <div className={styles["button-container"]}>
+                <SubmitButton
+                  text="Отменить"
+                  handleClick={() => setCancel(true)}
+                />
+                <SubmitButton
+                  text="Сохранить"
+                  disabled={Object.values(errors).some(Boolean)}
+                  handleClick={() => {
+                    const newErrors = validation(values);
+                    setErrors(newErrors);
+                    if (!Object.values(newErrors).some(Boolean)) {
+                      setSave(true);
+                    }
+                  }}
+                />
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
         </form>
         <Dialog

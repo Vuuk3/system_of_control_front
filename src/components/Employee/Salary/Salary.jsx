@@ -22,27 +22,29 @@ function Salary({
       >
         <CardHeader text={text} logo={cardLogo} />
         <div className={styles["salary-content"]}>
-          <FormField
-            className={styles["form_field-div-input"]}
-            name="rate_amount"
-            inputType="number"
-            placeholder="Ставка"
-            value={values["rate_amount"]}
-            error={errors["rate_amount"]}
-            handleChange={handleChange}
-          />
-          <SelectField
-            placeholder="Валюта"
-            className={styles["select"]}
-            name="currency"
-            defaultValue={values["currency"]}
-            handleChange={handleChange}
-            options={[
-              { value: "RUB", text: "Рубли" },
-              { value: "EUR", text: "Евро" },
-              { value: "USD", text: "Доллары" },
-            ]}
-          />
+          <div className={styles["rate"]}>
+            <FormField
+              className={styles["form_field-div-input"]}
+              name="rate_amount"
+              inputType="text"
+              placeholder="Ставка"
+              value={values["rate_amount"]}
+              error={errors["rate_amount"]}
+              handleChange={handleChange}
+            />
+            <SelectField
+              placeholder="Валюта"
+              className={styles["select"]}
+              name="currency"
+              defaultValue={values["currency"]}
+              handleChange={handleChange}
+              options={[
+                { value: "RUB", text: "Рубли" },
+                { value: "EUR", text: "Евро" },
+                { value: "USD", text: "Доллары" },
+              ]}
+            />
+          </div>
           <div className={styles["time_type"]}>
             <h3 className={styles["salary-h3"]}>Вид времени</h3>
             <div className={styles["form_field-rate_type"]}>
