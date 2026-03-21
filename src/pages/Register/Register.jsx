@@ -91,7 +91,7 @@ function Register() {
             ))}
             <SelectField
               placeholder="Организационно-правовая форма"
-              name="legalForm"
+              name="legal_form"
               defaultValue={values.legal_form}
               handleChange={handleChange}
               options={[
