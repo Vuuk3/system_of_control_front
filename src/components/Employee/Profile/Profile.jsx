@@ -4,12 +4,21 @@ import CardHeader from "../CardHeader/CardHeader";
 import { EMPLOYEE_FIELDS } from "@utils/fields";
 import NoDraggableImg from "@components/NoDraggableImg/NoDraggableImg";
 
-function Profile({ text, cardLogo, img, handleChange, values, errors }) {
+function Profile({
+  text,
+  cardLogo,
+  img,
+  handleChange,
+  values,
+  errors,
+  loadImage,
+}) {
   return (
     <>
       <div className={`${styles["card"]} ${styles["profile"]}`}>
         <CardHeader text={text} logo={cardLogo} />
         <div className={styles["profile-content"]}>
+          {/*<input type="file" onChange={(e) => loadImage(e.target)} />*/}
           <NoDraggableImg className={styles["profile-content-img"]} src={img} />
           <div className={styles["profile-content-inputs"]}>
             {EMPLOYEE_FIELDS.map((field) => (
