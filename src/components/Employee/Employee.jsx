@@ -1,5 +1,5 @@
 import styles from "./Employee.module.css";
-import { person, calendar, salary, company } from "@utils/icons";
+import { person, calendar, salary, company, clock } from "@utils/icons";
 import { useCallback, useState } from "react";
 import { useNavigate } from "react-router";
 import { format } from "date-fns";
@@ -9,7 +9,6 @@ import Schedule from "./Schedule/Schedule";
 import Salary from "./Salary/Salary";
 import Buttons from "./Buttons/Buttons";
 import TimeEntries from "./TimeEntries/TimeEntries";
-import { clock } from "@utils/icons";
 import SubmitButton from "../SubmitButton/SubmitButton";
 import NoDraggableImg from "../NoDraggableImg/NoDraggableImg";
 
@@ -36,6 +35,19 @@ function Employee({
   const [save, setSave] = useState(false);
   const [del, setDel] = useState(false);
   const navigate = useNavigate();
+
+  const loadImage = (input) => {
+    const file = input.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      const dataURL = reader.result;
+      console.log(dataURL);
+      setValues((prev) => ({ ...prev, ["avatar"]: dataURL }));
+    };
+
+    reader.readAsDataURL(file);
+  };
 
   const handleChange = useCallback((name, value) => {
     setValues((prev) => ({ ...prev, [name]: value }));
@@ -134,6 +146,7 @@ function Employee({
               handleChange={handleChange}
               values={values}
               errors={errors}
+              loadImage={loadImage}
             />
             <Schedule
               text="Расписание смен"

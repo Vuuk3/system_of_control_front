@@ -6,9 +6,11 @@ import { useNavigate } from "react-router";
 import NavBar from "@components/NavBar/NavBar";
 import NoDraggableImg from "../NoDraggableImg/NoDraggableImg";
 import NoDraggableLink from "../NoDraggableLink/NoDraggableLink";
+import { LINKS_LIST } from "@utils/navLinks";
 
 function Menu({ header_text, header_logo }) {
   const [settings, setSettings] = useState(false);
+  const [visibleLinks, setVisibleLinks] = useState(Array(6).fill(true));
   const settingsRef = useRef(null);
   const openSettingsRef = useRef(null);
   const { logout } = useUser();
@@ -34,7 +36,7 @@ function Menu({ header_text, header_logo }) {
           <h1 className={styles["logo-header"]}>{header_text}</h1>
         </div>
 
-        <NavBar />
+        <NavBar visibleLinks={visibleLinks} setVisibleLinks={setVisibleLinks} />
         <div className={styles["settings-wrapper"]}>
           <button
             ref={openSettingsRef}
@@ -51,6 +53,20 @@ function Menu({ header_text, header_logo }) {
                 : styles["settings-menu"]
             }
           >
+            {LINKS_LIST.map((l, i) =>
+              l.link != location.pathname && !visibleLinks[i] ? (
+                <NoDraggableLink
+                  key={l.text}
+                  to={l.link}
+                  className={styles["link-wrapper"]}
+                >
+                  <div className={styles["setting"]}>
+                    <label className={styles["setting-button"]}>{l.text}</label>
+                  </div>
+                </NoDraggableLink>
+              ) : null,
+            )}
+
             <NoDraggableLink
               to="/editing_information"
               className={styles["link-wrapper"]}

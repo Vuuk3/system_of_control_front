@@ -45,6 +45,9 @@ function Employee({
     <>
       <tr className={styles["employee"]}>
         <td className={styles["content"]}>
+          <p className={styles["id-p"]}>{id}</p>
+        </td>
+        <td className={styles["content"]}>
           <NoDraggableLink
             className={styles["link-wrapper"]}
             to={`/employee/${String(id)}`}
@@ -236,6 +239,7 @@ function Employees() {
             </div>
             <Table
               headers={[
+                "ID",
                 "ФИО",
                 "Контактные данные",
                 "Должность",
