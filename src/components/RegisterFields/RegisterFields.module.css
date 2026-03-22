@@ -1,0 +1,7 @@
+.register-h3 {
+  margin: 0;
+  margin-bottom: 5px;
+  font-size: clamp(1rem, 5cqw, 1.5rem);
+  font-weight: 400;
+  white-space: nowrap;
+}

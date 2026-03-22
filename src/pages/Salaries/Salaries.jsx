@@ -11,6 +11,7 @@ import Table from "@components/Table/Table";
 import Menu from "@components/Menu/Menu";
 import { VALUTA } from "@utils/valuta";
 import { salary } from "@utils/icons";
+import Title from "@components/Title/Title";
 
 function Salary({
   id,
@@ -126,6 +127,7 @@ function Salaries() {
   ];
   return (
     <>
+      <Title text="Зарплаты" />
       <div className={styles["main"]}>
         <Menu header_text="Зарплаты" header_logo={salary} />
         <div className={styles["card"]}>

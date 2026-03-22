@@ -1,11 +1,12 @@
 .card {
-  min-height: 600px;
+  min-height: 620px;
   background-color: white;
   border-radius: 15px;
   container-type: inline-size;
 }
 
 .time-entries {
+  margin-right: 15px;
   grid-column: 33 / 44;
   grid-row: 1 / 8;
 }
@@ -62,4 +63,11 @@
 .not_on_time {
   color: white;
   background: linear-gradient(#3e96fd, #1a67f9);
+}
+
+@media (max-width: 1450px) {
+  .time-entry {
+    justify-content: center;
+    gap: 20px;
+  }
 }

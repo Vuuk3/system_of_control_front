@@ -4,17 +4,13 @@
   border-radius: 15px;
 }
 
-.button {
-  color: black;
-}
-
-.button:active {
-  background-color: #2e4e75;
-}
-
 .buttons {
   grid-column: 22 / 44;
   grid-row: 8 / 10;
+}
+
+.mode-add {
+  grid-row: 6 / 7;
 }
 
 .content {
@@ -25,6 +21,48 @@
   gap: 30px;
 }
 
+.mode-dossier {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .left {
   justify-self: end;
+}
+
+.center {
+  justify-self: center;
+}
+
+.button {
+  border-radius: 10px;
+}
+
+.button:active {
+  background-color: #2e4e75;
+}
+
+.delete-button {
+  color: red;
+  background-color: #ffb2b2;
+}
+
+.delete-button:hover {
+  background-color: #d99797;
+}
+
+.delete-button:active {
+  background-color: #a67474;
+}
+
+.main-button {
+  background-color: #5f8ef2;
+  color: white;
+}
+
+.main-button:hover {
+  background-color: #3f76ea;
+}
+
+.main-button:active {
+  background-color: #154ecf;
 }

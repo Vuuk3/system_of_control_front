@@ -124,3 +124,13 @@
   font-size: 0.95rem;
   white-space: nowrap;
 }
+
+.checked {
+  pointer-events: none;
+  background-color: #8c9199;
+  font-weight: bold;
+}
+
+.checked:hover {
+  cursor: default;
+}

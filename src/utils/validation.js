@@ -7,6 +7,9 @@ export function validation(values) {
     "^[A-ZА-Я][a-zа-я]+(-[A-ZА-Я][a-zа-я]+)?\\s[A-ZА-Я][a-zа-я]+(\\s[A-ZА-Я][a-zа-я]+)?$",
     "u",
   );
+  const surnameRegex = new RegExp("^[A-ZА-Я][a-zа-я]+(-[A-ZА-Я][a-zа-я])?$");
+  const nameRegex = new RegExp("^[A-ZА-Я][a-zа-я]$");
+  const patronymicRegex = new RegExp("^[A-ZА-Я][a-zа-я]$|^$");
   const phoneRegex = new RegExp("^\\+?[1-9]\\d{7,14}$");
   const salaryRegex = new RegExp("^[0-9]{1,}(\\.[0-9]{1,})?$");
 
@@ -20,8 +23,18 @@ export function validation(values) {
     { field: "legal_address" },
     {
       field: "contact_name",
-      regex: fioRegex,
-      errorMessage: 'Не соответствует формату: "Иванов Иван Иавнович"',
+      regex: nameRegex,
+      errorMessage: 'Не соответствует формату: "Иван"',
+    },
+    {
+      field: "contact_surname",
+      regex: surnameRegex,
+      errorMessage: 'Не соотетствует формату "Иванов"',
+    },
+    {
+      field: "contact_patronymic",
+      regex: patronymicRegex,
+      errorMessage: 'Не соответствует формату "Иванов"',
     },
     { field: "email", regex: emailRegex, errorMessage: "Адрес некорректен" },
     { field: "business_area" },
@@ -46,7 +59,7 @@ export function validation(values) {
 
   fields.forEach(({ field, regex, errorMessage }) => {
     if (field in values) {
-      if (values[field].length == 0) {
+      if (values[field].length == 0 && field != "contact_patronymic") {
         newErrors[field] = "Заполните поле";
       } else if (regex && !regex.test(values[field])) {
         newErrors[field] = errorMessage;
