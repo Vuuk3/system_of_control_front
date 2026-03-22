@@ -7,6 +7,10 @@
 .buttons {
   grid-column: 22 / 44;
   grid-row: 8 / 10;
+  justify-self: center;
+  max-width: fit-content;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .mode-add {
@@ -15,22 +19,15 @@
 
 .content {
   height: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
   gap: 30px;
 }
 
 .mode-dossier {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.left {
-  justify-self: end;
-}
-
-.center {
-  justify-self: center;
+  gap: 20px;
 }
 
 .button {
@@ -65,4 +62,11 @@
 
 .main-button:active {
   background-color: #154ecf;
+}
+
+@media (max-width: 1450px) {
+  .buttons.card {
+    margin: 0;
+    align-self: center;
+  }
 }

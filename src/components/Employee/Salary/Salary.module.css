@@ -21,6 +21,7 @@
 .salary-content {
   align-self: center;
   width: 95%;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   gap: 10px;
