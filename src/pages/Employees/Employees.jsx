@@ -14,7 +14,7 @@ import {
   share,
 } from "@utils/icons";
 import styles from "./Employees.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useEmployees } from "@contexts/EmployeesContext";
 import { useNavigate } from "react-router";
 import Menu from "@components/Menu/Menu";
@@ -114,22 +114,13 @@ function Employee({
 
 function ListEmployee({ employees }) {
   const test_employees = [...employees];
-  const logos = [
-    employee1,
-    employee2,
-    employee3,
-    employee4,
-    employee5,
-    employee6,
-    employee7,
-  ];
   return (
     <>
       {test_employees.map((employee) => (
         <Employee
           key={employee.id}
           id={employee.id}
-          photo={logos[Math.floor(Math.random() * logos.length)]}
+          photo={employee.logo}
           email={employee.email}
           name={employee.profile.full_name}
           phone_number={employee.profile.phone}
@@ -146,6 +137,17 @@ function ListEmployee({ employees }) {
 }
 
 function Employees() {
+  const logos = [
+    employee1,
+    employee2,
+    employee3,
+    employee4,
+    employee5,
+    employee6,
+    employee7,
+  ];
+  const [photos, setPhotos] = useState([]);
+  const isFirstUpdate = useRef(0);
   const { employeesData, getEmployees } = useEmployees();
   const [employees, setEmployees] = useState(null);
   const [search, setSearch] = useState("");
@@ -181,9 +183,25 @@ function Employees() {
 
   useEffect(() => {
     if (employeesData) {
-      setEmployees(employeesData);
+      if (isFirstUpdate.current < 3) {
+        setPhotos(
+          employeesData.map((e) => ({
+            id: e.id,
+            photo: logos[Math.floor(Math.random() * logos.length)],
+          })),
+        );
+        isFirstUpdate.current += 1;
+      }
+      if (photos != []) {
+        setEmployees(
+          employeesData.map((e) => ({
+            ...e,
+            logo: photos.find((p) => p.id == e.id)?.photo || null,
+          })),
+        );
+      }
     }
-  }, [employeesData]);
+  }, [employeesData, photos]);
 
   function copyQuestionaryLink() {
     const link = "example";

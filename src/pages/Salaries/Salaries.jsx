@@ -30,6 +30,9 @@ function Salary({
     <>
       <tr className={styles["salary"]}>
         <td className={styles["content"]}>
+          <p className={styles["id-p"]}>{id}</p>
+        </td>
+        <td className={styles["content"]}>
           <div className={styles["profile"]}>
             <img
               className={styles["profile-logo"]}
@@ -133,6 +136,7 @@ function Salaries() {
         <div className={styles["card"]}>
           <Table
             headers={[
+              "ID",
               "ФИО",
               "Должность",
               "Ставка",
