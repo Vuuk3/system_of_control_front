@@ -22,7 +22,6 @@ function EditInformation() {
   const [save, setSave] = useState(false);
 
   useEffect(() => {
-    console.log(EDIT_FIELDS);
     const checkCompany = async () => {
       try {
         await getCompany();
@@ -38,7 +37,7 @@ function EditInformation() {
       setValues({
         name: companyData.name,
         legal_address: companyData.legal_address,
-        contact_name: companyData.contact_name,
+        full_name: companyData.contact_name,
         email: companyData.email,
         business_area: companyData.business_area,
         legal_form: companyData.legal_form,
@@ -55,7 +54,7 @@ function EditInformation() {
 
   const patch = async () => {
     try {
-      await updateCompany(values);
+      await updateCompany({ ...values, contact_name: values.full_name });
       setSave(false);
       navigate("/personal_account");
     } catch (err) {
