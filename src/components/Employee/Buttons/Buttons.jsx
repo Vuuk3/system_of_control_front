@@ -22,7 +22,7 @@ function Buttons({
             <SubmitButton
               text="Удалить"
               handleClick={() => setDel(true)}
-              className={`${styles["button"]} ${styles["delete-button"]} ${styles["left"]}`}
+              className={`${styles["button"]} ${styles["delete-button"]}`}
             />
           ) : (
             <></>
@@ -30,7 +30,7 @@ function Buttons({
 
           <SubmitButton
             text="Отменить"
-            className={`${styles["button"]} ${mode == "add" ? styles["left"] : styles["center"]}`}
+            className={`${styles["button"]}`}
             handleClick={() => setCancel(true)}
           />
           <SubmitButton
