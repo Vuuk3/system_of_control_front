@@ -10,6 +10,7 @@ import SubmitButton from "@components/SubmitButton/SubmitButton";
 import { EDIT_FIELDS } from "@utils/fields.js";
 import { validation } from "@utils/validation.js";
 import Title from "@components/Title/Title";
+import RegisterFields from "../../components/RegisterFields/RegisterFields";
 
 function EditInformation() {
   const { companyData, getCompany, updateCompany } = useCompany();
@@ -69,6 +70,7 @@ function EditInformation() {
     <>
       <Title text="Изменение информации о компании" />
       <div className={register_styles["main"]}>
+        <h1 className={register_styles["header-main"]}>Staff Tracker</h1>
         <form
           noValidate
           method="post"
@@ -80,14 +82,13 @@ function EditInformation() {
           <div
             className={`${register_styles["register-scroll"]} ${styles["editing-scroll"]}`}
           >
-            <h2 className={register_styles["header-main"]}>Staff Tracker</h2>
             <h2 className={register_styles["header-login"]}>
               Изменение информации о компании
             </h2>
-            <div className={register_styles["company-info"]}>
-              <h3 className={register_styles["register-h3"]}>
-                Данные о компании
-              </h3>
+            <RegisterFields
+              header="Данные о компании"
+              className={register_styles["company-info"]}
+            >
               {EDIT_FIELDS.slice(0, -2).map((field) => (
                 <FormField
                   key={field.name}
@@ -117,11 +118,11 @@ function EditInformation() {
                   { value: "нко", text: "НКО" },
                 ]}
               />
-            </div>
-            <div className={register_styles["contact-info"]}>
-              <h3 className={register_styles["register-h3"]}>
-                Данные контактного лица
-              </h3>
+            </RegisterFields>
+            <RegisterFields
+              header="Данные конткатного лица"
+              className={register_styles["contact-info"]}
+            >
               {EDIT_FIELDS.slice(-2).map((field) => (
                 <FormField
                   key={field.name}
@@ -135,7 +136,7 @@ function EditInformation() {
                   handleChange={handleChange}
                 />
               ))}
-            </div>
+            </RegisterFields>
             {isEdit ? (
               <div className={styles["button-container"]}>
                 <SubmitButton
