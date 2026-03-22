@@ -10,7 +10,7 @@ import SubmitButton from "@components/SubmitButton/SubmitButton";
 import { EDIT_FIELDS } from "@utils/fields.js";
 import { validation } from "@utils/validation.js";
 import Title from "@components/Title/Title";
-import RegisterFields from "../../components/RegisterFields/RegisterFields";
+import RegisterFields from "@components/RegisterFields/RegisterFields";
 
 function EditInformation() {
   const { companyData, getCompany, updateCompany } = useCompany();
