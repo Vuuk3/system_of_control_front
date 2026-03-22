@@ -76,3 +76,11 @@
     overflow-y: auto;
   }
 }
+
+@media (max-width: 1450px) {
+  .cards {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+}

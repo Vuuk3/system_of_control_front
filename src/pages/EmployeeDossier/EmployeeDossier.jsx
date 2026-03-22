@@ -1,10 +1,10 @@
 import { useParams } from "react-router";
 import Employee from "@components/Employee/Employee";
 import { useEmployees } from "@contexts/EmployeesContext";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import Title from "@components/Title/Title";
 
 function EmployeeDossier() {
-  const [edit, setEdit] = useState(false);
   const { id } = useParams();
   const { employeeData, getEmployee, updateEmployee, deleteEmployee } =
     useEmployees();
@@ -37,27 +37,28 @@ function EmployeeDossier() {
   ];
   if (!employeeData) return <></>;
   return (
-    <Employee
-      mode="dossier"
-      id={id}
-      data={{
-        ...employeeData.profile,
-        email: employeeData.email,
-        monthly_salary: employeeData.monthly_salary,
-        final_salary: employeeData.final_salary,
-      }}
-      isEdit={edit}
-      setIsEdit={setEdit}
-      bonus={0}
-      fine={0}
-      attendance={attendance}
-      cancelFalseText="Вернуться к изменению"
-      saveDialogText="Сохранить изменения?"
-      saveFalseText="Вернуться к изменению"
-      saveTrueText="Сохранить"
-      handleCommand={updateEmployee}
-      deleteUser={deleteEmployee}
-    />
+    <>
+      <Title text="Досье сотрудника" />
+      <Employee
+        mode="dossier"
+        id={id}
+        data={{
+          ...employeeData.profile,
+          email: employeeData.email,
+          monthly_salary: employeeData.monthly_salary,
+          final_salary: employeeData.final_salary,
+        }}
+        bonus={0}
+        fine={0}
+        attendance={attendance}
+        cancelFalseText="Вернуться к изменению"
+        saveDialogText="Сохранить изменения?"
+        saveFalseText="Вернуться к изменению"
+        saveTrueText="Сохранить"
+        handleCommand={updateEmployee}
+        deleteUser={deleteEmployee}
+      />
+    </>
   );
 }
 

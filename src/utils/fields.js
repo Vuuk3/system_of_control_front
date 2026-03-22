@@ -33,12 +33,27 @@ export const REGISTER_FIELDS = [
     logo: field,
   },
   {
+    name: "contact_surname",
+    inputType: "text",
+    maxLength: 60,
+    placeholder: "Фамилия контактного лица",
+    logo: person,
+  },
+  {
     name: "contact_name",
     inputType: "text",
     maxLength: 60,
-    placeholder: "ФИО контактного лица",
+    placeholder: "Имя контактного лица",
     logo: person,
   },
+  {
+    name: "contact_patronymic",
+    inputType: "text",
+    maxLength: 60,
+    placeholder: "Отчество контактного лица",
+    logo: person,
+  },
+
   {
     name: "email",
     inputType: "email",
@@ -79,7 +94,7 @@ export const EDIT_FIELDS = [
     logo: field,
   },
   {
-    name: "contact_name",
+    name: "full_name",
     inputType: "text",
     maxLength: 60,
     placeholder: "ФИО контактного лица",

@@ -9,15 +9,12 @@ import Schedule from "./Schedule/Schedule";
 import Salary from "./Salary/Salary";
 import Buttons from "./Buttons/Buttons";
 import TimeEntries from "./TimeEntries/TimeEntries";
-import SubmitButton from "../SubmitButton/SubmitButton";
 import NoDraggableImg from "../NoDraggableImg/NoDraggableImg";
 
 function Employee({
   mode = "add",
   id = null,
   deleteUser = null,
-  isEdit = true,
-  setIsEdit = null,
   data = { currency: "RUB" },
   bonus = null,
   fine = null,
@@ -60,9 +57,6 @@ function Employee({
           [name]: value,
         })),
       );
-    }
-    if (setIsEdit) {
-      setIsEdit(true);
     }
   }, []);
 
@@ -125,17 +119,10 @@ function Employee({
         <div className={styles["panel"]}>
           <div className={styles["header"]}>
             <NoDraggableImg className={styles["header-logo"]} src={person} />
-            <h1 className={styles["header-h1"]}>Анкета сотрудника</h1>
+            <h1 className={styles["header-h1"]}>
+              {mode == "add" ? "Добавление сотрудника" : "Анкета сотрудника"}
+            </h1>
           </div>
-          {mode == "dossier" ? (
-            <SubmitButton
-              text="Удалить"
-              handleClick={() => setDel(true)}
-              className={styles["delete-button"]}
-            />
-          ) : (
-            <></>
-          )}
         </div>
         <div className={styles["cards-wrapper"]}>
           <div className={styles["cards"]}>
@@ -153,7 +140,6 @@ function Employee({
               cardLogo={calendar}
               days={days}
               setDays={setDays}
-              setEdit={setIsEdit}
               rate_type={values["rate_type"]}
               rate_amount={values["rate_amount"]}
             />
@@ -172,8 +158,9 @@ function Employee({
             <TimeEntries text="Посещаемость" logo={clock} values={attendance} />
 
             <Buttons
-              isEdit={isEdit}
+              mode={mode}
               setCancel={setCancel}
+              setDel={setDel}
               setSave={setSave}
               setErrors={setErrors}
               values={values}

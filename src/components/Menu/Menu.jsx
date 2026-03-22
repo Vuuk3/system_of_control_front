@@ -10,7 +10,7 @@ import { LINKS_LIST } from "@utils/navLinks";
 
 function Menu({ header_text, header_logo }) {
   const [settings, setSettings] = useState(false);
-  const [visibleLinks, setVisibleLinks] = useState(Array(6).fill(true));
+  const [visibleLinks, setVisibleLinks] = useState(true);
   const settingsRef = useRef(null);
   const openSettingsRef = useRef(null);
   const { logout } = useUser();
@@ -53,14 +53,16 @@ function Menu({ header_text, header_logo }) {
                 : styles["settings-menu"]
             }
           >
-            {LINKS_LIST.map((l, i) =>
-              l.link != location.pathname && !visibleLinks[i] ? (
+            {LINKS_LIST.map((l) =>
+              !visibleLinks ? (
                 <NoDraggableLink
                   key={l.text}
                   to={l.link}
-                  className={styles["link-wrapper"]}
+                  className={`${styles["link-wrapper"]} ${l.link == location.pathname ? styles["checked"] : ""}`}
                 >
-                  <div className={styles["setting"]}>
+                  <div
+                    className={`${styles["setting"]} ${l.link == location.pathname ? styles["checked"] : ""}`}
+                  >
                     <label className={styles["setting-button"]}>{l.text}</label>
                   </div>
                 </NoDraggableLink>

@@ -1,5 +1,6 @@
 import { useEmployees } from "@contexts/EmployeesContext";
 import Employee from "@components/Employee/Employee";
+import Title from "@components/Title/Title";
 
 function AddEmployee() {
   const data = {
@@ -13,14 +14,17 @@ function AddEmployee() {
   };
   const { createEmployee } = useEmployees();
   return (
-    <Employee
-      data={data}
-      cancelFalseText="Вернуться к добавлению"
-      saveDialogText="Добавить сотрудника?"
-      saveFalseText="Вернуться к добавлению"
-      saveTrueText="Добавить"
-      handleCommand={createEmployee}
-    />
+    <>
+      <Title text="Добавление сотрудника" />
+      <Employee
+        data={data}
+        cancelFalseText="Вернуться к добавлению"
+        saveDialogText="Добавить сотрудника?"
+        saveFalseText="Вернуться к добавлению"
+        saveTrueText="Добавить"
+        handleCommand={createEmployee}
+      />
+    </>
   );
 }
 

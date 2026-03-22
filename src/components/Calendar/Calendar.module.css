@@ -89,13 +89,3 @@
   border-radius: 5px;
   color: white;
 }
-
-@container (max-height: 385px) {
-  .day {
-    width: 40px;
-    height: 40px;
-  }
-  .day_button {
-    font-size: 1.25rem;
-  }
-}

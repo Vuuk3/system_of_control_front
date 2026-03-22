@@ -9,6 +9,7 @@ import Dialog from "@components/Dialog/Dialog";
 import SubmitButton from "@components/SubmitButton/SubmitButton";
 import { EDIT_FIELDS } from "@utils/fields.js";
 import { validation } from "@utils/validation.js";
+import Title from "@components/Title/Title";
 
 function EditInformation() {
   const { companyData, getCompany, updateCompany } = useCompany();
@@ -66,6 +67,7 @@ function EditInformation() {
 
   return (
     <>
+      <Title text="Изменение информации о компании" />
       <div className={register_styles["main"]}>
         <form
           noValidate

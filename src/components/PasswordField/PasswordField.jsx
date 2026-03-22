@@ -1,4 +1,5 @@
 import styles from "./PasswordField.module.css";
+import fieldStyles from "@components/FormField/FormField.module.css";
 import eye from "./eye.svg";
 import eyeSlash from "./eye-slash.svg";
 import { useState } from "react";
@@ -9,16 +10,16 @@ function PasswordField({ maxLength, placeholder, value, error, handleChange }) {
 
   return (
     <>
-      <div className={styles["form__field"]}>
-        <h5 className={styles["form__field-header"]}>{placeholder}</h5>
-        <div className={styles["form__field-div"]}>
+      <div className={fieldStyles["form__field"]}>
+        <h5 className={fieldStyles["form__field-header"]}>{placeholder}</h5>
+        <div className={fieldStyles["form__field-div"]}>
           <input
             type={showPassword ? "text" : "password"}
             maxLength={maxLength}
             className={
               error == "" || error == null
-                ? styles["form__field-div-input"]
-                : `${styles["form__field-div-input"]} ${styles["incorrect"]}`
+                ? fieldStyles["form__field-div-input"]
+                : `${fieldStyles["form__field-div-input"]} ${fieldStyles["incorrect"]}`
             }
             placeholder={placeholder}
             value={value}
@@ -28,13 +29,14 @@ function PasswordField({ maxLength, placeholder, value, error, handleChange }) {
           <NoDraggableImg
             src={showPassword ? eye : eyeSlash}
             className={styles["password-icon"]}
+            title={showPassword ? "Скрыть пароль" : "Показать пароль"}
             onClick={() => {
               setShowPassword(!showPassword);
             }}
           />
         </div>
         <span
-          className={styles["error"]}
+          className={fieldStyles["error"]}
           style={{
             visibility: error == "" ? "none" : "visible",
           }}

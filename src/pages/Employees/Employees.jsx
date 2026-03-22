@@ -11,7 +11,7 @@ import {
   searchIcon,
   scheduleIcon,
   dossier,
-  download,
+  share,
 } from "@utils/icons";
 import styles from "./Employees.module.css";
 import { useEffect, useState } from "react";
@@ -22,6 +22,7 @@ import Table from "@components/Table/Table";
 import { VALUTA } from "@utils/valuta";
 import NoDraggableImg from "@components/NoDraggableImg/NoDraggableImg";
 import NoDraggableLink from "@components/NoDraggableLink/NoDraggableLink";
+import Title from "@components/Title/Title";
 
 function substractTime(time1, time2) {
   const [hours1, minutes1] = time1.split(":").map(Number);
@@ -191,6 +192,7 @@ function Employees() {
   if (!employees) return <></>;
   return (
     <>
+      <Title text="Персонал" />
       <div className={styles["main"]}>
         <Menu header_text="Персонал" header_logo={person} />
         <div className={styles["card"]}>
@@ -227,10 +229,13 @@ function Employees() {
                   </NoDraggableLink>
                 </div>
                 <div className={styles["download"]}>
-                  <button className={styles["download-button"]}>
+                  <button
+                    className={styles["download-button"]}
+                    title="Скопировать ссылку на анкету"
+                  >
                     <NoDraggableImg
                       className={styles["download-logo"]}
-                      src={download}
+                      src={share}
                       onClick={() => copyQuestionaryLink()}
                     />
                   </button>

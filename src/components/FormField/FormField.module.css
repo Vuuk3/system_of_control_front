@@ -10,7 +10,8 @@
   font-size: clamp(0.8rem, 5cqw, 1rem);
   font-weight: 450;
   color: black;
-  text-align: center;
+  text-align: left;
+  padding-left: 20px;
   white-space: nowrap;
 }
 
@@ -39,7 +40,7 @@
   pointer-events: none;
   width: 25px;
   height: 25px;
-  right: 4%;
+  right: 3.2%;
 }
 
 .error {
