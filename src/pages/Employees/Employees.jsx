@@ -183,7 +183,7 @@ function Employees() {
 
   useEffect(() => {
     if (employeesData) {
-      if (isFirstUpdate.current < 3) {
+      if (isFirstUpdate.current < 4) {
         setPhotos(
           employeesData.map((e) => ({
             id: e.id,
