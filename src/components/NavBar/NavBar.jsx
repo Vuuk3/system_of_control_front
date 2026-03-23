@@ -1,28 +1,48 @@
+import { useEffect, useRef } from "react";
 import NoDraggableLink from "../NoDraggableLink/NoDraggableLink";
 import styles from "./NavBar.module.css";
 import { useLocation } from "react-router";
+import { LINKS_LIST } from "@utils/navLinks";
 
-function NavBar() {
+function NavBar({ visibleLinks, setVisibleLinks }) {
+  const navRef = useRef(null);
+  const prevRef = useRef(0);
+
+  useEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return;
+    const resizeObserver = new ResizeObserver(() => {
+      if (prevRef.current != nav.clientWidth) {
+        if (nav.scrollWidth > nav.clientWidth) {
+          setVisibleLinks(false);
+        } else {
+          setVisibleLinks(true);
+        }
+
+        prevRef.current = nav.clientWidth;
+      }
+    });
+    resizeObserver.observe(nav);
+
+    return () => resizeObserver.disconnect();
+  }, []);
   const location = useLocation();
-  const links = [
-    { link: "/personal_account", text: "Главная страница" },
-    { link: "/employees", text: "Персонал" },
-    { link: "/salaries", text: "Зарплаты" },
-    { link: null, text: "Расписание смен" },
-    { link: null, text: "Заявки" },
-    { link: null, text: "Показать QR-код" },
-  ];
   return (
-    <ul className={styles["navigation"]}>
-      {links.map((l) =>
-        l.link != location.pathname ? (
-          <li key={l.text}>
-            <NoDraggableLink to={l.link} className={styles["link"]}>
-              {l.text}
-            </NoDraggableLink>
-          </li>
-        ) : null,
-      )}
+    <ul
+      className={styles["navigation"]}
+      ref={navRef}
+      style={{ visibility: visibleLinks ? "visible" : "hidden" }}
+    >
+      {LINKS_LIST.map((l) => (
+        <li key={l.text}>
+          <NoDraggableLink
+            to={l.link}
+            className={`${styles["link"]} ${l.link == location.pathname ? styles["checked"] : ""}`}
+          >
+            {l.text}
+          </NoDraggableLink>
+        </li>
+      ))}
     </ul>
   );
 }

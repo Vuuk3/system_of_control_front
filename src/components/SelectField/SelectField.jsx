@@ -1,4 +1,5 @@
 import styles from "./SelectField.module.css";
+import fieldStyles from "@components/FormField/FormField.module.css";
 
 function SelectField({
   placeholder,
@@ -10,8 +11,8 @@ function SelectField({
 }) {
   return (
     <>
-      <div className={styles["form__field"]}>
-        <h5 className={styles["form__field-header"]}>{placeholder}</h5>
+      <div className={fieldStyles["form__field"]}>
+        <h5 className={fieldStyles["form__field-header"]}>{placeholder}</h5>
         <div className={styles["form__field-select"]}>
           <select
             className={`${styles["select"]} ${className}`}

@@ -7,9 +7,10 @@
 }
 
 .company {
+  container-type: inline-size;
   background-color: white;
   width: 85vw;
-  height: 30vh;
+  height: fit-content;
   border-radius: 10px;
   display: flex;
   flex-direction: row;
@@ -19,8 +20,12 @@
 
 .company_img {
   border-radius: 50%;
-  width: 30vh;
-  height: 30vh;
+  width: 25cqw;
+  min-width: 122px;
+  max-width: 30vh;
+  height: 25cqw;
+  min-height: 122px;
+  max-height: 30vh;
 }
 
 .company_info {
@@ -34,17 +39,17 @@
 }
 
 .company_info-name {
-  font-size: 2.5rem;
+  font-size: clamp(1.2rem, 4cqw, 2.5rem);
   font-weight: 500;
 }
 
 .company_info-legal_adress {
-  font-size: 1.5rem;
+  font-size: clamp(0.9rem, 3cqw, 1.5rem);
   font-weight: 450;
 }
 
 .company_info-address {
-  font-size: 1.25rem;
+  font-size: clamp(0.8rem, 2cqw, 1.25rem);
   margin-top: 5px;
   margin-bottom: 5px;
 }

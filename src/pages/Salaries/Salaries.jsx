@@ -11,6 +11,7 @@ import Table from "@components/Table/Table";
 import Menu from "@components/Menu/Menu";
 import { VALUTA } from "@utils/valuta";
 import { salary } from "@utils/icons";
+import Title from "@components/Title/Title";
 
 function Salary({
   id,
@@ -28,6 +29,9 @@ function Salary({
   return (
     <>
       <tr className={styles["salary"]}>
+        <td className={styles["content"]}>
+          <p className={styles["id-p"]}>{id}</p>
+        </td>
         <td className={styles["content"]}>
           <div className={styles["profile"]}>
             <img
@@ -126,11 +130,13 @@ function Salaries() {
   ];
   return (
     <>
+      <Title text="Зарплаты" />
       <div className={styles["main"]}>
         <Menu header_text="Зарплаты" header_logo={salary} />
         <div className={styles["card"]}>
           <Table
             headers={[
+              "ID",
               "ФИО",
               "Должность",
               "Ставка",

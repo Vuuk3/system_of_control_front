@@ -11,10 +11,10 @@ import {
   searchIcon,
   scheduleIcon,
   dossier,
-  download,
+  share,
 } from "@utils/icons";
 import styles from "./Employees.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useEmployees } from "@contexts/EmployeesContext";
 import { useNavigate } from "react-router";
 import Menu from "@components/Menu/Menu";
@@ -22,6 +22,7 @@ import Table from "@components/Table/Table";
 import { VALUTA } from "@utils/valuta";
 import NoDraggableImg from "@components/NoDraggableImg/NoDraggableImg";
 import NoDraggableLink from "@components/NoDraggableLink/NoDraggableLink";
+import Title from "@components/Title/Title";
 
 function substractTime(time1, time2) {
   const [hours1, minutes1] = time1.split(":").map(Number);
@@ -44,6 +45,9 @@ function Employee({
   return (
     <>
       <tr className={styles["employee"]}>
+        <td className={styles["content"]}>
+          <p className={styles["id-p"]}>{id}</p>
+        </td>
         <td className={styles["content"]}>
           <NoDraggableLink
             className={styles["link-wrapper"]}
@@ -110,22 +114,13 @@ function Employee({
 
 function ListEmployee({ employees }) {
   const test_employees = [...employees];
-  const logos = [
-    employee1,
-    employee2,
-    employee3,
-    employee4,
-    employee5,
-    employee6,
-    employee7,
-  ];
   return (
     <>
       {test_employees.map((employee) => (
         <Employee
           key={employee.id}
           id={employee.id}
-          photo={logos[Math.floor(Math.random() * logos.length)]}
+          photo={employee.logo}
           email={employee.email}
           name={employee.profile.full_name}
           phone_number={employee.profile.phone}
@@ -142,6 +137,17 @@ function ListEmployee({ employees }) {
 }
 
 function Employees() {
+  const logos = [
+    employee1,
+    employee2,
+    employee3,
+    employee4,
+    employee5,
+    employee6,
+    employee7,
+  ];
+  const [photos, setPhotos] = useState([]);
+  const isFirstUpdate = useRef(0);
   const { employeesData, getEmployees } = useEmployees();
   const [employees, setEmployees] = useState(null);
   const [search, setSearch] = useState("");
@@ -177,9 +183,25 @@ function Employees() {
 
   useEffect(() => {
     if (employeesData) {
-      setEmployees(employeesData);
+      if (isFirstUpdate.current < 4) {
+        setPhotos(
+          employeesData.map((e) => ({
+            id: e.id,
+            photo: logos[Math.floor(Math.random() * logos.length)],
+          })),
+        );
+        isFirstUpdate.current += 1;
+      }
+      if (photos != []) {
+        setEmployees(
+          employeesData.map((e) => ({
+            ...e,
+            logo: photos.find((p) => p.id == e.id)?.photo || null,
+          })),
+        );
+      }
     }
-  }, [employeesData]);
+  }, [employeesData, photos]);
 
   function copyQuestionaryLink() {
     const link = "example";
@@ -188,6 +210,7 @@ function Employees() {
   if (!employees) return <></>;
   return (
     <>
+      <Title text="Персонал" />
       <div className={styles["main"]}>
         <Menu header_text="Персонал" header_logo={person} />
         <div className={styles["card"]}>
@@ -224,10 +247,13 @@ function Employees() {
                   </NoDraggableLink>
                 </div>
                 <div className={styles["download"]}>
-                  <button className={styles["download-button"]}>
+                  <button
+                    className={styles["download-button"]}
+                    title="Скопировать ссылку на анкету"
+                  >
                     <NoDraggableImg
                       className={styles["download-logo"]}
-                      src={download}
+                      src={share}
                       onClick={() => copyQuestionaryLink()}
                     />
                   </button>
@@ -236,6 +262,7 @@ function Employees() {
             </div>
             <Table
               headers={[
+                "ID",
                 "ФИО",
                 "Контактные данные",
                 "Должность",

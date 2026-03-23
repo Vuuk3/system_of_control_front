@@ -14,6 +14,7 @@ import download from "@assets/download.svg";
 import calendar from "@assets/calendar.svg";
 import salary from "@assets/salary.svg";
 import clock from "@assets/clock.svg";
+import share from "@assets/share.svg";
 
 export {
   mail,
@@ -32,4 +33,5 @@ export {
   calendar,
   salary,
   clock,
+  share,
 };

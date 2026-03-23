@@ -93,7 +93,9 @@ function Salary({
             <p className={styles["final_salary-p"]}>
               {values.final_salary
                 ? values.final_salary
-                : values.rate_amount * days.length}{" "}
+                : values.rate_amount *
+                  days.length *
+                  (values.rate_type == "hourly" ? 10 : 1)}{" "}
               {VALUTA[values["currency"]]}
             </p>
           </div>

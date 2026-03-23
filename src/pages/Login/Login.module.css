@@ -8,10 +8,13 @@
 }
 
 .login {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   width: calc(100vw * var(--login-width) / 1920);
   min-width: 320px;
+  padding-left: 30px;
+  padding-right: 30px;
   background: white;
   border-radius: 38px;
   position: relative;
@@ -22,7 +25,6 @@
 .header-login,
 .header-main {
   font-size: 2rem;
-  grid-column: 1 / -1;
   text-align: center;
   color: black;
   font-style: normal;
@@ -33,7 +35,10 @@
 }
 
 .header-main {
-  margin-bottom: 0;
+  position: relative;
+  top: 20px;
+  font-size: 2.2rem;
+  font-weight: 350;
 }
 
 .register {

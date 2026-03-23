@@ -2,10 +2,12 @@ import { company, building } from "@utils/icons";
 import styles from "./ManagerPage.module.css";
 import Menu from "@components/Menu/Menu";
 import NoDraggableImg from "@components/NoDraggableImg/NoDraggableImg";
+import Title from "@components/Title/Title";
 
 function ManagerPage({ props }) {
   return (
     <>
+      <Title text="Компания" />
       <div className={styles["main"]}>
         <Menu header_text="Компания" header_logo={building} />
         <div className={styles["company"]}>

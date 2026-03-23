@@ -1,9 +1,11 @@
+import Title from "@components/Title/Title";
 import styles from "./MainPage.module.css";
 import logo from "@assets/main.svg";
 
 function MainPage() {
   return (
     <>
+      <Title text="Главная страница" />
       <img className="logo" src={logo} />
       <div className="header">
         <h5 className="header-left">Staff</h5>

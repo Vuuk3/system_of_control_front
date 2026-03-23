@@ -1,7 +1,7 @@
 .dates-wrapper {
   padding-right: 5px;
   padding-left: 5px;
-  height: 35vh;
+  height: 375px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,7 +15,7 @@
 }
 
 .date-p {
-  font-size: clamp(1rem, 3cqw, 1.5rem);
+  font-size: clamp(1rem, 2cqw, 1.5rem);
   margin-top: 5px;
   margin-bottom: 5px;
 }
@@ -29,12 +29,12 @@
 
 .time-input {
   box-sizing: border-box;
-  width: 10ch;
+  width: 7ch;
   height: 100%;
   border: 0.5px solid #d7dae9;
   border-radius: 10px;
   opacity: 1;
   color: #2e4756;
   font-size: clamp(1.2rem, 4cqw, 1.6rem);
-  padding-left: 13%;
+  padding-left: 1.25ch;
 }

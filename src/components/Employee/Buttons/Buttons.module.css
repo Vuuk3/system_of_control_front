@@ -1,30 +1,71 @@
 .card {
   min-height: 85px;
-  background-color: white;
   border-radius: 15px;
 }
 
+.buttons {
+  grid-column: 22 / 44;
+  grid-row: 8 / 10;
+  justify-self: center;
+  max-width: fit-content;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.mode-add {
+  grid-row: 6 / 7;
+}
+
+.content {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.mode-dossier {
+  gap: 20px;
+}
+
 .button {
-  color: black;
+  border-radius: 10px;
 }
 
 .button:active {
   background-color: #2e4e75;
 }
 
-.buttons {
-  grid-column: 22 / 44;
-  grid-row: 8 / 10;
+.delete-button {
+  color: red;
+  background-color: #ffb2b2;
 }
 
-.content {
-  height: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  align-items: center;
-  gap: 30px;
+.delete-button:hover {
+  background-color: #d99797;
 }
 
-.left {
-  justify-self: end;
+.delete-button:active {
+  background-color: #a67474;
+}
+
+.main-button {
+  background-color: #5f8ef2;
+  color: white;
+}
+
+.main-button:hover {
+  background-color: #3f76ea;
+}
+
+.main-button:active {
+  background-color: #154ecf;
+}
+
+@media (max-width: 1450px) {
+  .buttons.card {
+    margin: 0;
+    align-self: center;
+  }
 }
