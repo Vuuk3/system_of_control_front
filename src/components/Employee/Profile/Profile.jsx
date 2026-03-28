@@ -2,24 +2,34 @@ import styles from "./Profile.module.css";
 import FormField from "@components/FormField/FormField";
 import CardHeader from "../CardHeader/CardHeader";
 import { EMPLOYEE_FIELDS } from "@utils/fields";
+import ImageInput from "@components/ImageInput/ImageInput";
 import NoDraggableImg from "@components/NoDraggableImg/NoDraggableImg";
 
 function Profile({
+  mode = "add",
   text,
   cardLogo,
   img,
+  loadImage,
   handleChange,
   values,
   errors,
-  loadImage,
 }) {
   return (
     <>
       <div className={`${styles["card"]} ${styles["profile"]}`}>
         <CardHeader text={text} logo={cardLogo} />
         <div className={styles["profile-content"]}>
-          {/*<input type="file" onChange={(e) => loadImage(e.target)} />*/}
-          <NoDraggableImg className={styles["profile-content-img"]} src={img} />
+          {mode == "add" ? (
+            <ImageInput img={img} loadImage={loadImage} />
+          ) : (
+            <div>
+              <NoDraggableImg
+                src={values.avatar_url}
+                className={styles["img"]}
+              />
+            </div>
+          )}
           <div className={styles["profile-content-inputs"]}>
             {EMPLOYEE_FIELDS.map((field) => (
               <FormField

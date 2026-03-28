@@ -18,10 +18,12 @@
   gap: 20px;
 }
 
-.profile-content-img {
+.img {
   border-radius: 50%;
   width: 148px;
   height: 148px;
+  border: 1px solid transparent;
+  background-color: lightgray;
 }
 
 .profile-content-inputs {
@@ -32,8 +34,6 @@
 }
 
 .form_field-div-input {
-  background-color: white;
-  border: 0.5px solid #d7dae9;
-  border-radius: 10px;
+  border-width: 0.5px;
   padding-right: 0px;
 }

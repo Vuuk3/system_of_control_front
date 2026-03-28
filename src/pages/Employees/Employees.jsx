@@ -1,10 +1,3 @@
-import employee1 from "@assets/employee.jpg";
-import employee2 from "@assets/employee2.jpg";
-import employee3 from "@assets/employee3.jpg";
-import employee4 from "@assets/employee4.jpg";
-import employee5 from "@assets/employee5.jpg";
-import employee6 from "@assets/employee6.jpg";
-import employee7 from "@assets/employee7.jpg";
 import {
   person,
   plus,
@@ -14,7 +7,7 @@ import {
   share,
 } from "@utils/icons";
 import styles from "./Employees.module.css";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useEmployees } from "@contexts/EmployeesContext";
 import { useNavigate } from "react-router";
 import Menu from "@components/Menu/Menu";
@@ -113,14 +106,13 @@ function Employee({
 }
 
 function ListEmployee({ employees }) {
-  const test_employees = [...employees];
   return (
     <>
-      {test_employees.map((employee) => (
+      {employees.map((employee) => (
         <Employee
           key={employee.id}
           id={employee.id}
-          photo={employee.logo}
+          photo={employee.profile.avatar_url}
           email={employee.email}
           name={employee.profile.full_name}
           phone_number={employee.profile.phone}
@@ -137,17 +129,6 @@ function ListEmployee({ employees }) {
 }
 
 function Employees() {
-  const logos = [
-    employee1,
-    employee2,
-    employee3,
-    employee4,
-    employee5,
-    employee6,
-    employee7,
-  ];
-  const [photos, setPhotos] = useState([]);
-  const isFirstUpdate = useRef(0);
   const { employeesData, getEmployees } = useEmployees();
   const [employees, setEmployees] = useState(null);
   const [search, setSearch] = useState("");
@@ -183,25 +164,14 @@ function Employees() {
 
   useEffect(() => {
     if (employeesData) {
-      if (isFirstUpdate.current < 4) {
-        setPhotos(
-          employeesData.map((e) => ({
-            id: e.id,
-            photo: logos[Math.floor(Math.random() * logos.length)],
-          })),
-        );
-        isFirstUpdate.current += 1;
-      }
-      if (photos != []) {
-        setEmployees(
-          employeesData.map((e) => ({
-            ...e,
-            logo: photos.find((p) => p.id == e.id)?.photo || null,
-          })),
-        );
-      }
+      console.log(employeesData);
+      setEmployees(
+        employeesData.map((e) => ({
+          ...e,
+        })),
+      );
     }
-  }, [employeesData, photos]);
+  }, [employeesData]);
 
   function copyQuestionaryLink() {
     const link = "example";

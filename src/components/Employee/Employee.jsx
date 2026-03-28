@@ -1,6 +1,6 @@
 import styles from "./Employee.module.css";
-import { person, calendar, salary, company, clock } from "@utils/icons";
-import { useCallback, useState } from "react";
+import { person, calendar, salary, clock } from "@utils/icons";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { format } from "date-fns";
 import Dialog from "@components/Dialog/Dialog";
@@ -24,23 +24,39 @@ function Employee({
   saveFalseText,
   saveTrueText,
   handleCommand,
+  setAvatar,
+  url = null,
 }) {
   const [values, setValues] = useState(data);
   const [errors, setErrors] = useState({});
+  const [img, setImg] = useState(null);
+  const [imgFile, setImgFile] = useState(null);
   const [days, setDays] = useState(data.schedule ? data.schedule : []);
   const [cancel, setCancel] = useState(false);
   const [save, setSave] = useState(false);
   const [del, setDel] = useState(false);
   const navigate = useNavigate();
 
-  const loadImage = (input) => {
+  useEffect(() => {
+    const checkAvatar = async () => {
+      if (imgFile) {
+        const formData = new FormData();
+        formData.append("file", imgFile);
+        await setAvatar(formData);
+      }
+    };
+    checkAvatar();
+  }, [imgFile]);
+
+  const loadImage = async (input) => {
     const file = input.files[0];
+    if (!file) return;
+    setImgFile(file);
     const reader = new FileReader();
 
     reader.onload = () => {
       const dataURL = reader.result;
-      console.log(dataURL);
-      setValues((prev) => ({ ...prev, ["avatar"]: dataURL }));
+      setImg(dataURL);
     };
 
     reader.readAsDataURL(file);
@@ -79,7 +95,8 @@ function Employee({
   const handleClick = async () => {
     const data = {
       ...values,
-      password: "",
+      avatar_url: url?.avatar_url || null,
+      password: "1",
       schedule: days.map((d) => ({
         date: format(d.date, "yyyy-MM-dd"),
         rate_type: d.rate_type,
@@ -127,13 +144,14 @@ function Employee({
         <div className={styles["cards-wrapper"]}>
           <div className={styles["cards"]}>
             <Profile
+              mode={mode}
               text="Информация о сотруднике"
               cardLogo={person}
-              img={company}
+              img={img}
+              loadImage={loadImage}
               handleChange={handleChange}
               values={values}
               errors={errors}
-              loadImage={loadImage}
             />
             <Schedule
               text="Расписание смен"

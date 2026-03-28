@@ -24,7 +24,6 @@ function FormField({
               ? `${styles["form__field-div-input"]} ${className}`
               : `${styles["form__field-div-input"]} ${className} ${styles["incorrect"]}`
           }
-          placeholder={placeholder}
           value={value}
           onChange={(e) => handleChange(name, e.target.value)}
           required
