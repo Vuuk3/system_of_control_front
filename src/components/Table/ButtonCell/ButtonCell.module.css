@@ -1,0 +1,37 @@
+.schedule-button,
+.dossier-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  background-color: #5b8ee4;
+}
+
+.schedule-logo {
+  width: 25px;
+  height: 25px;
+}
+
+.dossier-logo {
+  width: 30px;
+  height: 30px;
+}
+
+.dossier-button {
+  margin-left: 22.5px;
+  margin-right: 22.5px;
+}
+
+.schedule-button:hover,
+.dossier-button:hover {
+  cursor: pointer;
+  background-color: #4d79c2;
+}
+
+.schedule-button:active,
+.dossier-button:active {
+  background-color: #4063a0;
+}

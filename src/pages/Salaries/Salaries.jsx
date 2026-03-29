@@ -1,10 +1,4 @@
 import employee1 from "@assets/employee.jpg";
-import employee2 from "@assets/employee2.jpg";
-import employee3 from "@assets/employee3.jpg";
-import employee4 from "@assets/employee4.jpg";
-import employee5 from "@assets/employee5.jpg";
-import employee6 from "@assets/employee6.jpg";
-import employee7 from "@assets/employee7.jpg";
 
 import styles from "./Salaries.module.css";
 import Table from "@components/Table/Table";
@@ -13,120 +7,18 @@ import { VALUTA } from "@utils/valuta";
 import { salary } from "@utils/icons";
 import Title from "@components/Title/Title";
 
-function Salary({
-  id,
-  photo,
-  name,
-  position,
-  rate_amount,
-  rate_type,
-  amount_work,
-  currency,
-  bonus,
-  fine,
-  salary,
-}) {
-  return (
-    <>
-      <tr className={styles["salary"]}>
-        <td className={styles["content"]}>
-          <p className={styles["id-p"]}>{id}</p>
-        </td>
-        <td className={styles["content"]}>
-          <div className={styles["profile"]}>
-            <img
-              className={styles["profile-logo"]}
-              src={photo}
-              draggable={false}
-            />
-            <p className={styles["profile-name"]}>{name}</p>
-          </div>
-        </td>
-        <td className={styles["content"]}>
-          <p className={styles["position-p"]}>{position}</p>
-        </td>
-        <td className={styles["content"]}>
-          <p className={styles["rate_amount-p"]}>
-            {rate_amount}
-            {VALUTA[currency]}
-          </p>
-        </td>
-        <td className={styles["content"]}>
-          <p className={styles["amount_work-p"]}>
-            {amount_work}
-            {rate_type == "hourly" ? "ч" : "с"}
-          </p>
-        </td>
-        <td className={styles["content"]}>
-          <p className={styles["bonus-p"]}>
-            {bonus}
-            {VALUTA[currency]}
-          </p>
-        </td>
-        <td className={styles["content"]}>
-          <p className={styles["fine-p"]}>
-            {fine}
-            {VALUTA[currency]}
-          </p>
-        </td>
-        <td className={styles["content"]}>
-          <p className={styles["final_salary-p"]}>
-            {salary}
-            {VALUTA[currency]}
-          </p>
-        </td>
-      </tr>
-    </>
-  );
-}
-
-function ListSalaries({ salaries }) {
-  const test_salaries = [...salaries];
-  const logos = [
-    employee1,
-    employee2,
-    employee3,
-    employee4,
-    employee5,
-    employee6,
-    employee7,
-  ];
-  return (
-    <>
-      {test_salaries.map((salary) => (
-        <Salary
-          key={salary.id}
-          id={salary.id}
-          photo={logos[Math.floor(Math.random() * logos.length)]}
-          name={salary.full_name}
-          position={salary.position}
-          rate_amount={salary.rate_amount}
-          rate_type={salary.rate_type}
-          amount_work={salary.amount_work}
-          currency={salary.currency}
-          bonus={salary.bonus}
-          fine={salary.fine}
-          salary={salary.final_salary}
-        />
-      ))}
-    </>
-  );
-}
-
 function Salaries() {
   const salaries = [
-    {
-      id: 1,
-      full_name: "Дарья Шиханова",
-      position: "Звезда",
-      rate_amount: 300,
-      rate_type: "hourly",
-      amount_work: 3,
-      currency: "USD",
-      bonus: 200,
-      fine: 0,
-      final_salary: 600,
-    },
+    [
+      { type: "text", text: "1" },
+      { type: "profile", id: 1, photo: employee1, name: "Дарья Шиханова" },
+      { type: "text", text: "Звезда" },
+      { type: "text", text: "300" + VALUTA["RUB"] },
+      { type: "text", text: "40" },
+      { type: "text", text: "200" + VALUTA["RUB"] },
+      { type: "text", text: "0" + VALUTA["RUB"] },
+      { type: "text", text: "600" + VALUTA["RUB"] },
+    ],
   ];
   return (
     <>
@@ -145,7 +37,7 @@ function Salaries() {
               "Штрафы",
               "Итоговая зарплата",
             ]}
-            content={<ListSalaries salaries={salaries} />}
+            content={salaries}
           />
         </div>
       </div>
