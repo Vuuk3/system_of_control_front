@@ -21,6 +21,8 @@ function Register() {
     email: "test@yan.ru",
     business_area: "1",
     legal_form: "пао",
+    inn: "",
+    bik: "",
   };
   const user_data = {
     user_email: "",
@@ -106,7 +108,7 @@ function Register() {
                 header="Данные о компании"
                 className={styles["company-info"]}
               >
-                {REGISTER_FIELDS.slice(0, 3).map((field) => (
+                {REGISTER_FIELDS.slice(0, 5).map((field) => (
                   <FormField
                     key={field.name}
                     name={field.name}
@@ -144,7 +146,7 @@ function Register() {
                 header="Данные контактного лица"
                 className={styles["contact-info"]}
               >
-                {REGISTER_FIELDS.slice(3, -1).map((field) => (
+                {REGISTER_FIELDS.slice(5, -1).map((field) => (
                   <FormField
                     key={field.name}
                     name={field.name}

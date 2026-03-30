@@ -1,4 +1,4 @@
-import { mail, building, address, person, field } from "./icons";
+import { mail, building, address, person, field, inn } from "./icons";
 
 export const LOGIN_FIELDS = [
   {
@@ -31,6 +31,20 @@ export const REGISTER_FIELDS = [
     maxLength: 40,
     placeholder: "Сфера деятельности",
     logo: field,
+  },
+  {
+    name: "bik",
+    inputType: "text",
+    maxLength: 9,
+    placeholder: "БИК",
+    logo: inn,
+  },
+  {
+    name: "inn",
+    inputType: "text",
+    maxLength: 10,
+    placeholder: "ИНН",
+    logo: inn,
   },
   {
     name: "contact_surname",

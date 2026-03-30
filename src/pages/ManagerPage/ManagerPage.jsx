@@ -16,10 +16,12 @@ function ManagerPage({ props }) {
             <h2 className={styles["company_info-name"]}>
               {props.company.legal_form.toUpperCase()} «{props.company.name}»
             </h2>
-            <h5 className={styles["company_info-legal_adress"]}>
-              Юридический адрес:
-            </h5>
-            <p className={styles["company_info-address"]}>
+            <h5 className={styles["company_info-h5"]}>ИНН:</h5>
+            <p className={styles["company_info-p"]}>{props.company.inn}</p>
+            <h5 className={styles["company_info-h5"]}>БИК:</h5>
+            <p className={styles["company_info-p"]}>{props.company.bik}</p>
+            <h5 className={styles["company_info-h5"]}>Юридический адрес:</h5>
+            <p className={styles["company_info-p"]}>
               {props.company.legal_address}
             </p>
           </div>

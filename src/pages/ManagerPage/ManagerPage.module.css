@@ -43,12 +43,14 @@
   font-weight: 500;
 }
 
-.company_info-legal_adress {
+.company_info-h5 {
   font-size: clamp(0.9rem, 3cqw, 1.5rem);
   font-weight: 450;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 
-.company_info-address {
+.company_info-p {
   font-size: clamp(0.8rem, 2cqw, 1.25rem);
   margin-top: 5px;
   margin-bottom: 5px;
