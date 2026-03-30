@@ -11,10 +11,7 @@ import NoDraggableLink from "@components/NoDraggableLink/NoDraggableLink";
 import Title from "@components/Title/Title";
 
 function Login() {
-  const data = {
-    email: "test@yan.ru",
-    password: "1",
-  };
+  const data = { email: "", password: "" };
   const [values, setValues] = useState(data);
   const [errors, setErrors] = useState({});
   const { login } = useUser();
@@ -30,16 +27,13 @@ function Login() {
       await login(values);
       navigate("/personal_account");
     } catch (err) {
-      if (err.response.status == 401) {
+      if (err.response.status === 401) {
         setErrors((prev) => ({
           ...prev,
-          ["email"]: "Неправильный email или пароль",
+          email: "Неправильный email или пароль",
         }));
       } else {
-        setErrors((prev) => ({
-          ...prev,
-          ["email"]: "Ошибка, попробуйте позже",
-        }));
+        setErrors((prev) => ({ ...prev, email: "Ошибка, попробуйте позже" }));
       }
     }
   };
@@ -48,31 +42,53 @@ function Login() {
     <>
       <Title text="Вход" />
       <div className={styles["main"]}>
-        <h1 className={styles["header-main"]}>Staff Tracker</h1>
         <div className={styles["login"]}>
-          <h2 className={styles["header-login"]}>Вход</h2>
-          {LOGIN_FIELDS.map((field) => (
-            <FormField
-              key={field.name}
-              name={field.name}
-              inputType={field.inputType}
-              maxLength={field.maxLength}
-              placeholder={field.placeholder}
-              logo={field.logo}
-              value={values[field.name]}
-              error={errors[field.name]}
-              handleChange={handleChange}
-            />
-          ))}
-          <PasswordField
-            maxLength={20}
-            placeholder="Пароль"
-            value={values["password"]}
-            error={errors["password"]}
-            handleChange={handleChange}
-          />
-          <div style={{ marginBottom: 30 }}>
+          <div className={styles["login-topbar"]}>
+            <span className={styles["header-main"]}>Staff Tracker</span>
+            <span className={styles["header-label"]}>Вход</span>
+          </div>
+
+          <div className={styles["login-body"]}>
+            <h2 className={styles["header-section"]}>Данные пользователя</h2>
+
+            <div className={styles["fields-wrapper"]}>
+              {LOGIN_FIELDS.map((field) => (
+                <FormField
+                  key={field.name}
+                  name={field.name}
+                  inputType={field.inputType}
+                  maxLength={field.maxLength}
+                  header={field.header}
+                  placeholder={field.placeholder}
+                  logo={field.logo}
+                  value={values[field.name]}
+                  error={errors[field.name]}
+                  handleChange={handleChange}
+                />
+              ))}
+              <PasswordField
+                maxLength={20}
+                header="Пароль"
+                placeholder="Минимум 8 символов"
+                value={values["password"]}
+                error={errors["password"]}
+                handleChange={handleChange}
+              />
+            </div>
+          </div>
+
+          <div className={styles["login-footer"]}>
+            <div className={styles["register"]}>
+              Нет аккаунта?{" "}
+              <NoDraggableLink
+                to="/register"
+                className={styles["register-link"]}
+              >
+                Зарегистрируйтесь
+              </NoDraggableLink>
+            </div>
             <SubmitButton
+              className={styles["button"]}
               text="Войти"
               disabled={Object.values(errors).some(Boolean)}
               handleClick={() => {
@@ -83,12 +99,6 @@ function Login() {
                 }
               }}
             />
-          </div>
-          <div className={styles.register}>
-            Нет аккаунта?{" "}
-            <NoDraggableLink to="/register" className={styles["register-link"]}>
-              Зарегистрируйтесь
-            </NoDraggableLink>
           </div>
         </div>
       </div>

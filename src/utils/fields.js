@@ -5,7 +5,8 @@ export const LOGIN_FIELDS = [
     name: "email",
     inputType: "email",
     maxLength: 32,
-    placeholder: "Электронная почта",
+    header: "Электронная почта",
+    placeholder: "ivanov@company.ru",
     logo: mail,
   },
 ];
