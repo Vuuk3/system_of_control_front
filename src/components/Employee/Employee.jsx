@@ -71,7 +71,7 @@ function Employee({
         prev.map((d) => ({
           ...d,
           [name]: value,
-        })),
+        }))
       );
     }
   }, []);
@@ -133,14 +133,13 @@ function Employee({
   return (
     <>
       <div className={styles["main"]}>
-        <div className={styles["panel"]}>
-          <div className={styles["header"]}>
-            <NoDraggableImg className={styles["header-logo"]} src={person} />
-            <h1 className={styles["header-h1"]}>
-              {mode == "add" ? "Добавление сотрудника" : "Анкета сотрудника"}
-            </h1>
-          </div>
+        <div className={styles["topbar"]}>
+          <span className={styles["topbar-title"]}>Staff Tracker</span>
+          <span className={styles["topbar-label"]}>
+            {mode === "add" ? "Добавить сотрудника" : "Анкета сотрудника"}
+          </span>
         </div>
+
         <div className={styles["cards-wrapper"]}>
           <div className={styles["cards"]}>
             <Profile
@@ -174,7 +173,6 @@ function Employee({
               attendance={attendance}
             />
             <TimeEntries text="Посещаемость" logo={clock} values={attendance} />
-
             <Buttons
               mode={mode}
               setCancel={setCancel}
@@ -187,6 +185,7 @@ function Employee({
           </div>
         </div>
       </div>
+
       <Dialog
         text="Внимание! Изменения не сохранятся"
         cancelText={cancelFalseText}

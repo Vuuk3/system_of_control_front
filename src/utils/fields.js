@@ -138,18 +138,32 @@ export const EDIT_FIELDS = [
 ];
 
 export const EMPLOYEE_FIELDS = [
-  { name: "full_name", inputType: "text", maxLength: 60, placeholder: "ФИО" },
+  {
+    name: "full_name",
+    inputType: "text",
+    maxLength: 60,
+    header: "ФИО",
+    placeholder: "Иванов Иван Иванович",
+  },
   {
     name: "position",
     inputType: "text",
     maxLength: 50,
-    placeholder: "Должность",
+    header: "Должность",
+    placeholder: "Менеджер по продажам",
   },
-  { name: "email", inputType: "email", maxLength: 32, placeholder: "Почта" },
+  {
+    name: "email",
+    inputType: "email",
+    maxLength: 32,
+    header: "Электронная почта",
+    placeholder: "ivanov@company.ru",
+  },
   {
     name: "phone",
     inputType: "tel",
     maxLength: 18,
-    placeholder: "Номер телефона",
+    header: "Номер телефона",
+    placeholder: "+7 (999) 123-45-67",
   },
 ];
