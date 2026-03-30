@@ -1,10 +1,3 @@
-import employee1 from "@assets/employee.jpg";
-import employee2 from "@assets/employee2.jpg";
-import employee3 from "@assets/employee3.jpg";
-import employee4 from "@assets/employee4.jpg";
-import employee5 from "@assets/employee5.jpg";
-import employee6 from "@assets/employee6.jpg";
-import employee7 from "@assets/employee7.jpg";
 import {
   person,
   plus,
@@ -14,7 +7,7 @@ import {
   share,
 } from "@utils/icons";
 import styles from "./Employees.module.css";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useEmployees } from "@contexts/EmployeesContext";
 import { useNavigate } from "react-router";
 import Menu from "@components/Menu/Menu";
@@ -24,130 +17,7 @@ import NoDraggableImg from "@components/NoDraggableImg/NoDraggableImg";
 import NoDraggableLink from "@components/NoDraggableLink/NoDraggableLink";
 import Title from "@components/Title/Title";
 
-function substractTime(time1, time2) {
-  const [hours1, minutes1] = time1.split(":").map(Number);
-  const [hours2, minutes2] = time2.split(":").map(Number);
-  return hours1 * 60 + minutes1 - (hours2 * 60 + minutes2) < 15;
-}
-
-function Employee({
-  id,
-  photo,
-  name,
-  phone_number,
-  email,
-  position,
-  currency,
-  entry_time,
-  exit_time,
-  salary,
-}) {
-  return (
-    <>
-      <tr className={styles["employee"]}>
-        <td className={styles["content"]}>
-          <p className={styles["id-p"]}>{id}</p>
-        </td>
-        <td className={styles["content"]}>
-          <NoDraggableLink
-            className={styles["link-wrapper"]}
-            to={`/employee/${String(id)}`}
-            target="_blank"
-            rel="noopener norefferrer"
-          >
-            <div className={styles["profile"]}>
-              <NoDraggableImg className={styles["profile-logo"]} src={photo} />
-              <p className={styles["profile-name"]}>{name}</p>
-            </div>
-          </NoDraggableLink>
-        </td>
-        <td className={styles["content"]}>
-          <div className={styles["contacts"]}>
-            <p className={styles["contacts-phone"]}>{phone_number}</p>
-            <p className={styles["contacts-email"]}>{email}</p>
-          </div>
-        </td>
-        <td className={styles["content"]}>
-          <p className={styles["position-p"]}>{position}</p>
-        </td>
-        <td className={styles["content"]}>
-          <p className={styles["rate-p"]}>
-            {salary} {VALUTA[currency]}
-          </p>
-        </td>
-        <td className={styles["content"]}>
-          <div className={styles["times"]}>
-            <div
-              className={`${styles["time"]} ${substractTime(entry_time, "08:00") ? styles["on_time"] : styles["not_on_time"]}`}
-            >
-              <p className={styles["entry_time"]}>{entry_time}</p>
-            </div>
-            <div
-              className={`${styles["time"]} ${substractTime(exit_time, "18:00") ? styles["on_time"] : styles["not_on_time"]}`}
-            >
-              <p className={styles["exit_time"]}>{exit_time}</p>
-            </div>
-          </div>
-        </td>
-        <td className={styles["content"]}>
-          <button className={styles["schedule-button"]}>
-            <NoDraggableImg
-              className={styles["schedule-logo"]}
-              src={scheduleIcon}
-            />
-          </button>
-        </td>
-        <td className={styles["content"]}>
-          <NoDraggableLink
-            className={styles["dossier-button"]}
-            to={`/employee/${String(id)}`}
-            target="_blank"
-            rel="noopener norefferrer"
-          >
-            <NoDraggableImg className={styles["dossier-logo"]} src={dossier} />
-          </NoDraggableLink>
-        </td>
-      </tr>
-    </>
-  );
-}
-
-function ListEmployee({ employees }) {
-  const test_employees = [...employees];
-  return (
-    <>
-      {test_employees.map((employee) => (
-        <Employee
-          key={employee.id}
-          id={employee.id}
-          photo={employee.logo}
-          email={employee.email}
-          name={employee.profile.full_name}
-          phone_number={employee.profile.phone}
-          position={employee.profile.position}
-          rate_amount={employee.profile.rate_amount}
-          currency={employee.profile.currency}
-          entry_time="08:01"
-          exit_time="18:01"
-          salary={employee.final_salary}
-        />
-      ))}
-    </>
-  );
-}
-
 function Employees() {
-  const logos = [
-    employee1,
-    employee2,
-    employee3,
-    employee4,
-    employee5,
-    employee6,
-    employee7,
-  ];
-  const [photos, setPhotos] = useState([]);
-  const isFirstUpdate = useRef(0);
   const { employeesData, getEmployees } = useEmployees();
   const [employees, setEmployees] = useState(null);
   const [search, setSearch] = useState("");
@@ -183,25 +53,31 @@ function Employees() {
 
   useEffect(() => {
     if (employeesData) {
-      if (isFirstUpdate.current < 4) {
-        setPhotos(
-          employeesData.map((e) => ({
+      setEmployees(
+        employeesData.map((e) => [
+          {
+            type: "text",
+            text: e.id,
+          },
+          {
+            type: "profile",
             id: e.id,
-            photo: logos[Math.floor(Math.random() * logos.length)],
-          })),
-        );
-        isFirstUpdate.current += 1;
-      }
-      if (photos != []) {
-        setEmployees(
-          employeesData.map((e) => ({
-            ...e,
-            logo: photos.find((p) => p.id == e.id)?.photo || null,
-          })),
-        );
-      }
+            photo: e.profile.avatar_url,
+            name: e.profile.full_name,
+          },
+          { type: "contacts", phone: e.profile.phone, email: e.email },
+          { type: "text", text: e.profile.position },
+          {
+            type: "text",
+            text: `${e.final_salary} ${VALUTA[e.profile.currency]}`,
+          },
+          { type: "time", entry_time: "08:01", exit_time: "18:01" },
+          { type: "button", id: e.id, mode: "schedule", icon: scheduleIcon },
+          { type: "button", id: e.id, mode: "dossier", icon: dossier },
+        ]),
+      );
     }
-  }, [employeesData, photos]);
+  }, [employeesData]);
 
   function copyQuestionaryLink() {
     const link = "example";
@@ -271,7 +147,7 @@ function Employees() {
                 "Расписание",
                 "Досье",
               ]}
-              content={<ListEmployee employees={employees} />}
+              content={employees}
             />
           </div>
         </div>

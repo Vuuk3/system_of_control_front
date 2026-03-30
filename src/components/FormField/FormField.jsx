@@ -6,6 +6,7 @@ function FormField({
   name,
   inputType,
   maxLength,
+  header,
   placeholder,
   logo,
   value,
@@ -14,7 +15,7 @@ function FormField({
 }) {
   return (
     <div className={styles["form__field"]}>
-      <h5 className={styles["form__field-header"]}>{placeholder}</h5>
+      <h5 className={styles["form__field-header"]}>{header}</h5>
       <div className={styles["form__field-div"]}>
         <input
           type={inputType}

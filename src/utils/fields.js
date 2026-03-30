@@ -1,4 +1,4 @@
-import { mail, building, address, person, field } from "./icons";
+import { mail, building, address, person, field, inn } from "./icons";
 
 export const LOGIN_FIELDS = [
   {
@@ -15,58 +15,80 @@ export const REGISTER_FIELDS = [
     name: "name",
     inputType: "text",
     maxLength: 50,
-    placeholder: "Имя компании",
+    header: "Имя компании",
+    placeholder: "ООО «Ромашка»",
     logo: building,
   },
   {
     name: "legal_address",
     inputType: "text",
     maxLength: 80,
-    placeholder: "Юридический адрес",
+    header: "Юридический адрес",
+    placeholder: "г. Москва, ул. Ленина, д. 1",
     logo: address,
   },
   {
     name: "business_area",
     inputType: "text",
     maxLength: 40,
-    placeholder: "Сфера деятельности",
+    header: "Сфера деятельности",
+    placeholder: "Информационные технологии",
     logo: field,
+  },
+  {
+    name: "bik",
+    inputType: "text",
+    maxLength: 9,
+    header: "БИК",
+    placeholder: "044525225",
+    logo: inn,
+  },
+  {
+    name: "inn",
+    inputType: "text",
+    maxLength: 10,
+    header: "ИНН",
+    placeholder: "7707083893",
+    logo: inn,
   },
   {
     name: "contact_surname",
     inputType: "text",
     maxLength: 60,
-    placeholder: "Фамилия контактного лица",
+    header: "Фамилия контактного лица",
+    placeholder: "Иванов",
     logo: person,
   },
   {
     name: "contact_name",
     inputType: "text",
     maxLength: 60,
-    placeholder: "Имя контактного лица",
+    header: "Имя контактного лица",
+    placeholder: "Иван",
     logo: person,
   },
   {
     name: "contact_patronymic",
     inputType: "text",
     maxLength: 60,
-    placeholder: "Отчество контактного лица",
+    header: "Отчество контактного лица",
+    placeholder: "Иванович (необязательно)",
     logo: person,
   },
-
   {
     name: "email",
     inputType: "email",
     maxLength: 32,
-    placeholder: "Электронная почта контактного лица",
+    header: "Электронная почта контактного лица",
+    placeholder: "ivanov@company.ru",
     logo: mail,
   },
-
   {
     name: "user_email",
     inputType: "email",
     maxLength: 32,
-    placeholder: "Электронная почта",
+    header: "Электронная почта",
+    placeholder: "ivanov@company.ru",
     logo: mail,
   },
 ];

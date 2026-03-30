@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 import styles from "./Table.module.css";
 import TableHeader from "./TableHeader/TableHeader";
+import Cell from "./Cell/Cell";
 
 function Table({ headers, content }) {
+  console.log(content);
   const [width, setWidth] = useState(0);
   const tableRef = useRef(null);
   useEffect(() => {
@@ -22,7 +24,17 @@ function Table({ headers, content }) {
     <div className={styles["table-scroll"]} ref={tableRef}>
       <table className={styles["table"]} style={{ minWidth: width }}>
         <TableHeader headers={headers} />
-        <tbody>{content}</tbody>
+        <tbody>
+          {content.map((cells, i) => (
+            <tr key={i}>
+              {cells.map((cell, j) => (
+                <td className={styles["content"]} key={j}>
+                  <Cell props={cell} />
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   );
