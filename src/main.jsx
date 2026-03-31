@@ -15,6 +15,7 @@ import { EmployeesProvider } from "./contexts/EmployeesContext";
 import Salaries from "./pages/Salaries/Salaries";
 import { CheckAuthProvider } from "./contexts/CheckAuthContext";
 import { AvatarProvider } from "./contexts/AvatarContext";
+import EmployeePage from "./pages/EmployeePage/EmployeePage";
 
 function UserLayout() {
   return (
@@ -60,6 +61,7 @@ createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<MainPage />}></Route>
+      <Route path="/employee" element={<EmployeePage />}></Route>
       <Route element={<UserLayout />}>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>

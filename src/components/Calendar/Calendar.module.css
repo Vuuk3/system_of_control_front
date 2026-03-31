@@ -84,6 +84,14 @@
   cursor: not-allowed;
 }
 
+.view-day:hover {
+  cursor: default;
+}
+
+.disabled > .view-day:hover {
+  cursor: default;
+}
+
 .selected > .day_button {
   background: linear-gradient(#3e96fd, #1a67f9);
   border-radius: 5px;

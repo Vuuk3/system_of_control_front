@@ -33,13 +33,13 @@ function NavBar({ visibleLinks, setVisibleLinks }) {
       ref={navRef}
       style={{ visibility: visibleLinks ? "visible" : "hidden" }}
     >
-      {LINKS_LIST.map((l) => (
-        <li key={l.text}>
+      {LINKS_LIST.map((link) => (
+        <li key={link.text}>
           <NoDraggableLink
-            to={l.link}
-            className={`${styles["link"]} ${l.link == location.pathname ? styles["checked"] : ""}`}
+            to={link.link}
+            className={`${styles["link"]} ${link.link == location.pathname ? styles["checked"] : ""}`}
           >
-            {l.text}
+            {link.text}
           </NoDraggableLink>
         </li>
       ))}

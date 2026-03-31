@@ -12,7 +12,7 @@ import Title from "@components/Title/Title";
 
 function Login() {
   const data = {
-    email: "test@yan.ru",
+    email: "nikita@yan.ru",
     password: "1",
   };
   const [values, setValues] = useState(data);

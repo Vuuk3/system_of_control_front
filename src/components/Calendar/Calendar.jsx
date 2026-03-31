@@ -3,32 +3,39 @@ import { DayPicker } from "react-day-picker";
 import { ru } from "date-fns/locale";
 import { useState } from "react";
 
-function Calendar({ days, setDays, setEdit = null, rate_amount, rate_type }) {
-  function capitalize(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-  function updateRateList(rateList, dateList, rate_amount, rate_type) {
-    const dateSet = new Set(dateList);
+function capitalize(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+function updateRateList(rateList, dateList, rate_amount, rate_type) {
+  const dateSet = new Set(dateList);
 
-    const filtered = rateList.filter((entry) => dateSet.has(entry.date));
+  const filtered = rateList.filter((entry) => dateSet.has(entry.date));
 
-    const result = [...filtered];
+  const result = [...filtered];
 
-    for (const date of dateList) {
-      if (!filtered.find((e) => e.date === date)) {
-        result.push({
-          date,
-          rate_type,
-          rate_amount,
-        });
-      }
+  for (const date of dateList) {
+    if (!filtered.find((e) => e.date === date)) {
+      result.push({
+        date,
+        rate_type,
+        rate_amount,
+      });
     }
-
-    return result;
   }
 
+  return result;
+}
+
+function Calendar({
+  mode = "view",
+  days,
+  setDays,
+  setEdit = null,
+  rate_amount,
+  rate_type,
+}) {
   function handleClick(newDays) {
-    if (!days) return;
+    if (!days || !setDays) return;
     const updatedDays = updateRateList(days, newDays, rate_amount, rate_type);
     setDays(
       updatedDays.sort(
@@ -49,7 +56,6 @@ function Calendar({ days, setDays, setEdit = null, rate_amount, rate_type }) {
       <DayPicker
         fixedWeeks={true}
         mode="multiple"
-        showOutsideDays={true}
         selected={days.map((day) => new Date(day.date))}
         onSelect={handleClick}
         disabled={{ before: today }}
@@ -57,10 +63,10 @@ function Calendar({ days, setDays, setEdit = null, rate_amount, rate_type }) {
         onMonthChange={setMonth}
         locale={ru}
         classNames={{
-          day: styles["day"],
-          day_button: styles["day_button"],
+          day: `${styles["day"]} ${mode == "view" ? styles["view-day"] : null}`,
+          day_button: `${styles["day_button"]} ${mode == "view" ? styles["view-day"] : null}`,
           selected: styles["selected"],
-          disabled: styles["disabled"],
+          disabled: `${styles["disabled"]} ${mode == "view" ? styles["view-day"] : null}`,
           month_grid: styles["month_grid"],
           month: styles["month"],
           weekday: styles["weekday"],

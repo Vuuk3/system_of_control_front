@@ -1,15 +1,8 @@
 import { useEffect } from "react";
 import ManagerPage from "@pages/ManagerPage/ManagerPage";
+import EmployeePage from "@pages/EmployeePage/EmployeePage";
 import { useUser } from "@contexts/UserContext";
 import { useNavigate } from "react-router";
-
-function EmployeePage() {
-  return (
-    <>
-      <h1>Сотрудник</h1>
-    </>
-  );
-}
 
 function UndfinedRolePage() {
   return (
@@ -36,7 +29,7 @@ function PersonalAccount() {
   return userData.role == "admin" ? (
     <ManagerPage props={userData} />
   ) : userData.role == "employee" ? (
-    <EmployeePage />
+    <EmployeePage props={userData} />
   ) : (
     <UndfinedRolePage />
   );

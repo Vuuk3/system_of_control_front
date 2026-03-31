@@ -1,5 +1,5 @@
 import styles from "./Salary.module.css";
-import CardHeader from "../CardHeader/CardHeader";
+import CardHeader from "@components/CardHeader/CardHeader";
 import FormField from "@components/FormField/FormField";
 import SelectField from "@components/SelectField/SelectField";
 import { VALUTA } from "@utils/valuta";

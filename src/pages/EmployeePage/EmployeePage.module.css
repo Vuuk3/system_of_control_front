@@ -1,0 +1,147 @@
+.main {
+  padding-left: 20px;
+  padding-right: 20px;
+  background: #f5f6fa;
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 300px 1fr 1fr;
+  grid-template-rows: auto 120px;
+  gap: 20px;
+
+  grid-template-areas:
+    "profile schedule attendance"
+    "profile fines bonuses";
+}
+
+.profile {
+  grid-area: profile;
+}
+
+.cards > .schedule {
+  grid-area: schedule;
+}
+
+.cards > .attendance {
+  grid-area: attendance;
+}
+
+.fines {
+  grid-area: fines;
+}
+
+.bonuses {
+  grid-area: bonuses;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.profile-logo {
+  width: 105px;
+  height: 105px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 16px;
+}
+
+.profile-name {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.profile-position {
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
+.profile-contacts-email,
+.profile-contacts-phone {
+  font-size: 1rem;
+}
+
+.cards > .schedule,
+.cards > .attendance {
+  min-height: 300px;
+  max-height: 500px;
+}
+
+.fines,
+.bonuses {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.fines {
+  background: #ffecec;
+  color: #d63031;
+}
+
+.bonuses {
+  background: #eaffea;
+  color: #27ae60;
+}
+
+.card-header {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.profile-salary-header {
+  font-size: 1rem;
+  margin-top: 18px;
+}
+
+.profile-salary {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 6px 0 10px;
+}
+
+.rate-amount,
+.rate-type {
+  font-size: 1.2rem;
+}
+
+@media (max-width: 1000px) {
+  .cards {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "profile"
+      "schedule"
+      "attendance"
+      "fines"
+      "bonuses";
+  }
+
+  .profile {
+    align-items: flex-start;
+    text-align: left;
+  }
+}

@@ -1,4 +1,4 @@
-import CardHeader from "../CardHeader/CardHeader";
+import CardHeader from "@components/CardHeader/CardHeader";
 import styles from "./TimeEntries.module.css";
 
 function substractTime(time1, time2) {
@@ -33,12 +33,14 @@ function TimeEntry({ date, entry_time, exit_time }) {
   );
 }
 
-function TimeEntries({ text, logo, values }) {
+function TimeEntries({ text, cardLogo, values, className = "" }) {
   if (!values) return null;
   return (
     <>
-      <div className={`${styles["time-entries"]} ${styles["card"]}`}>
-        <CardHeader text={text} logo={logo} />
+      <div
+        className={`${styles["time-entries"]} ${styles["card"]} ${className}`}
+      >
+        <CardHeader text={text} logo={cardLogo} />
         <div className={styles["time-entries-wrapper"]}>
           {values.map((value) => (
             <TimeEntry

@@ -5,10 +5,10 @@ import { useNavigate } from "react-router";
 import { format } from "date-fns";
 import Dialog from "@components/Dialog/Dialog";
 import Profile from "./Profile/Profile";
-import Schedule from "./Schedule/Schedule";
+import Schedule from "@components/Schedule/Schedule";
 import Salary from "./Salary/Salary";
 import Buttons from "./Buttons/Buttons";
-import TimeEntries from "./TimeEntries/TimeEntries";
+import TimeEntries from "@components/TimeEntries/TimeEntries";
 import NoDraggableImg from "../NoDraggableImg/NoDraggableImg";
 
 function Employee({
@@ -173,7 +173,11 @@ function Employee({
               fine={fine}
               attendance={attendance}
             />
-            <TimeEntries text="Посещаемость" logo={clock} values={attendance} />
+            <TimeEntries
+              text="Посещаемость"
+              cardLogo={clock}
+              values={attendance}
+            />
 
             <Buttons
               mode={mode}

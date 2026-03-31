@@ -1,6 +1,6 @@
 import styles from "./Profile.module.css";
 import FormField from "@components/FormField/FormField";
-import CardHeader from "../CardHeader/CardHeader";
+import CardHeader from "@components/CardHeader/CardHeader";
 import { EMPLOYEE_FIELDS } from "@utils/fields";
 import ImageInput from "@components/ImageInput/ImageInput";
 import NoDraggableImg from "@components/NoDraggableImg/NoDraggableImg";

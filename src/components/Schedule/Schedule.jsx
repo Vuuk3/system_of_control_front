@@ -1,20 +1,21 @@
 import styles from "./Schedule.module.css";
-import CardHeader from "../CardHeader/CardHeader";
+import CardHeader from "@components/CardHeader/CardHeader";
 import Calendar from "@components/Calendar/Calendar";
-import DatesOfWork from "../DatesOfWork/DatesOfWork";
+import DatesOfWork from "@components/DatesOfWork/DatesOfWork";
 
 function Schedule({
   text,
   cardLogo,
   days,
-  setDays,
+  setDays = null,
   setEdit,
   rate_amount,
   rate_type,
+  className = "",
 }) {
   return (
     <>
-      <div className={`${styles["card"]} ${styles["schedule"]}`}>
+      <div className={`${styles["card"]} ${styles["schedule"]} ${className}`}>
         <CardHeader text={text} logo={cardLogo} />
         <div className={styles["schedule-content"]}>
           <Calendar
