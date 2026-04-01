@@ -6,38 +6,63 @@
   overflow-y: hidden;
 }
 
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.settings {
+  background-color: var(--employee-background-color);
+}
+
+li.settings {
+  background-color: var(--employee-background-color);
+}
+
+button.color,
+label.color,
+div.color {
+  color: var(--employee-background-color);
+  border-color: var(--employee-background-color);
+}
+
 .cards {
   display: grid;
-  grid-template-columns: 300px 1fr 1fr;
-  grid-template-rows: auto 120px;
+  grid-template-columns: 400px 1fr 400px;
+  grid-template-rows: 510px 140px;
   gap: 20px;
 
   grid-template-areas:
     "profile schedule attendance"
-    "profile fines bonuses";
+    "adjustments schedule attendance";
 }
 
 .profile {
   grid-area: profile;
 }
 
+.adjustments {
+  grid-area: adjustments;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
 .cards > .schedule {
   grid-area: schedule;
+  max-height: 470px;
 }
 
 .cards > .attendance {
   grid-area: attendance;
+  min-height: 500px;
 }
 
-.fines {
-  grid-area: fines;
-}
-
-.bonuses {
-  grid-area: bonuses;
-}
-
-.card {
+.card,
+.cards > .schedule,
+.cards > .attendance {
   background: #ffffff;
   border-radius: 16px;
   padding: 20px;
@@ -45,7 +70,9 @@
   transition: 0.2s ease;
 }
 
-.card:hover {
+.card:hover,
+.cards > .schedule:hover,
+.cards > .attendance:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
 }
@@ -61,30 +88,25 @@
   width: 105px;
   height: 105px;
   border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 16px;
 }
 
 .profile-name {
   font-size: 20px;
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .profile-position {
   font-size: 1rem;
-  margin-bottom: 12px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .profile-contacts-email,
 .profile-contacts-phone {
   font-size: 1rem;
-}
-
-.cards > .schedule,
-.cards > .attendance {
-  min-height: 300px;
-  max-height: 500px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .fines,
@@ -92,8 +114,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-size: 18px;
+  width: 100%;
+  padding-left: 10px;
+  font-size: 1.1rem;
   font-weight: 500;
+  border-radius: 5px;
 }
 
 .fines {
@@ -109,12 +134,13 @@
 .card-header {
   font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 12px;
+  margin-bottom: 5px;
 }
 
 .profile-salary-header {
   font-size: 1rem;
-  margin-top: 18px;
+  margin-top: 5px;
+  margin-bottom: 0px;
 }
 
 .profile-salary {
@@ -126,22 +152,22 @@
 .rate-amount,
 .rate-type {
   font-size: 1.2rem;
+  margin: 0;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1450px) {
   .cards {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    grid-template-areas:
-      "profile"
-      "schedule"
-      "attendance"
-      "fines"
-      "bonuses";
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
   }
 
   .profile {
     align-items: flex-start;
     text-align: left;
+  }
+
+  .cards > .schedule {
+    min-height: 500px;
   }
 }

@@ -5,6 +5,7 @@ import person from "@assets/fio.svg";
 import field from "@assets/field.svg";
 import company from "@assets/company.jpg";
 import settingsIcon from "@assets/settings.svg";
+import settingsIcon2 from "@assets/settings2.svg";
 import exitIcon from "@assets/exit.svg";
 import plus from "@assets/plus.svg";
 import searchIcon from "@assets/search.svg";
@@ -25,6 +26,7 @@ export {
   field,
   company,
   settingsIcon,
+  settingsIcon2,
   exitIcon,
   plus,
   searchIcon,

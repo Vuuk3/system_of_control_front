@@ -1,8 +1,9 @@
 import { VALUTA } from "@utils/valuta";
 import styles from "./EmployeePage.module.css";
 import TimeEntries from "@components/TimeEntries/TimeEntries";
-import { calendar, clock } from "@utils/icons";
+import { calendar, clock, settingsIcon2 } from "@utils/icons";
 import Schedule from "@components/Schedule/Schedule";
+import Settings from "@components/Settings/Settings";
 
 function EmployeePage({ props }) {
   const attendance = [
@@ -25,7 +26,15 @@ function EmployeePage({ props }) {
 
   return (
     <div className={styles["main"]}>
-      <h1>Личный кабинет</h1>
+      <div className={styles["header"]}>
+        <h1>Личный кабинет</h1>
+        <Settings
+          setting_path={"/"}
+          className={styles["settings"]}
+          color={styles["color"]}
+          settingsIcon={settingsIcon2}
+        />
+      </div>
       <div className={styles["cards"]}>
         <div className={`${styles["card"]} ${styles["profile"]}`}>
           <img
@@ -47,17 +56,19 @@ function EmployeePage({ props }) {
           </p>
           <p className={styles["rate-type"]}>Смена: 20 смен</p>
         </div>
-        <div className={`${styles["card"]} ${styles["fines"]}`}>
-          <h3 className={styles["card-header"]}>Мои штрафы</h3>
-          <p className={styles["fine-amount"]}>
-            Итого: -2500{" " + VALUTA[props.profile.currency]}
-          </p>
-        </div>
-        <div className={`${styles["card"]} ${styles["bonuses"]}`}>
-          <h3 className={styles["card-header"]}>Мои премии</h3>
-          <p className={styles["bonus-amount"]}>
-            Итого: 5000{" " + VALUTA[props.profile.currency]}
-          </p>
+        <div className={`${styles["card"]} ${styles["adjustments"]}`}>
+          <div className={styles["fines"]}>
+            <h3 className={styles["card-header"]}>Мои штрафы</h3>
+            <p className={styles["fine-amount"]}>
+              Итого: -2500{" " + VALUTA[props.profile.currency]}
+            </p>
+          </div>
+          <div className={styles["bonuses"]}>
+            <h3 className={styles["card-header"]}>Мои премии</h3>
+            <p className={styles["bonus-amount"]}>
+              Итого: 5000{" " + VALUTA[props.profile.currency]}
+            </p>
+          </div>
         </div>
         <Schedule
           text="Расписание"
