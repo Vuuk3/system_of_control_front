@@ -20,12 +20,12 @@ function FormField({
         <input
           type={inputType}
           maxLength={maxLength}
+          placeholder={placeholder}
           className={
             error == "" || error == null
               ? `${styles["form__field-div-input"]} ${className}`
               : `${styles["form__field-div-input"]} ${className} ${styles["incorrect"]}`
           }
-          placeholder={placeholder}
           value={value}
           onChange={(e) => handleChange(name, e.target.value)}
           required
