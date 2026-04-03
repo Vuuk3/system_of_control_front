@@ -5,7 +5,6 @@ import TextCell from "../TextCell/TextCell";
 import TimeCell from "../TimeCell/TimeCell";
 
 function Cell({ props }) {
-  console.log(props.data);
   return (
     <>
       {props.type == "text" ? (

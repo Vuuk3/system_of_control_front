@@ -1,0 +1,62 @@
+.main {
+  overflow-y: hidden;
+  height: 100vh;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.profile-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background-color: gray;
+}
+
+.profile-name {
+  font-size: 1.2rem;
+}
+
+.tables {
+  height: 70%;
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.bonuses,
+.fines {
+  flex: 1;
+}
+
+.adjustment-header {
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+}
+
+.bonuses-amount {
+  font-size: 1.2rem;
+  color: green;
+  margin-top: 5px;
+}
+
+.fines-amount {
+  font-size: 1.2rem;
+  color: red;
+  margin-top: 5px;
+}

@@ -4,7 +4,6 @@ import TableHeader from "./TableHeader/TableHeader";
 import Cell from "./Cell/Cell";
 
 function Table({ headers, content }) {
-  console.log(content);
   const [width, setWidth] = useState(0);
   const tableRef = useRef(null);
   useEffect(() => {
