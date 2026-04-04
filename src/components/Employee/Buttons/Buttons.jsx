@@ -6,6 +6,7 @@ function Buttons({
   mode = "add",
   setCancel,
   setSave,
+  setDel,
   setErrors,
   values,
   errors,
@@ -22,20 +23,16 @@ function Buttons({
             <SubmitButton
               text="Удалить"
               handleClick={() => setDel(true)}
-              className={`${styles["button"]} ${styles["delete-button"]}`}
+              className={`${styles["delete-button"]}`}
             />
           ) : (
             <></>
           )}
 
-          <SubmitButton
-            text="Отменить"
-            className={`${styles["button"]}`}
-            handleClick={() => setCancel(true)}
-          />
+          <SubmitButton text="Отменить" handleClick={() => setCancel(true)} />
           <SubmitButton
             text="Сохранить"
-            className={`${styles["button"]} ${styles["main-button"]}`}
+            className={`${styles["main-button"]}`}
             disabled={Object.values(errors).some(Boolean)}
             handleClick={() => {
               const newErrors = validation(values);

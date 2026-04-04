@@ -14,6 +14,7 @@ import { CompanyProvider } from "./contexts/CompanyContext";
 import { EmployeesProvider } from "./contexts/EmployeesContext";
 import Salaries from "./pages/Salaries/Salaries";
 import { CheckAuthProvider } from "./contexts/CheckAuthContext";
+import { AvatarProvider } from "./contexts/AvatarContext";
 
 function UserLayout() {
   return (
@@ -47,6 +48,14 @@ function EmployeesLayout() {
   );
 }
 
+function AvatarLayout() {
+  return (
+    <AvatarProvider>
+      <Outlet />
+    </AvatarProvider>
+  );
+}
+
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <Routes>
@@ -64,7 +73,9 @@ createRoot(document.getElementById("root")).render(
           </Route>
           <Route element={<EmployeesLayout />}>
             <Route path="/employees" element={<Employees />}></Route>
-            <Route path="/add_employee" element={<AddEmployee />}></Route>
+            <Route element={<AvatarLayout />}>
+              <Route path="/add_employee" element={<AddEmployee />}></Route>
+            </Route>
             <Route path="/employee/:id" element={<EmployeeDossier />}></Route>
           </Route>
           <Route path="/salaries" element={<Salaries />}></Route>

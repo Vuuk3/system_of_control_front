@@ -2,73 +2,134 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: hidden;
+  justify-content: center;
   height: 100vh;
-  background-color: #f2f3f9;
+  background-color: var(--background-color);
 }
 
 .login {
-  box-sizing: border-box;
+  width: 480px;
+  min-width: 360px;
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.07);
   display: flex;
   flex-direction: column;
-  width: calc(100vw * var(--login-width) / 1920);
-  min-width: 320px;
-  padding-left: 30px;
-  padding-right: 30px;
-  background: white;
-  border-radius: 38px;
-  position: relative;
-  top: calc(100vh * var(--login-top) / 1080);
+}
+
+/* ── Топбар ── */
+.login-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 28px 16px;
+  border-bottom: 1px solid #EEECEA;
+  flex-shrink: 0;
+}
+
+.header-main {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-color);
+}
+
+.header-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--label-color);
+}
+
+/* ── Контент ── */
+.login-body {
+  display: flex;
+  flex-direction: column;
+  padding: 28px 28px 8px;
+  box-sizing: border-box;
+}
+
+.header-section {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text-color);
+  margin: 0 0 20px;
+  letter-spacing: 0.01em;
+}
+
+.fields-wrapper {
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
-.header-login,
-.header-main {
-  font-size: 2rem;
-  text-align: center;
-  color: black;
-  font-style: normal;
-  font-weight: 300;
-  line-height: 40px;
-  margin-top: 15px;
-  margin-bottom: 15px;
+.fields-wrapper>* {
+  width: 100%;
 }
 
-.header-main {
-  position: relative;
-  top: 20px;
-  font-size: 2.2rem;
-  font-weight: 350;
+/* ── Футер ── */
+.login-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 28px 20px;
+  border-top: 1px solid #EEECEA;
+  flex-shrink: 0;
 }
 
 .register {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  justify-content: center;
-  width: 671px;
-  min-width: 320px;
-  height: 47px;
-  font-style: normal;
+  font-size: 0.875rem;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 34px;
-  color: black;
-  margin-bottom: 10px;
+  color: var(--label-color);
 }
 
 .register-link {
-  font-weight: 1000;
-  color: inherit;
+  font-weight: 600;
+  color: var(--text-color);
   text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-@media (max-width: 1320px) {
+.register-link:hover {
+  color: var(--primary-color);
+}
+
+.button {
+  font-size: 0.875rem;
+  padding-left: 24px;
+  padding-right: 24px;
+  height: 44px;
+}
+
+/* ── Адаптив ── */
+@media (max-width: 540px) {
+  .login {
+    width: 95vw;
+    min-width: unset;
+  }
+
+  .login-body {
+    padding: 20px 16px 8px;
+  }
+
+  .login-topbar,
+  .login-footer {
+    padding: 14px 16px;
+  }
+
+  .login-footer {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .button {
+    width: 100%;
+  }
+
   .register {
-    width: 320px;
-    height: 70px;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
+    text-align: center;
   }
 }

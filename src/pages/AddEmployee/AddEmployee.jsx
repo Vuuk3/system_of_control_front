@@ -1,4 +1,5 @@
 import { useEmployees } from "@contexts/EmployeesContext";
+import { useAvatar } from "@contexts/AvatarContext";
 import Employee from "@components/Employee/Employee";
 import Title from "@components/Title/Title";
 
@@ -13,6 +14,7 @@ function AddEmployee() {
     currency: "RUB",
   };
   const { createEmployee } = useEmployees();
+  const { setAvatar, url } = useAvatar();
   return (
     <>
       <Title text="Добавление сотрудника" />
@@ -23,6 +25,8 @@ function AddEmployee() {
         saveFalseText="Вернуться к добавлению"
         saveTrueText="Добавить"
         handleCommand={createEmployee}
+        setAvatar={setAvatar}
+        url={url}
       />
     </>
   );

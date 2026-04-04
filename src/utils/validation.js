@@ -8,10 +8,12 @@ export function validation(values) {
     "u",
   );
   const surnameRegex = new RegExp("^[A-ZА-Я][a-zа-я]+(-[A-ZА-Я][a-zа-я])?$");
-  const nameRegex = new RegExp("^[A-ZА-Я][a-zа-я]$");
-  const patronymicRegex = new RegExp("^[A-ZА-Я][a-zа-я]$|^$");
+  const nameRegex = new RegExp("^[A-ZА-Я][a-zа-я]{1,}$");
+  const patronymicRegex = new RegExp("^[A-ZА-Я][a-zа-я]{1,}$|^$");
   const phoneRegex = new RegExp("^\\+?[1-9]\\d{7,14}$");
   const salaryRegex = new RegExp("^[0-9]{1,}(\\.[0-9]{1,})?$");
+  const innRegex = new RegExp("^\\d{10}$");
+  const bikRegex = new RegExp("^\\d{9}$");
 
   const fields = [
     {
@@ -38,6 +40,8 @@ export function validation(values) {
     },
     { field: "email", regex: emailRegex, errorMessage: "Адрес некорректен" },
     { field: "business_area" },
+    { field: "inn", regex: innRegex, errorMessage: "ИНН некорректен" },
+    { field: "bik", regex: bikRegex, errorMessage: "БИК некорректен" },
     { field: "password" },
     {
       field: "phone",

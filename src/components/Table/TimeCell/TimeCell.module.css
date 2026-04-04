@@ -1,0 +1,30 @@
+.times {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.time {
+  padding: 10px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  color: black;
+}
+
+.on_time {
+  background: none;
+  border: 1px solid #3e96fd;
+}
+
+.not_on_time {
+  color: white;
+  background: linear-gradient(#3e96fd, #1a67f9);
+}
+
+.entry_time,
+.exit_time {
+  margin: 0;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 1rem;
+}

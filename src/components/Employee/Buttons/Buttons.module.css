@@ -29,14 +29,6 @@
   gap: 20px;
 }
 
-.button {
-  border-radius: 10px;
-}
-
-.button:active {
-  background-color: #2e4e75;
-}
-
 .delete-button {
   color: red;
   background-color: #ffb2b2;

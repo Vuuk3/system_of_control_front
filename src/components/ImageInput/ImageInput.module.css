@@ -1,0 +1,36 @@
+.img {
+  border-radius: 50%;
+  width: 148px;
+  height: 148px;
+}
+
+.avatar-input {
+  visibility: hidden;
+  position: absolute;
+  width: 148px;
+  height: 148px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background-image: url("@assets/plus.svg");
+  background-size: cover;
+  background-color: gray;
+  opacity: 0.6;
+  color: transparent;
+}
+
+.avatar-input::file-selector-button {
+  display: none;
+}
+
+.img:hover .avatar-input {
+  visibility: visible;
+  cursor: pointer;
+}
+
+.photo {
+  background-color: lightgray;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  width: 148px;
+  height: 148px;
+}

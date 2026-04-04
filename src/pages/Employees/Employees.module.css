@@ -155,6 +155,8 @@
   height: 100px;
   width: 100px;
   border-radius: 50%;
+  border: 1px solid transparent;
+  background-color: lightgray;
 }
 
 .profile-name {
@@ -173,10 +175,6 @@
 .contacts-phone,
 .contacts-email {
   margin: 0;
-}
-
-.contacts-phone {
-  font-size: 1.35rem;
 }
 
 .contacts-email {
@@ -213,7 +211,7 @@
   margin: 0;
   margin-left: 5px;
   margin-right: 5px;
-  font-size: 1.4rem;
+  font-size: 1rem;
 }
 
 .schedule-button,

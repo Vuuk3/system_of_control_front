@@ -6,6 +6,7 @@ function FormField({
   name,
   inputType,
   maxLength,
+  header,
   placeholder,
   logo,
   value,
@@ -14,17 +15,17 @@ function FormField({
 }) {
   return (
     <div className={styles["form__field"]}>
-      <h5 className={styles["form__field-header"]}>{placeholder}</h5>
+      <h5 className={styles["form__field-header"]}>{header}</h5>
       <div className={styles["form__field-div"]}>
         <input
           type={inputType}
           maxLength={maxLength}
+          placeholder={placeholder}
           className={
             error == "" || error == null
               ? `${styles["form__field-div-input"]} ${className}`
               : `${styles["form__field-div-input"]} ${className} ${styles["incorrect"]}`
           }
-          placeholder={placeholder}
           value={value}
           onChange={(e) => handleChange(name, e.target.value)}
           required
