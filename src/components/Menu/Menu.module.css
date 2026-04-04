@@ -1,136 +1,190 @@
 .menu {
-  width: 100vw;
+  width: 100%;
+  height: 64px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #EEECEA;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 60px;
-  border-bottom: 5px solid var(--manager-background-color);
-  container-type: inline-size;
+  padding: 0 28px;
+  box-sizing: border-box;
+  margin-bottom: 24px; /* Меньший отступ снизу вместо 60px для аккуратности */
 }
 
+/* ── Логотип ── */
 .logo {
-  margin-left: 40px;
-  margin-right: 10px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
   gap: 10px;
 }
 
 .logo-img {
-  width: 30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
 }
 
 .logo-header {
-  font-weight: 450;
-  font-size: 2rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0;
+  letter-spacing: 0.02em;
 }
 
-.settings {
-  margin-right: 60px;
+/* ── Кнопка настроек / меню ── */
+.settings-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.settings-btn {
+  /* Теперь кнопка имеет плотный светло-серый фон по умолчанию */
+  background-color: var(--input-bg);
+  border: 1.5px solid transparent;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
-  width: 40px;
-  background-color: var(--manager-background-color);
-  border: none;
-  border-radius: 5px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-.settings:hover {
+.settings-btn:hover,
+.settings-btn.active {
   cursor: pointer;
+  background-color: #E2DFD9; /* Чуть темнее при наведении или открытом меню */
 }
 
-.settings > img {
-  height: 35px;
-  width: 35px;
+.settings-btn:active {
+  transform: scale(0.95); /* Легкое нажатие */
 }
 
-.settings-wrapper {
-  position: relative;
-  display: inline-block;
+.settings-icon {
+  width: 22px;
+  height: 22px;
+  opacity: 0.75;
+  /* Если иконка settings.svg в оригинале белая, этот фильтр инвертирует её и сделает тёмно-серой. 
+     Если она уже чёрная, просто удалите строчку filter */
+  filter: invert(1) hue-rotate(180deg) brightness(0.2); 
 }
 
+/* ── Выпадающее меню ── */
 .settings-menu {
-  z-index: 2;
-  width: fit-content;
   position: absolute;
-  top: 100%;
-  left: 10%;
-  transform: translateX(-50%);
+  top: calc(100% + 12px);
+  right: 0; /* Прижимаем к правому краю */
+  width: max-content;
+  min-width: 200px;
+  background-color: #ffffff;
+  border: 1px solid #EEECEA;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  padding: 8px;
   display: flex;
   flex-direction: column;
-  background-color: #e4e7f3;
-  padding: 3px;
-  border: 1px solid var(--manager-background-color);
-  border-radius: 5px;
+  z-index: 100;
+
+  /* Анимация появления */
   visibility: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
 }
 
 .show {
   visibility: visible;
-  transform: translateX(-50%) translateY(10px);
-  transition-duration: 0.2s;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Элементы внутри меню ── */
+.link-wrapper {
+  text-decoration: none;
 }
 
 .setting {
   display: flex;
   align-items: center;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  background-color: #e4e7f3;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: var(--text-color);
+  background-color: transparent;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.setting:hover,
-.setting .setting-button:hover,
-.setting:hover .setting-button {
-  background-color: #c2c4cf;
+.setting:hover:not(.disabled):not(.checked) {
   cursor: pointer;
+  background-color: var(--input-bg);
 }
 
-.setting:active,
-.setting .setting-button:active,
-.setting:active .setting-button {
-  background-color: #476bb6;
+.setting:active:not(.disabled):not(.checked) {
+  background-color: #E2DFD9;
 }
 
-.setting > img {
-  width: 20px;
-  height: 20px;
-  pointer-events: none;
+/* Иконки в дропдауне */
+.setting-icon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.5;
 }
 
-.border {
-  list-style: none;
-  background-color: var(--manager-background-color);
-  height: 1px;
-}
-
-.link-wrapper {
-  text-decoration: none;
-}
-
-.setting-button {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  color: var(--manager-background-color);
-  border: none;
+/* Текст */
+.setting-text {
   font-size: 0.95rem;
-  white-space: nowrap;
+  font-weight: 500;
+  letter-spacing: 0.01em;
 }
 
+/* Разделитель */
+.border {
+  height: 1px;
+  background-color: #EEECEA;
+  margin: 6px 0;
+}
+
+/* ── Состояния элементов ── */
 .checked {
   pointer-events: none;
-  background-color: #8c9199;
-  font-weight: bold;
+  background-color: var(--primary-color);
+  color: #ffffff;
 }
 
-.checked:hover {
-  cursor: default;
+.checked .setting-icon {
+  opacity: 1;
+  filter: brightness(0) invert(1); /* Делает иконку белой */
+}
+
+.disabled {
+  color: var(--placeholder-color);
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.disabled .setting-icon {
+  opacity: 0.2;
+}
+
+/* Выход (красная индикация при наведении) */
+.setting-exit:hover {
+  background-color: #FDECEA;
+  color: #C0392B;
+}
+
+.setting-exit:hover .setting-icon {
+  opacity: 1;
+  filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(90%) contrast(97%); /* Делает иконку красной */
+}
+
+/* ── Адаптив ── */
+@media (max-width: 640px) {
+  .menu {
+    padding: 0 16px;
+  }
 }

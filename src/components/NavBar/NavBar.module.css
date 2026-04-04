@@ -2,44 +2,56 @@
   list-style: none;
   display: flex;
   flex-direction: row;
-  gap: 20px;
+  align-items: center;
+  gap: 8px; /* Компактный отступ между вкладками */
   padding: 0;
+  margin: 0;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.list-item {
+  display: inline-block;
 }
 
 .link {
   text-decoration: none;
   height: 40px;
-  padding-left: 20px;
-  padding-right: 20px;
-  display: flex;
-  flex-direction: row;
+  padding: 0 16px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: #e4e7f3;
-  color: var(--manager-background-color);
-  border: 1px solid #d3d3d3;
-  border-radius: 5px;
-  font-size: 1.25rem;
-  white-space: nowrap;
+  background-color: transparent;
+  color: var(--label-color);
+  border-radius: 8px; /* Единый радиус скругления */
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.link:hover {
-  background-color: #c2c4cf;
+/* Состояние при наведении (как у кнопки отмены) */
+.link:hover:not(.disabled):not(.checked) {
+  background-color: var(--input-bg);
+  color: var(--text-color);
   cursor: pointer;
 }
 
-.link:active {
-  background-color: #abadb6;
+.link:active:not(.disabled):not(.checked) {
+  background-color: #E2DFD9;
 }
 
+/* Активная вкладка (текущая страница) */
 .checked {
   pointer-events: none;
-  background: #8c9199;
-  font-weight: bold;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  font-weight: 600;
 }
 
-.checked:hover {
-  cursor: default;
+/* Отключенные вкладки (где link: null) */
+.disabled {
+  color: var(--placeholder-color);
+  pointer-events: none;
+  cursor: not-allowed;
 }
