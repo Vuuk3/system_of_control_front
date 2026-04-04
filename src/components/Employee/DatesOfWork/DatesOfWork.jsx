@@ -1,5 +1,4 @@
 import styles from "./DatesOfWork.module.css";
-import { useEffect, useRef, useState } from "react";
 
 function DateOfWork({ day }) {
   return (
@@ -31,27 +30,9 @@ function DateOfWork({ day }) {
   );
 }
 
-function DatesOfWork({ dates, calendarRef }) {
-  const [maxHeight, setMaxHeight] = useState(null);
-
-  useEffect(() => {
-    if (!calendarRef?.current) return;
-
-    const observer = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        setMaxHeight(entry.contentRect.height);
-      }
-    });
-
-    observer.observe(calendarRef.current);
-    return () => observer.disconnect();
-  }, [calendarRef]);
-
+function DatesOfWork({ dates }) {
   return (
-    <div
-      className={styles["dates-wrapper"]}
-      style={maxHeight ? { maxHeight: `${maxHeight}px` } : {}}
-    >
+    <div className={styles["dates-wrapper"]}>
       {dates.map((date) => (
         <DateOfWork key={date.date} day={date} />
       ))}

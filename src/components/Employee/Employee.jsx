@@ -53,26 +53,15 @@ function Employee({
     if (!file) return;
     setImgFile(file);
     const reader = new FileReader();
-
-    reader.onload = () => {
-      const dataURL = reader.result;
-      setImg(dataURL);
-    };
-
+    reader.onload = () => setImg(reader.result);
     reader.readAsDataURL(file);
   };
 
   const handleChange = useCallback((name, value) => {
     setValues((prev) => ({ ...prev, [name]: value }));
     setErrors((prev) => ({ ...prev, [name]: "" }));
-
-    if (name == "rate_amount" || name == "rate_type") {
-      setDays((prev) =>
-        prev.map((d) => ({
-          ...d,
-          [name]: value,
-        }))
-      );
+    if (name === "rate_amount" || name === "rate_type") {
+      setDays((prev) => prev.map((d) => ({ ...d, [name]: value })));
     }
   }, []);
 
@@ -85,10 +74,7 @@ function Employee({
       window.close();
       navigate("/employees");
     } catch {
-      setErrors((prev) => ({
-        ...prev,
-        ["email"]: "Ошибка, попробуйте позже",
-      }));
+      setErrors((prev) => ({ ...prev, email: "Ошибка, попробуйте позже" }));
     }
   };
 
@@ -107,9 +93,9 @@ function Employee({
     };
     setSave(false);
     try {
-      if (handleCommand.length == 1) {
+      if (handleCommand.length === 1) {
         await handleCommand(data);
-      } else if (handleCommand.length == 2) {
+      } else if (handleCommand.length === 2) {
         await handleCommand(id, data);
       }
       const channel = new BroadcastChannel("employees");
@@ -117,19 +103,14 @@ function Employee({
       window.close();
       navigate("/employees");
     } catch (err) {
-      if (err.response?.data?.detail == "User with this email already exists") {
-        setErrors((prev) => ({
-          ...prev,
-          ["email"]: "Email занят",
-        }));
+      if (err.response?.data?.detail === "User with this email already exists") {
+        setErrors((prev) => ({ ...prev, email: "Email занят" }));
       } else {
-        setErrors((prev) => ({
-          ...prev,
-          ["email"]: "Ошибка, попробуйте позже",
-        }));
+        setErrors((prev) => ({ ...prev, email: "Ошибка, попробуйте позже" }));
       }
     }
   };
+
   return (
     <>
       <div className={styles["main"]}>
@@ -142,24 +123,31 @@ function Employee({
 
         <div className={styles["cards-wrapper"]}>
           <div className={styles["cards"]}>
-            <Profile
-              mode={mode}
-              text="Информация о сотруднике"
-              cardLogo={person}
-              img={img}
-              loadImage={loadImage}
-              handleChange={handleChange}
-              values={values}
-              errors={errors}
-            />
-            <Schedule
-              text="Расписание смен"
-              cardLogo={calendar}
-              days={days}
-              setDays={setDays}
-              rate_type={values["rate_type"]}
-              rate_amount={values["rate_amount"]}
-            />
+
+            {/* ─── col 1: Profile + Schedule в одном flex-столбце ─── */}
+            <div className={styles["col1"]}>
+              <Profile
+                mode={mode}
+                text="Информация о сотруднике"
+                cardLogo={person}
+                img={img}
+                loadImage={loadImage}
+                handleChange={handleChange}
+                values={values}
+                errors={errors}
+              />
+              <Schedule
+                text="Расписание смен"
+                cardLogo={calendar}
+                days={days}
+                setDays={setDays}
+                setEdit={undefined}
+                rate_type={values["rate_type"]}
+                rate_amount={values["rate_amount"]}
+              />
+            </div>
+
+            {/* ─── col 2: Salary ─── */}
             <Salary
               mode={mode}
               text="Расчет зарплаты"
@@ -172,7 +160,10 @@ function Employee({
               fine={fine}
               attendance={attendance}
             />
+
+            {/* ─── col 3: TimeEntries (только в dossier) ─── */}
             <TimeEntries text="Посещаемость" logo={clock} values={attendance} />
+
             <Buttons
               mode={mode}
               setCancel={setCancel}
