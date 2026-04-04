@@ -1,8 +1,8 @@
 .month {
-  margin-bottom: 20px;
-  border: 2px solid #f2f3fa;
+  border: 2px solid #EEECEA;
   border-radius: 10px;
   overflow: hidden;
+  margin-bottom: 0;
 }
 
 .calendar-nav {
@@ -18,32 +18,37 @@
   font-size: 2.5rem;
   border: none;
   background: none;
+  border-radius: 6px;
+  transition: background-color 0.15s ease;
 }
 
 .calendar-nav-button:hover {
   cursor: pointer;
-  background-color: #d9d9d9;
+  background-color: var(--input-bg);
 }
 
 .calendar-nav-button:active {
-  background-color: #b3b3b3;
+  background-color: #E2DFD9;
 }
 
 .calendar-nav-p {
-  font-size: 1.2rem;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-color);
+  margin: 6px 0;
 }
 
 .weekday {
-  background-color: #f2f3fa;
-  height: 30px;
+  background-color: #F5F4F0;
+  height: 28px;
+  font-size: 0.8rem;
+  color: var(--label-color);
 }
 
 .day {
-  border: 2px solid #f2f3fa;
-  width: 56px;
-  height: 46px;
+  border: 1px solid #EEECEA;
+  width: 52px;
+  height: 42px;
   text-align: center;
 }
 
@@ -55,9 +60,10 @@
   padding-left: 10px;
   padding-right: 10px;
   background: none;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   border: none;
   border-radius: 5px;
+  color: var(--text-color);
 }
 
 .month_grid {
@@ -78,14 +84,20 @@
 
 .day_button:hover {
   cursor: pointer;
+  background-color: var(--input-bg);
+}
+
+.disabled > .day_button {
+  color: var(--placeholder-color);
 }
 
 .disabled > .day_button:hover {
   cursor: not-allowed;
+  background: none;
 }
 
 .selected > .day_button {
-  background: linear-gradient(#3e96fd, #1a67f9);
+  background-color: var(--primary-color);
   border-radius: 5px;
   color: white;
 }

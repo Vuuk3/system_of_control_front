@@ -1,6 +1,5 @@
 import styles from "./DatesOfWork.module.css";
-
-const rate_type = { hourly: "ч", shift: "с" };
+import { useEffect, useRef, useState } from "react";
 
 function DateOfWork({ day }) {
   return (
@@ -19,7 +18,7 @@ function DateOfWork({ day }) {
           maxLength={5}
           readOnly={true}
         />
-        <span>-</span>
+        <span>—</span>
         <input
           type="text"
           className={styles["time-input"]}
@@ -32,15 +31,31 @@ function DateOfWork({ day }) {
   );
 }
 
-function DatesOfWork({ dates }) {
+function DatesOfWork({ dates, calendarRef }) {
+  const [maxHeight, setMaxHeight] = useState(null);
+
+  useEffect(() => {
+    if (!calendarRef?.current) return;
+
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        setMaxHeight(entry.contentRect.height);
+      }
+    });
+
+    observer.observe(calendarRef.current);
+    return () => observer.disconnect();
+  }, [calendarRef]);
+
   return (
-    <>
-      <div className={styles["dates-wrapper"]}>
-        {dates.map((date) => (
-          <DateOfWork key={date.date} day={date} />
-        ))}
-      </div>
-    </>
+    <div
+      className={styles["dates-wrapper"]}
+      style={maxHeight ? { maxHeight: `${maxHeight}px` } : {}}
+    >
+      {dates.map((date) => (
+        <DateOfWork key={date.date} day={date} />
+      ))}
+    </div>
   );
 }
 

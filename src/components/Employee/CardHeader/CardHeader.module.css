@@ -1,17 +1,24 @@
 .card_header {
-  margin-left: 40px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid #EEECEA;
+  margin-bottom: 4px;
 }
 
 .card_header-logo {
-  width: 25px;
-  height: 25px;
+  width: 18px;
+  height: 18px;
+  opacity: 0.4;
 }
 
 .card_header-h2 {
-  font-size: 1.5rem;
-  font-weight: 430;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--label-color);
+  margin: 0;
 }

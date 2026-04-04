@@ -1,63 +1,73 @@
 .card {
-  min-height: 85px;
-  border-radius: 15px;
+  border-radius: 16px;
+  background: transparent;
+  box-shadow: none;
 }
 
 .buttons {
-  grid-column: 22 / 44;
-  grid-row: 8 / 10;
-  justify-self: center;
-  max-width: fit-content;
-  padding-left: 20px;
-  padding-right: 20px;
+  grid-column: 1 / -1;
+  grid-row: 3 / 4;
+  justify-self: end;
+  align-self: center;
+  padding: 0;
 }
 
 .mode-add {
-  grid-row: 6 / 7;
+  grid-column: 1 / -1;
+  grid-row: 3 / 4;
 }
 
 .content {
-  height: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  gap: 30px;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 .mode-dossier {
-  gap: 20px;
+  gap: 10px;
 }
 
 .delete-button {
-  color: red;
-  background-color: #ffb2b2;
+  background-color: #FDECEA;
+  color: #C0392B;
 }
 
-.delete-button:hover {
-  background-color: #d99797;
+.delete-button:hover:not(:disabled) {
+  background-color: #f9d0cc;
 }
 
-.delete-button:active {
-  background-color: #a67474;
+.delete-button:active:not(:disabled) {
+  background-color: #f0b8b3;
+}
+
+.cancel-button {
+  background-color: var(--input-bg);
+  color: var(--text-color);
+}
+
+.cancel-button:hover:not(:disabled) {
+  background-color: #E2DFD9;
 }
 
 .main-button {
-  background-color: #5f8ef2;
-  color: white;
+  background-color: var(--primary-color);
+  color: #ffffff;
 }
 
-.main-button:hover {
-  background-color: #3f76ea;
+.main-button:hover:not(:disabled) {
+  background-color: var(--secondary-color);
 }
 
-.main-button:active {
-  background-color: #154ecf;
+.main-button:active:not(:disabled) {
+  background-color: #1456a8;
 }
 
-@media (max-width: 1450px) {
-  .buttons.card {
-    margin: 0;
-    align-self: center;
+@media (max-width: 1100px) {
+  .card{
+    display: flex;
+    min-width: 100%;
+    justify-content: flex-end;
   }
 }

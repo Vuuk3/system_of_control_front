@@ -1,23 +1,23 @@
 .card {
-  min-height: 620px;
-  background-color: white;
-  border-radius: 15px;
-  container-type: inline-size;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
 }
 
 .time-entries {
-  margin-right: 15px;
-  grid-column: 33 / 44;
+  grid-column: 3 / 4;
   grid-row: 1 / 8;
+  display: flex;
+  flex-direction: column;
 }
 
 .time-entries-wrapper {
-  margin-bottom: 30px;
-  height: 82%;
+  flex: 1;
+  padding: 4px 12px 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 8px;
   overflow-y: auto;
 }
 
@@ -27,42 +27,41 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  padding: 4px 0;
 }
 
 .times {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 6px;
 }
 
 .date {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
+  color: var(--label-color);
 }
 
 .entry_time,
 .exit_time {
   margin: 0;
-  margin-left: 5px;
-  margin-right: 5px;
-  font-size: clamp(1rem, 5cqw, 1.4rem);
+  font-size: clamp(0.8rem, 5cqw, 1rem);
 }
 
 .time {
-  padding: 10px;
-  border: 1px solid transparent;
-  border-radius: 5px;
-  color: black;
+  padding: 6px 10px;
+  border-radius: 8px;
+  color: var(--text-color);
 }
 
 .on_time {
-  background: none;
-  border: 1px solid #3e96fd;
+  background-color: var(--input-bg);
+  border: 1.5px solid transparent;
 }
 
 .not_on_time {
-  color: white;
-  background: linear-gradient(#3e96fd, #1a67f9);
+  background-color: var(--primary-color);
+  color: #ffffff;
 }
 
 @media (max-width: 1450px) {

@@ -24,6 +24,7 @@ function Salary({
         <div className={styles["salary-content"]}>
           <div className={styles["rate"]}>
             <FormField
+              header="Ставка"
               className={styles["form_field-div-input"]}
               name="rate_amount"
               inputType="text"
