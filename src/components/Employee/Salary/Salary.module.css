@@ -6,29 +6,32 @@
 
 .salary {
   grid-column: 2 / 3;
-  grid-row: 1 / 2;   /* одна строка контента */
-  align-self: stretch;
+  grid-row: 1 / 2;
   display: flex;
   flex-direction: column;
-  container-type: inline-size;
+  
+  /* Трюк: перестаем влиять на высоту строки, но заполняем доступное пространство */
+  height: 0;
+  min-height: 100%;
+  overflow: hidden; /* Скрываем вылезающий контент, чтобы работал внутренний скролл */
 }
 
-/* в add-режиме TimeEntries нет — Salary занимает col 2 и 3 */
+/* В режиме add TimeEntries нет — Salary занимает колонки 2 и 3 */
 .no-time-entries {
   grid-column: 2 / 4;
-  grid-row: 1 / 2;
-  align-self: stretch;
 }
 
 .salary-content {
-  align-self: stretch;
-  width: auto;
+  flex: 1;
+  min-height: 0; /* Разрешаем блоку сжиматься для работы скролла */
+  overflow-y: auto; /* Включаем прокрутку для внутренностей */
   padding: 12px 20px 16px;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
+/* ─── Дальше стили остаются вашими без изменений ─── */
 .salary-h3,
 .adjustments-bonus-h3,
 .adjustments-fine-h3 {
@@ -109,4 +112,16 @@ input[name="rate_type"]:hover,
   font-size: clamp(1.4rem, 12cqw, 2.4rem);
   font-weight: 600;
   color: var(--text-color);
+}
+
+/* ─── Адаптив для мобилок ─── */
+@media (max-width: 1100px) {
+  .salary {
+    height: auto;
+    min-height: unset;
+    overflow: visible;
+  }
+  .salary-content {
+    overflow-y: visible;
+  }
 }

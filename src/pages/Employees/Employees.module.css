@@ -1,253 +1,158 @@
 .main {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background-color: #f2f3f9;
+  background-color: var(--background-color);
   overflow-y: hidden;
 }
 
-.buttons {
-  margin-bottom: 15px;
+.content {
+  flex: 1;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 28px 40px;
+  box-sizing: border-box;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-}
-
-.add_employee {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: right;
-  background-color: #5f8ef2;
-  border-radius: 5px;
-}
-
-.add_employee-link {
-  padding: 5px;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  background-color: inherit;
-  font-size: 1.25rem;
-  text-decoration: none;
-}
-
-.add_employee-logo {
-  padding-left: 10px;
-  width: 30px;
-  height: 30px;
-}
-
-.add_employee:hover,
-.add_employee-button:hover {
-  background-color: #5179ce;
-  cursor: pointer;
-}
-
-.add_employee:active,
-.add_employee-button:active {
-  background-color: #4363a9;
-}
-
-.download-button {
-  padding: 5px;
-  padding-bottom: 2px;
-  border: 1px solid #cfd7ec;
-  border-radius: 5px;
-  background-color: #e5e7f6;
-}
-
-.download-logo {
-  width: 25px;
-  height: 24px;
-}
-
-.download-button:hover {
-  background-color: #c2c4cf;
-  cursor: copy;
-}
-
-.download-button:active {
-  background-color: #abadb6;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .card {
-  width: 95%;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background-color: #fafbff;
-  padding: 20px;
-  padding-top: 10px;
-  border-radius: 15px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden; /* Важно для скролла таблицы внутри */
 }
 
-.employees {
-  display: flex;
-  flex-direction: column;
-}
-
-.employees-tools {
+/* ── Панель инструментов ── */
+.tools {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid #EEECEA;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
-.search_bar {
-  max-width: 400px;
-  height: 35px;
-  margin-bottom: 15px;
+/* Поиск */
+.search-bar {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  background-color: #e8e8f9;
-  border: 1px solid transparent;
-  border-radius: 5px;
-}
-
-.search_bar:focus-within {
-  border: 1px solid #3584e4;
-}
-
-.search_bar-input {
+  background-color: var(--input-bg);
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  height: 44px;
   width: 100%;
-  background-color: inherit;
+  max-width: 360px;
+  padding: 0 16px;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.search-bar:focus-within {
+  border-color: var(--input-border-focus);
+  background-color: var(--input-bg-focus);
+}
+
+.search-icon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.4;
+  margin-right: 12px;
+}
+
+.search-input {
+  flex: 1;
   border: none;
-  border-radius: 5px;
+  background: transparent;
   outline: none;
-  font-size: 1.25rem;
-  padding-left: 50px;
+  font-size: 0.95rem;
+  color: var(--text-color);
 }
 
-.search_bar-logo {
-  position: relative;
-  left: 7%;
+.search-input::placeholder {
+  color: var(--placeholder-color);
 }
 
-.content {
-  background-color: #f1effa;
-}
-
-.link-wrapper {
-  text-decoration: none;
-  color: black;
-}
-
-.profile {
+/* Кнопки действий */
+.actions {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
+  gap: 12px;
 }
 
-.profile:hover {
-  cursor: pointer;
-}
-
-.profile-logo {
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-  border: 1px solid transparent;
-  background-color: lightgray;
-}
-
-.profile-name {
-  font-weight: 500;
-}
-
-.contacts {
+.btn-icon {
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--input-bg);
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.contacts-phone,
-.contacts-email {
-  margin: 0;
-}
-
-.contacts-email {
-  color: #6e6d73;
-}
-
-.times {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.time {
-  padding: 10px;
-  border: 1px solid transparent;
-  border-radius: 5px;
-  color: black;
-}
-
-.on_time {
-  background: none;
-  border: 1px solid #3e96fd;
-}
-
-.not_on_time {
-  color: white;
-  background: linear-gradient(#3e96fd, #1a67f9);
-}
-
-.position-p,
-.rate-p,
-.entry_time,
-.exit_time {
-  margin: 0;
-  margin-left: 5px;
-  margin-right: 5px;
-  font-size: 1rem;
-}
-
-.schedule-button,
-.dossier-button {
-  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 60px;
-  height: 50px;
-  border: none;
-  border-radius: 10px;
-  background-color: #5b8ee4;
-}
-
-.schedule-logo {
-  width: 25px;
-  height: 25px;
-}
-
-.dossier-logo {
-  width: 30px;
-  height: 30px;
-}
-
-.dossier-button {
-  margin-left: 22.5px;
-  margin-right: 22.5px;
-}
-
-.schedule-button:hover,
-.dossier-button:hover {
   cursor: pointer;
-  background-color: #4d79c2;
+  transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-.schedule-button:active,
-.dossier-button:active {
-  background-color: #4063a0;
+.btn-icon:hover {
+  background-color: #E2DFD9;
+}
+
+.btn-icon:active {
+  transform: scale(0.95);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  opacity: 0.7;
+}
+
+.btn-primary {
+  height: 44px;
+  padding: 0 20px;
+  border-radius: 8px;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.icon-white {
+  width: 18px;
+  height: 18px;
+  filter: brightness(0) invert(1);
+}
+
+@media (max-width: 768px) {
+  .tools {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .search-bar {
+    max-width: 100%;
+  }
+  .actions {
+    justify-content: space-between;
+  }
 }

@@ -1,19 +1,54 @@
-.table-scroll {
-  height: 60vh;
+.table-container {
+  flex: 1;
   overflow-y: auto;
+  overflow-x: auto;
+  padding: 0 24px 24px;
 }
 
 .table {
-  border: 1px solid #d0d7f3;
-  border-radius: 10px;
+  width: 100%;
   border-collapse: collapse;
+  white-space: nowrap;
 }
 
-.table td {
-  border: 1px solid #d0d7f3;
-  text-align: center;
+.table-row {
+  border-bottom: 1px solid #EEECEA;
+  transition: background-color 0.15s ease;
 }
 
-.content {
-  background-color: #f1effa;
+.table-row:hover {
+  background-color: #FAFAFA;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.cell {
+  padding: 16px 12px;
+  vertical-align: middle;
+}
+
+/* ── Стили для выпадающего расписания ── */
+.expanded-row {
+  background-color: #FAFAFA;
+}
+
+.expanded-cell {
+  padding: 0;
+  border-bottom: 2px solid #EEECEA; /* Отделяем расписание от следующего сотрудника */
+}
+
+.expanded-inner {
+  padding: 20px 24px 28px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Ограничиваем ширину карточки расписания, чтобы она не растягивалась на всю таблицу */
+.expanded-inner > div {
+  max-width: 760px;
+  width: 100%;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06); /* Выделяем карточку над серым фоном */
+  border: 1px solid #EEECEA;
 }

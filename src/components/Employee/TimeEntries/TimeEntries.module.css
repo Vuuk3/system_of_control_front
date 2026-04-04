@@ -6,25 +6,28 @@
 
 .time-entries {
   grid-column: 3 / 4;
-  grid-row: 1 / 2;   /* одна строка контента */
+  grid-row: 1 / 2;
   display: flex;
   flex-direction: column;
-  align-self: stretch;
+  
+  /* Тот же трюк: заставляем зависеть от col1 */
+  height: 0;
+  min-height: 100%;
   overflow: hidden;
-  min-height: 0;
 }
 
 .time-entries-wrapper {
   flex: 1;
-  min-height: 0;
+  min-height: 0; /* Обязательно для работы внутреннего скролла */
+  overflow-y: auto; /* Включаем прокрутку списка посещений */
   padding: 4px 12px 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  overflow-y: auto;
 }
 
+/* ─── Ваши стили ячеек ─── */
 .time-entry {
   width: 100%;
   display: flex;
@@ -68,10 +71,12 @@
   color: #ffffff;
 }
 
-/* ≤ 1100px: посещаемость в 3 колонки */
+/* ─── Адаптив для мобилок ─── */
 @media (max-width: 1100px) {
   .time-entries {
     width: 100%;
+    height: auto;
+    min-height: unset;
     overflow: visible;
   }
 

@@ -1,31 +1,32 @@
 .link-wrapper {
   text-decoration: none;
-  color: black;
 }
 
 .profile {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.profile:hover {
+  gap: 12px;
   cursor: pointer;
 }
 
-.profile-logo {
-  height: 100px;
-  width: 100px;
+.avatar {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  border: 1px solid transparent;
-  background-color: lightgray;
+  object-fit: cover;
+  background-color: var(--input-bg);
+  flex-shrink: 0;
 }
 
-.profile-name {
+.name {
+  margin: 0;
+  font-size: 0.95rem;
   font-weight: 500;
+  color: var(--text-color);
 }
+
+.profile:hover .name {
+  color: var(--primary-color);
+}
+
+/* Подсветка имени при наведении */

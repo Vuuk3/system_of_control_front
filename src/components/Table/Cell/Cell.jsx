@@ -5,19 +5,18 @@ import TextCell from "../TextCell/TextCell";
 import TimeCell from "../TimeCell/TimeCell";
 
 function Cell({ props }) {
-  console.log(props.data);
   return (
     <>
-      {props.type == "text" ? (
+      {props.type === "text" ? (
         <TextCell data={props.text} />
-      ) : props.type == "profile" ? (
+      ) : props.type === "profile" ? (
         <ProfileCell id={props.id} photo={props.photo} name={props.name} />
-      ) : props.type == "contacts" ? (
+      ) : props.type === "contacts" ? (
         <ContactsCell phone_number={props.phone} email={props.email} />
-      ) : props.type == "time" ? (
+      ) : props.type === "time" ? (
         <TimeCell entry_time={props.entry_time} exit_time={props.exit_time} />
       ) : (
-        <ButtonCell id={props.id} mode={props.mode} icon={props.icon} />
+        <ButtonCell id={props.id} mode={props.mode} icon={props.icon} onAction={props.onAction} />
       )}
     </>
   );

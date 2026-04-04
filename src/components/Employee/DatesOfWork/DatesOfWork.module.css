@@ -1,5 +1,11 @@
 .dates-wrapper {
-  width: 100%;
+  /* Заполняем ровно ту высоту, которую задал родитель (календарь) */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  
   padding: 0 6px;
   display: flex;
   flex-direction: column;
@@ -7,15 +13,13 @@
   gap: 0;
   box-sizing: border-box;
   overflow-y: auto;
-  /* ≈ высота 6-недельного календаря: шапка ~44px + 6×42px = 296px */
-  max-height: 310px;
 }
 
 .date {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 8px 4px;
+  padding: 10px 4px;
   border-bottom: 1px solid #EEECEA;
   flex-shrink: 0;
 }
@@ -25,10 +29,10 @@
 }
 
 .date-p {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 500;
   color: var(--text-color);
-  margin: 0 0 6px;
+  margin: 0 0 8px;
 }
 
 .time {
@@ -47,6 +51,14 @@
   background-color: var(--input-bg);
   color: var(--text-color);
   font-size: 0.95rem;
+  font-weight: 500;
   padding-left: 6px;
   text-align: center;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  outline: none;
+}
+
+.time-input:focus {
+  background-color: var(--input-bg-focus);
+  border-color: var(--input-border-focus);
 }

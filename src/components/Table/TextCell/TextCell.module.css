@@ -1,6 +1,6 @@
-.content-p {
+.text {
   margin: 0;
-  margin-left: 5px;
-  margin-right: 5px;
-  font-size: 1rem;
+  font-size: 0.95rem;
+  color: var(--text-color);
+  text-align: left;
 }
