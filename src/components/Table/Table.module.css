@@ -7,48 +7,47 @@
 
 .table {
   width: 100%;
+  table-layout: fixed; /* Оставляем фиксированную разметку */
   border-collapse: collapse;
-  white-space: nowrap;
+}
+
+.cell {
+  padding: 12px;
+  vertical-align: middle;
 }
 
 .table-row {
   border-bottom: 1px solid #EEECEA;
-  transition: background-color 0.15s ease;
 }
 
-.table-row:hover {
-  background-color: #FAFAFA;
-}
+/* ─── Пропорции для страницы ПЕРСОНАЛ (variant="employees") ─── */
+.employees .table th:nth-child(1),
+.employees .table td:nth-child(1) { width: 22%; } /* ФИО */
 
-.table-row:last-child {
-  border-bottom: none;
-}
+.employees .table th:nth-child(2),
+.employees .table td:nth-child(2) { width: 22%; } /* Контакты */
 
-.cell {
-  padding: 16px 12px;
-  vertical-align: middle;
-}
+.employees .table th:nth-child(3),
+.employees .table td:nth-child(3) { width: 14%; } /* Должность */
 
-/* ── Стили для выпадающего расписания ── */
-.expanded-row {
-  background-color: #FAFAFA;
-}
+.employees .table th:nth-child(4),
+.employees .table td:nth-child(4) { width: 12%; } /* Зарплата */
 
-.expanded-cell {
-  padding: 0;
-  border-bottom: 2px solid #EEECEA; /* Отделяем расписание от следующего сотрудника */
-}
+.employees .table th:nth-child(5),
+.employees .table td:nth-child(5) { width: 16%; } /* Приход/Уход */
 
-.expanded-inner {
-  padding: 20px 24px 28px;
-  display: flex;
-  justify-content: flex-start;
-}
+.employees .table th:nth-child(6),
+.employees .table td:nth-child(6),
+.employees .table th:nth-child(7),
+.employees .table td:nth-child(7) { width: 7%; text-align: center; } /* Кнопки */
 
-/* Ограничиваем ширину карточки расписания, чтобы она не растягивалась на всю таблицу */
-.expanded-inner > div {
-  max-width: 760px;
-  width: 100%;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06); /* Выделяем карточку над серым фоном */
-  border: 1px solid #EEECEA;
-}
+
+/* ─── Пропорции для страницы ЗАРПЛАТЫ (variant="salaries") ─── */
+.salaries .table th:nth-child(1),
+.salaries .table td:nth-child(1) { width: 25%; } /* ФИО */
+
+.salaries .table th:nth-child(2),
+.salaries .table td:nth-child(2) { width: 15%; } /* Должность */
+
+.salaries .table th:nth-child(n+3),
+.salaries .table td:nth-child(n+3) { width: 12%; } /* Все остальные поровну */

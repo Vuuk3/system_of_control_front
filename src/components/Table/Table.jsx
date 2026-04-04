@@ -5,7 +5,7 @@ import Cell from "./Cell/Cell";
 import Schedule from "@components/Employee/Schedule/Schedule";
 import { calendar } from "@utils/icons";
 
-function Table({ headers, content }) {
+function Table({ headers, content, variant = "default" }) {
   const [expanded, setExpanded] = useState(new Set());
 
   const toggleRow = (id) => {
@@ -18,7 +18,7 @@ function Table({ headers, content }) {
   };
 
   return (
-    <div className={styles["table-container"]}>
+    <div className={`${styles["table-container"]} ${styles[variant]}`}>
       <table className={styles["table"]}>
         <TableHeader headers={headers} />
         <tbody>

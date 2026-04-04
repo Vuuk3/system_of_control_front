@@ -1,57 +1,46 @@
 .main {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background-color: #f2f3f9;
+  background-color: var(--background-color);
   overflow-y: hidden;
 }
 
-.card {
-  width: 95%;
+.content {
+  flex: 1;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 28px 40px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background-color: #fafbff;
-  padding: 20px;
-  padding-top: 10px;
-  border-radius: 15px;
+  min-height: 0;
 }
 
-.content {
-  background-color: #f1effa;
-}
-
-.profile {
+.card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
 }
 
-.profile-logo {
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
+/* Верхний отступ для таблицы, чтобы заголовки не прилипали к краю карточки */
+.table-wrapper {
+  padding-top: 12px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
-.profile-name {
-  font-weight: 500;
-}
-
-.id-p,
-.position-p,
-.rate_amount-p,
-.amount_work-p,
-.bonus-p,
-.fine-p,
-.final_salary-p {
-  margin: 0;
-  margin-left: 5px;
-  margin-right: 5px;
-  font-size: 1.4rem;
+/* Адаптив под мобильные устройства */
+@media (max-width: 768px) {
+  .content {
+    padding: 0 16px 24px;
+  }
 }

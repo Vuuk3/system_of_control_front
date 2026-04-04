@@ -32,7 +32,7 @@ function Employees() {
       }
     };
     if (search === "") checkEmployees();
-    
+
     const timer = setTimeout(() => {
       if (search) checkEmployees();
     }, 300);
@@ -42,7 +42,7 @@ function Employees() {
       if (event.data.type === "employees-changed") checkEmployees();
     };
     channel.addEventListener("message", handleMessage);
-    
+
     return () => {
       channel.close();
       clearTimeout(timer);
@@ -107,7 +107,7 @@ function Employees() {
       <Title text="Персонал" />
       <div className={styles["main"]}>
         <Menu header_text="Персонал" header_logo={person} />
-        
+
         <div className={styles["content"]}>
           <div className={styles["card"]}>
             <div className={styles["tools"]}>
@@ -138,15 +138,8 @@ function Employees() {
             </div>
 
             <Table
-              headers={[
-                "ФИО",
-                "Контактные данные",
-                "Должность",
-                "Зарплата",
-                "Приход / Уход",
-                "Расписание",
-                "Досье",
-              ]}
+              variant="employees" 
+              headers={["ФИО", "Контактные данные", "Должность", "Зарплата", "Приход / Уход", "Расписание", "Досье"]}
               content={employees}
             />
           </div>

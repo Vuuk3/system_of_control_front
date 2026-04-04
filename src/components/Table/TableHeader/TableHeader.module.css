@@ -1,33 +1,17 @@
-thead th {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background-color: #ffffff; /* Белый фон перекрывает контент при скролле */
-}
-
-/* Фейковая линия снизу, т.к. border-bottom может просвечивать при скролле */
-thead th::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 1px;
-  background-color: #EEECEA;
-}
-
 .table-header {
   padding: 16px 12px;
-  text-align: left; /* В современных таблицах лучше выравнивать по левому краю */
+  text-align: left; /* По умолчанию всё по левому краю */
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--label-color);
+  box-sizing: border-box;
+  background-color: #ffffff;
 }
 
-/* Центрируем заголовки для кнопок в конце */
-.table-header:nth-last-child(1),
-.table-header:nth-last-child(2) {
+/* Центрируем последние две колонки (там кнопки) на странице персонала */
+.employees .table-header:nth-last-child(1),
+.employees .table-header:nth-last-child(2) {
   text-align: center;
 }

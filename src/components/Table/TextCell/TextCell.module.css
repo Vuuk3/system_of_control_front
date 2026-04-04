@@ -3,4 +3,6 @@
   font-size: 0.95rem;
   color: var(--text-color);
   text-align: left;
+  /* Убираем лишние отступы, которые могли сбивать центровку */
+  padding: 0; 
 }

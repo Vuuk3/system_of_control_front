@@ -1,8 +1,9 @@
 .contacts {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
   text-align: left;
+  overflow: hidden; /* Обрезаем длинный email */
 }
 
 .phone {
@@ -16,4 +17,7 @@
   margin: 0;
   font-size: 0.8rem;
   color: var(--label-color);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
