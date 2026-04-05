@@ -20,6 +20,34 @@
   border-bottom: 1px solid #EEECEA;
 }
 
+.expanded-row {
+  /* Сделаем фон чуть темнее, чтобы создать эффект глубины */
+  background-color: #F8F9FA; 
+}
+
+.expanded-cell {
+  padding: 0;
+  border-bottom: 1px solid #EEECEA;
+}
+
+.expanded-inner {
+  padding: 24px 32px; /* Увеличили отступы */
+  display: flex;
+  justify-content: center; /* Центрируем расписание в таблице */
+}
+
+/* Сама карточка расписания */
+.expanded-inner > div {
+  /* Увеличиваем макс-ширину, чтобы календарь и даты не теснились */
+  max-width: 960px; 
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Делаем тень более выразительной */
+  border: 1px solid #EEECEA;
+  overflow: hidden;
+}
+
 /* ─── Пропорции для страницы ПЕРСОНАЛ (variant="employees") ─── */
 .employees .table th:nth-child(1),
 .employees .table td:nth-child(1) { width: 22%; } /* ФИО */
