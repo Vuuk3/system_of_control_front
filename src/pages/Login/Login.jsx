@@ -31,6 +31,7 @@ function Login() {
         setErrors((prev) => ({
           ...prev,
           email: "Неправильный email или пароль",
+          password: "Неправильный email или пароль",
         }));
       } else {
         setErrors((prev) => ({ ...prev, email: "Ошибка, попробуйте позже" }));
@@ -90,7 +91,7 @@ function Login() {
             <SubmitButton
               className={styles["button"]}
               text="Войти"
-              disabled={Object.values(errors).some(Boolean)}
+              // disabled={Object.values(errors).some(Boolean)} // Не отключаем кнопку
               handleClick={() => {
                 const newErrors = validation(values);
                 setErrors(newErrors);
