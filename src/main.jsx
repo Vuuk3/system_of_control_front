@@ -15,6 +15,7 @@ import { EmployeesProvider } from "./contexts/EmployeesContext";
 import Salaries from "./pages/Salaries/Salaries";
 import { CheckAuthProvider } from "./contexts/CheckAuthContext";
 import { AvatarProvider } from "./contexts/AvatarContext";
+import ShiftSchedule from "./pages/ShiftSchedule/ShiftSchedule";
 
 function UserLayout() {
   return (
@@ -79,6 +80,7 @@ createRoot(document.getElementById("root")).render(
             <Route path="/employee/:id" element={<EmployeeDossier />}></Route>
           </Route>
           <Route path="/salaries" element={<Salaries />}></Route>
+          <Route path="/shift_schedule" element={<ShiftSchedule />}></Route>
         </Route>
       </Route>
     </Routes>

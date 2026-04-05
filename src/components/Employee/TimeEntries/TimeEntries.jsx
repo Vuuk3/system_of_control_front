@@ -15,6 +15,7 @@ function Times({ entry_time, exit_time }) {
       >
         <p className={styles["entry_time"]}>{entry_time}</p>
       </div>
+      <span className={styles["separator"]}>—</span>
       <div
         className={`${styles["time"]} ${substractTime(exit_time, "18:00") ? styles["on_time"] : styles["not_on_time"]}`}
       >

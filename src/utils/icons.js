@@ -8,7 +8,7 @@ import settingsIcon from "@assets/settings.svg";
 import exitIcon from "@assets/exit.svg";
 import plus from "@assets/plus.svg";
 import searchIcon from "@assets/search.svg";
-import scheduleIcon from "@assets/schedule.svg";
+import scheduleIcon from "@assets/schedule.jpg";
 import dossier from "@assets/dossier.svg";
 import download from "@assets/download.svg";
 import calendar from "@assets/calendar.svg";

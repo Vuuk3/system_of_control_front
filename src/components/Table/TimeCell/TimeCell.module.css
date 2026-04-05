@@ -1,27 +1,28 @@
 .times {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
 }
 
 .separator {
   color: var(--placeholder-color);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
-.badge {
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 500;
+.time {
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
-.on-time {
+.on_time {
   background-color: var(--input-bg);
   color: var(--text-color);
 }
 
-.late {
+.not_on_time {
   background-color: var(--primary-color);
   color: #ffffff;
 }

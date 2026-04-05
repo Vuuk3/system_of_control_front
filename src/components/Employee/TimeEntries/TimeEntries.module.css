@@ -39,8 +39,31 @@
 
 .times {
   display: flex;
-  flex-direction: row;
-  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.separator {
+  color: var(--placeholder-color);
+  font-size: 0.9rem;
+}
+
+.time {
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.on_time {
+  background-color: var(--input-bg);
+  color: var(--text-color);
+}
+
+.not_on_time {
+  background-color: var(--primary-color);
+  color: #ffffff;
 }
 
 .date {
@@ -53,22 +76,6 @@
 .exit_time {
   margin: 0;
   font-size: clamp(0.8rem, 5cqw, 1rem);
-}
-
-.time {
-  padding: 6px 10px;
-  border-radius: 8px;
-  color: var(--text-color);
-}
-
-.on_time {
-  background-color: var(--input-bg);
-  border: 1.5px solid transparent;
-}
-
-.not_on_time {
-  background-color: var(--primary-color);
-  color: #ffffff;
 }
 
 /* ─── Адаптив для мобилок ─── */
