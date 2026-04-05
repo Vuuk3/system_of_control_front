@@ -24,7 +24,7 @@
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
-  flex: 1;
+  /* flex: 1; */
   min-height: 0;
   overflow: hidden; /* Важно для скролла таблицы внутри */
 }
@@ -142,17 +142,4 @@
   width: 18px;
   height: 18px;
   filter: brightness(0) invert(1);
-}
-
-@media (max-width: 768px) {
-  .tools {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .search-bar {
-    max-width: 100%;
-  }
-  .actions {
-    justify-content: space-between;
-  }
 }

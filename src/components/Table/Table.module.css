@@ -1,5 +1,5 @@
 .table-container {
-  flex: 1;
+  /* flex: 1; */
   overflow-y: auto;
   overflow-x: auto;
   padding: 0 24px 24px;
@@ -7,13 +7,18 @@
 
 .table {
   width: 100%;
-  table-layout: fixed; /* Оставляем фиксированную разметку */
+  min-width: 900px; 
+  table-layout: fixed;
+  /* Оставляем фиксированную разметку */
   border-collapse: collapse;
 }
 
 .cell {
-  padding: 12px;
+  padding: 16px 12px;
   vertical-align: middle;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .table-row {
@@ -22,7 +27,7 @@
 
 .expanded-row {
   /* Сделаем фон чуть темнее, чтобы создать эффект глубины */
-  background-color: #F8F9FA; 
+  background-color: #F8F9FA;
 }
 
 .expanded-cell {
@@ -31,51 +36,91 @@
 }
 
 .expanded-inner {
-  padding: 24px 32px; /* Увеличили отступы */
+  padding: 24px 32px;
+  /* Увеличили отступы */
   display: flex;
-  justify-content: center; /* Центрируем расписание в таблице */
+  justify-content: center;
+  /* Центрируем расписание в таблице */
 }
 
 /* Сама карточка расписания */
-.expanded-inner > div {
+.expanded-inner>div {
   /* Увеличиваем макс-ширину, чтобы календарь и даты не теснились */
-  max-width: 960px; 
+  max-width: 960px;
   width: 100%;
   background-color: #ffffff;
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Делаем тень более выразительной */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  /* Делаем тень более выразительной */
   border: 1px solid #EEECEA;
   overflow: hidden;
 }
 
 /* ─── Пропорции для страницы ПЕРСОНАЛ (variant="employees") ─── */
 .employees .table th:nth-child(1),
-.employees .table td:nth-child(1) { width: 22%; } /* ФИО */
+.employees .table td:nth-child(1) {
+  width: 16%;
+}
+
+/* ФИО */
 
 .employees .table th:nth-child(2),
-.employees .table td:nth-child(2) { width: 22%; } /* Контакты */
+.employees .table td:nth-child(2) {
+  width: 16%;
+}
+
+/* Контакты */
 
 .employees .table th:nth-child(3),
-.employees .table td:nth-child(3) { width: 14%; } /* Должность */
+.employees .table td:nth-child(3) {
+  width: 12%;
+}
+
+/* Должность */
 
 .employees .table th:nth-child(4),
-.employees .table td:nth-child(4) { width: 12%; } /* Зарплата */
+.employees .table td:nth-child(4) {
+  width: 12%;
+}
+
+/* Зарплата */
 
 .employees .table th:nth-child(5),
-.employees .table td:nth-child(5) { width: 16%; } /* Приход/Уход */
+.employees .table td:nth-child(5) {
+  width: 16%;
+}
+
+/* Приход/Уход */
 
 .employees .table th:nth-child(6),
 .employees .table td:nth-child(6),
 .employees .table th:nth-child(7),
-.employees .table td:nth-child(7) { width: 7%; text-align: center; } /* Кнопки */
+.employees .table td:nth-child(7) {
+  width: 14%;
+  text-align: center;
+}
+
+/* Кнопки */
 
 
 /* ─── Пропорции для страницы ЗАРПЛАТЫ (variant="salaries") ─── */
 .salaries .table th:nth-child(1),
-.salaries .table td:nth-child(1) { width: 25%; } /* ФИО */
+.salaries .table td:nth-child(1) {
+  width: 25%;
+}
+
+/* ФИО */
 
 .salaries .table th:nth-child(2),
-.salaries .table td:nth-child(2) { width: 15%; } /* Должность */
+.salaries .table td:nth-child(2) {
+  width: 15%;
+}
+
+/* Должность */
 
 .salaries .table th:nth-child(n+3),
-.salaries .table td:nth-child(n+3) { width: 12%; } /* Все остальные поровну */
+.salaries .table td:nth-child(n+3) {
+  width: 12%;
+}
+
+/* Все остальные поровну */
