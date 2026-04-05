@@ -8,13 +8,15 @@ function substractTime(time1, time2) {
 
 function TimeCell({ entry_time, exit_time }) {
   return (
-    <div className={styles["times"]}>
-      <div className={`${styles["time"]} ${substractTime(entry_time, "08:00") ? styles["on_time"] : styles["not_on_time"]}`}>
-        {entry_time}
-      </div>
-      <span className={styles["separator"]}>—</span>
-      <div className={`${styles["time"]} ${substractTime(exit_time, "18:00") ? styles["on_time"] : styles["not_on_time"]}`}>
-        {exit_time}
+    <div className={styles["cell-center"]}>
+      <div className={styles["time-wrapper"]}>
+        <span className={`${styles["time-text"]} ${substractTime(entry_time, "08:00") ? "" : styles["late-text"]}`}>
+          {entry_time}
+        </span>
+        <span className={styles["separator"]}>—</span>
+        <span className={`${styles["time-text"]} ${substractTime(exit_time, "18:00") ? "" : styles["late-text"]}`}>
+          {exit_time}
+        </span>
       </div>
     </div>
   );

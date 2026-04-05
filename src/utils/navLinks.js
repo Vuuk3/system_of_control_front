@@ -3,6 +3,6 @@ export const LINKS_LIST = [
   { link: "/employees", text: "Персонал" },
   { link: "/salaries", text: "Зарплаты" },
   { link: "/shift_schedule", text: "Расписание смен" },
-  { link: null, text: "Заявки" },
+  { link: "/applications", text: "Заявки" },
   { link: null, text: "Показать QR-код" },
 ];

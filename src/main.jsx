@@ -9,13 +9,16 @@ import EditInformation from "./pages/EditInformation/EditInformation";
 import Employees from "./pages/Employees/Employees";
 import AddEmployee from "./pages/AddEmployee/AddEmployee";
 import EmployeeDossier from "./pages/EmployeeDossier/EmployeeDossier";
+import Salaries from "./pages/Salaries/Salaries";
+import ShiftSchedule from "./pages/ShiftSchedule/ShiftSchedule";
+import Applications from "./pages/Applications/Applications";
+import ApplicationDetail from "./pages/ApplicationDetail/ApplicationDetail";
+
 import { UserProvider } from "./contexts/UserContext";
 import { CompanyProvider } from "./contexts/CompanyContext";
 import { EmployeesProvider } from "./contexts/EmployeesContext";
-import Salaries from "./pages/Salaries/Salaries";
 import { CheckAuthProvider } from "./contexts/CheckAuthContext";
 import { AvatarProvider } from "./contexts/AvatarContext";
-import ShiftSchedule from "./pages/ShiftSchedule/ShiftSchedule";
 
 function UserLayout() {
   return (
@@ -81,6 +84,8 @@ createRoot(document.getElementById("root")).render(
           </Route>
           <Route path="/salaries" element={<Salaries />}></Route>
           <Route path="/shift_schedule" element={<ShiftSchedule />}></Route>
+          <Route path="/applications" element={<Applications />}></Route>
+          <Route path="/applications/:id" element={<ApplicationDetail />}></Route>
         </Route>
       </Route>
     </Routes>

@@ -9,18 +9,14 @@ function substractTime(time1, time2) {
 
 function Times({ entry_time, exit_time }) {
   return (
-    <div className={styles["times"]}>
-      <div
-        className={`${styles["time"]} ${substractTime(entry_time, "08:00") ? styles["on_time"] : styles["not_on_time"]}`}
-      >
-        <p className={styles["entry_time"]}>{entry_time}</p>
-      </div>
+    <div className={styles["time-wrapper"]}>
+      <span className={`${styles["time-text"]} ${substractTime(entry_time, "08:00") ? "" : styles["late-text"]}`}>
+        {entry_time}
+      </span>
       <span className={styles["separator"]}>—</span>
-      <div
-        className={`${styles["time"]} ${substractTime(exit_time, "18:00") ? styles["on_time"] : styles["not_on_time"]}`}
-      >
-        <p className={styles["exit_time"]}>{exit_time}</p>
-      </div>
+      <span className={`${styles["time-text"]} ${substractTime(exit_time, "18:00") ? "" : styles["late-text"]}`}>
+        {exit_time}
+      </span>
     </div>
   );
 }
@@ -37,21 +33,19 @@ function TimeEntry({ date, entry_time, exit_time }) {
 function TimeEntries({ text, logo, values }) {
   if (!values) return null;
   return (
-    <>
-      <div className={`${styles["time-entries"]} ${styles["card"]}`}>
-        <CardHeader text={text} logo={logo} />
-        <div className={styles["time-entries-wrapper"]}>
-          {values.map((value) => (
-            <TimeEntry
-              key={value.date}
-              date={value.date}
-              entry_time={value.entry_time}
-              exit_time={value.exit_time}
-            />
-          ))}
-        </div>
+    <div className={`${styles["time-entries"]} ${styles["card"]}`}>
+      <CardHeader text={text} logo={logo} />
+      <div className={styles["time-entries-wrapper"]}>
+        {values.map((value) => (
+          <TimeEntry
+            key={value.date}
+            date={value.date}
+            entry_time={value.entry_time}
+            exit_time={value.exit_time}
+          />
+        ))}
       </div>
-    </>
+    </div>
   );
 }
 

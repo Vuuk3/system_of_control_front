@@ -2,7 +2,7 @@ import {
   person,
   plus,
   searchIcon,
-  scheduleIcon,
+  scheduleIcon2,
   dossier,
   share,
 } from "@utils/icons";
@@ -88,7 +88,7 @@ function Employees() {
               text: `${e.final_salary} ${VALUTA[e.profile.currency]}`,
             },
             { type: "time", entry_time: "08:01", exit_time: "18:01" },
-            { type: "button", id: e.id, mode: "schedule", icon: scheduleIcon },
+            { type: "button", id: e.id, mode: "schedule", icon: scheduleIcon2 },
             { type: "button", id: e.id, mode: "dossier", icon: dossier },
           ],
         }))

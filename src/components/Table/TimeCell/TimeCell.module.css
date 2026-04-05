@@ -1,28 +1,30 @@
-.times {
+.cell-center {
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 8px;
+}
+
+.time-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--input-bg);
+  /* Единый серый фон */
+  padding: 6px 12px;
+  border-radius: 8px;
 }
 
 .separator {
-  color: var(--placeholder-color);
-  font-size: 0.9rem;
-}
-
-.time {
-  padding: 8px 14px;
-  border-radius: 8px;
-  font-size: 0.9rem;
+  color: var(--text-color);
   font-weight: 600;
+  font-size: 0.95rem;
 }
 
-.on_time {
-  background-color: var(--input-bg);
+.time-text {
+  font-size: 0.95rem;
+  font-weight: 600;
   color: var(--text-color);
 }
 
-.not_on_time {
-  background-color: var(--primary-color);
-  color: #ffffff;
+.late-text {
+  color: var(--error-color);
 }

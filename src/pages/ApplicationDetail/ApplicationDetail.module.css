@@ -1,0 +1,176 @@
+.main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color);
+    overflow-y: hidden;
+}
+
+/* ── Топбар ── */
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 28px 16px;
+    background: #ffffff;
+    border-bottom: 1px solid #EEECEA;
+    flex-shrink: 0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.topbar-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--text-color);
+}
+
+.topbar-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--label-color);
+}
+
+/* ── Сетка контента ── */
+.cards-wrapper {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 20px;
+    box-sizing: border-box;
+    min-height: 0;
+}
+
+.cards {
+    width: 100%;
+    display: grid;
+    /* Левая колонка (Профиль+Календарь) широкая, Правая (кнопки) поуже */
+    grid-template-columns: minmax(600px, 1.5fr) minmax(300px, 1fr);
+    gap: 16px;
+    align-items: stretch;
+}
+
+/* ── Левая колонка ── */
+.col1 {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+}
+
+.profile-content {
+    padding: 12px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--label-color);
+    padding-left: 4px;
+}
+
+.value-box {
+    background-color: var(--input-bg);
+    border: 1.5px solid transparent;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 1rem;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+/* ── Правая колонка и Кнопки ── */
+.col2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* Прижимаем кнопки к низу */
+}
+
+.spacer {
+    flex: 1;
+    /* Занимает всё пустое место сверху */
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    /* Убрали белую карточку, просто прозрачный фон */
+    background: transparent;
+    padding: 0;
+}
+
+.btn-reject,
+.btn-accept {
+    height: 44px;
+    padding: 0 24px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-reject {
+    background-color: #FDECEA;
+    color: #C0392B;
+}
+
+.btn-reject:hover {
+    background-color: #f9d0cc;
+}
+
+.btn-reject:active {
+    transform: scale(0.98);
+}
+
+.btn-accept {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.btn-accept:hover {
+    background-color: var(--secondary-color);
+}
+
+.btn-accept:active {
+    transform: scale(0.98);
+}
+
+@media (max-width: 1100px) {
+    .cards {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .col2 {
+        justify-content: flex-end;
+    }
+}

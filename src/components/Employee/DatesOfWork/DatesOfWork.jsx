@@ -9,7 +9,8 @@ function DateOfWork({ day }) {
           month: "long",
         }).format(new Date(day.date))}
       </p>
-      <div className={styles["time"]}>
+      {/* ── Общий контейнер с серым фоном ── */}
+      <div className={styles["time-wrapper"]}>
         <input
           type="text"
           className={styles["time-input"]}
@@ -17,7 +18,7 @@ function DateOfWork({ day }) {
           maxLength={5}
           readOnly={true}
         />
-        <span>—</span>
+        <span className={styles["separator"]}>—</span>
         <input
           type="text"
           className={styles["time-input"]}

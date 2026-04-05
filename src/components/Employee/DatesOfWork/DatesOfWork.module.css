@@ -5,7 +5,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  
+
   padding: 0 6px;
   display: flex;
   flex-direction: column;
@@ -35,27 +35,34 @@
   margin: 0 0 8px;
 }
 
-.time {
-  display: flex;
-  flex-direction: row;
+.time-wrapper {
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  gap: 6px;
+  background-color: var(--input-bg);
+  /* Серый фон теперь здесь! */
+  padding: 4px 12px;
+  border-radius: 8px;
 }
 
-.time span {
-  color: var(--placeholder-color);
-  font-size: 0.9rem;
+.separator {
+  color: var(--text-color);
+  /* Разделитель такого же цвета как текст */
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 .time-input {
   box-sizing: border-box;
-  width: 6ch;
-  padding: 8px 0;
+  width: 5ch;
+  /* Ровно под 5 символов 08:00 */
+  padding: 0;
   border: none;
-  border-radius: 8px;
-  background-color: var(--input-bg);
+  background: transparent;
+  /* Инпут прозрачный */
   color: var(--text-color);
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 600;
   text-align: center;
   outline: none;
