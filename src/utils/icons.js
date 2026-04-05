@@ -17,6 +17,7 @@ import salary from "@assets/salary.svg";
 import clock from "@assets/clock.svg";
 import share from "@assets/share.svg";
 import inn from "@assets/inn.svg";
+import qr_code from "@assets/qr_code.svg";
 
 export {
   mail,
@@ -38,4 +39,5 @@ export {
   clock,
   share,
   inn,
+  qr_code,
 };

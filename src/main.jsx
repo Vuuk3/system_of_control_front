@@ -13,6 +13,7 @@ import Salaries from "./pages/Salaries/Salaries";
 import ShiftSchedule from "./pages/ShiftSchedule/ShiftSchedule";
 import Applications from "./pages/Applications/Applications";
 import ApplicationDetail from "./pages/ApplicationDetail/ApplicationDetail";
+import QRCode from "./pages/QRCode/QRCode";
 
 import { UserProvider } from "./contexts/UserContext";
 import { CompanyProvider } from "./contexts/CompanyContext";
@@ -86,6 +87,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/shift_schedule" element={<ShiftSchedule />}></Route>
           <Route path="/applications" element={<Applications />}></Route>
           <Route path="/applications/:id" element={<ApplicationDetail />}></Route>
+          <Route path="/qr_code" element={<QRCode />} />
         </Route>
       </Route>
     </Routes>

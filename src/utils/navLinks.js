@@ -4,5 +4,5 @@ export const LINKS_LIST = [
   { link: "/salaries", text: "Зарплаты" },
   { link: "/shift_schedule", text: "Расписание смен" },
   { link: "/applications", text: "Заявки" },
-  { link: null, text: "Показать QR-код" },
+  { link: "/qr_code", text: "Показать QR-код" },
 ];
