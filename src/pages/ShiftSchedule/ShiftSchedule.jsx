@@ -10,13 +10,11 @@ import ShiftEmployeeList from "@components/ShiftEmployeeList/ShiftEmployeeList";
 import { MOCK_SHIFT_SCHEDULE } from "@utils/mockData";
 
 // Моковые данные: дата -> список сотрудников
-const employeesAtDay = dateKey ? MOCK_SHIFT_SCHEDULE[dateKey] || [] : [];
-
 function ShiftSchedule() {
     const [selectedDate, setSelectedDate] = useState(new Date());
 
     const dateKey = selectedDate ? format(selectedDate, "yyyy-MM-dd") : null;
-    const employeesAtDay = dateKey ? MOCK_DATA[dateKey] || [] : [];
+    const employeesAtDay = dateKey ? MOCK_SHIFT_SCHEDULE[dateKey] || [] : [];
 
     return (
         <>
@@ -29,7 +27,7 @@ function ShiftSchedule() {
                         <ShiftCalendar
                             selectedDate={selectedDate}
                             setSelectedDate={setSelectedDate}
-                            shiftData={MOCK_DATA}
+                            shiftData={MOCK_SHIFT_SCHEDULE}
                         />
                         <ShiftEmployeeList
                             selectedDate={selectedDate}
