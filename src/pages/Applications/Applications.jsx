@@ -3,7 +3,7 @@ import Menu from "@components/Menu/Menu";
 import Title from "@components/Title/Title";
 import { mail } from "@utils/icons";
 import ApplicationCard from "@components/ApplicationCard/ApplicationCard";
-import { MOCK_APPLICATIONS } from "@utils/mockApplications";
+import { MOCK_APPLICATIONS } from "@utils/mockData";
 
 function Applications() {
     return (

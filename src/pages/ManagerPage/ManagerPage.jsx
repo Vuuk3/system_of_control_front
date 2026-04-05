@@ -4,22 +4,18 @@ import Menu from "@components/Menu/Menu";
 import NoDraggableImg from "@components/NoDraggableImg/NoDraggableImg";
 import Title from "@components/Title/Title";
 import CardHeader from "@components/Employee/CardHeader/CardHeader";
+import { MOCK_DASHBOARD_STATS } from "@utils/mockData";
 
 function ManagerPage({ props }) {
   // Моковые данные для дашборда (позже можно получать из API)
-  const dashboardStats = {
-    expenses: "1 250 000 ₽",
-    bonuses: "45 000 ₽",
-    fines: "12 500 ₽",
-    employeesCount: "24",
-  };
+  const dashboardStats = MOCK_DASHBOARD_STATS;
 
   return (
     <>
       <Title text="Главная страница" />
       <div className={styles["main"]}>
         <Menu header_text="Главная" header_logo={building} />
-        
+
         <div className={styles["content"]}>
           {/* ── Карточка компании ── */}
           <div className={styles["company-card"]}>
@@ -49,7 +45,7 @@ function ManagerPage({ props }) {
           <div className={styles["dashboard-section"]}>
             <h3 className={styles["section-title"]}>Сводка за текущий месяц</h3>
             <div className={styles["stats-grid"]}>
-              
+
               <div className={styles["stat-card"]}>
                 <CardHeader text="Расход на зарплаты" logo={salary} />
                 <div className={styles["stat-content"]}>

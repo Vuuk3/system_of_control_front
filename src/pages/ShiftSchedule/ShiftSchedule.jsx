@@ -7,18 +7,10 @@ import { format } from "date-fns";
 
 import ShiftCalendar from "@components/ShiftCalendar/ShiftCalendar";
 import ShiftEmployeeList from "@components/ShiftEmployeeList/ShiftEmployeeList";
+import { MOCK_SHIFT_SCHEDULE } from "@utils/mockData";
 
 // Моковые данные: дата -> список сотрудников
-const MOCK_DATA = {
-    [format(new Date(), "yyyy-MM-dd")]: [
-        { id: 1, name: "Дарья Шиханова", pos: "Звезда", time: "08:00 — 18:00" },
-        { id: 2, name: "Иван Иванов", pos: "Менеджер", time: "09:00 — 17:00" },
-        { id: 3, name: "Алексей Петров", pos: "Разработчик", time: "10:00 — 19:00" },
-    ],
-    "2023-10-28": [
-        { id: 4, name: "Мария Сидорова", pos: "Дизайнер", time: "08:00 — 16:00" },
-    ],
-};
+const employeesAtDay = dateKey ? MOCK_SHIFT_SCHEDULE[dateKey] || [] : [];
 
 function ShiftSchedule() {
     const [selectedDate, setSelectedDate] = useState(new Date());

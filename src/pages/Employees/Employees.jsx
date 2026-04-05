@@ -16,6 +16,7 @@ import { VALUTA } from "@utils/valuta";
 import NoDraggableImg from "@components/NoDraggableImg/NoDraggableImg";
 import NoDraggableLink from "@components/NoDraggableLink/NoDraggableLink";
 import Title from "@components/Title/Title";
+import { MOCK_EMPLOYEE_SCHEDULE } from "@utils/mockData";
 
 function Employees() {
   const { employeesData, getEmployees } = useEmployees();
@@ -53,18 +54,6 @@ function Employees() {
     if (employeesData) {
       // Генерируем тестовые даты (на завтра и послезавтра), чтобы DatesOfWork не был пустым
       const today = new Date();
-      const mockSchedule = [
-        {
-          date: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1).toISOString(),
-          start_time: "08:00:00",
-          end_time: "18:00:00",
-        },
-        {
-          date: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2).toISOString(),
-          start_time: "09:00:00",
-          end_time: "17:00:00",
-        },
-      ];
 
       setEmployees(
         employeesData.map((e) => ({
@@ -72,7 +61,7 @@ function Employees() {
           employeeData: {
             ...e,
             // Если с бека расписание не пришло, подставляем моковое
-            schedule: e.schedule && e.schedule.length > 0 ? e.schedule : mockSchedule,
+            schedule: e.schedule && e.schedule.length > 0 ? e.schedule : MOCK_EMPLOYEE_SCHEDULE,
           },
           cells: [
             {
