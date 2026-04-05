@@ -1,10 +1,167 @@
 .main {
-  background-image: url("@/assets/main.png");
+  min-height: 100vh;
+  background-color: var(--background-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
 }
 
-.logo {
+/* ── Сетка контента ── */
+.hero-content {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  z-index: 2;
+}
+
+.text-section {
+  flex: 1;
+  max-width: 600px;
+}
+
+/* ── Заголовок логотипа ── */
+.header {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 24px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.header-left {
+  color: var(--text-color);
+}
+
+.header-right {
+  color: var(--primary-color);
+}
+
+/* ── Тексты ── */
+.slogan {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--text-color);
+  margin: 0 0 24px;
+}
+
+.description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--label-color);
+  margin-bottom: 40px;
+}
+
+/* ── Кнопки ── */
+.actions {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.btn {
+  height: 52px;
+  padding: 0 32px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(28, 121, 215, 0.3);
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: #ffffff;
+  color: var(--text-color);
+  border: 1px solid #EEECEA;
+}
+
+.btn-secondary:hover {
+  background-color: var(--input-bg);
+  transform: translateY(-2px);
+}
+
+/* ── Иллюстрация ── */
+.image-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.05));
+  animation: float 6s ease-in-out infinite;
+}
+
+/* ── Адаптив ── */
+@media (max-width: 960px) {
+  .hero-content {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .text-section {
+    max-width: 100%;
+  }
+
+  .header, .actions {
+    justify-content: center;
+  }
+
+  .slogan {
+    font-size: 2.5rem;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+/* Анимация левитации логотипа */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Легкий декоративный круг на фоне */
+.bg-decoration {
   position: absolute;
-  bottom: 40px;
-  width: calc(100vw * 1030 / 1920);
-  height: calc(100vh * 642 / 1080);
+  top: -10%;
+  right: -5%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(28, 121, 215, 0.05) 0%, transparent 70%);
+  z-index: 1;
 }
